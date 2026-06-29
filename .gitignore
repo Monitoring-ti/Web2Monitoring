@@ -27,3 +27,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw uploads — usar solo public/images/
+public/*.jpeg
+public/img1*.jpeg

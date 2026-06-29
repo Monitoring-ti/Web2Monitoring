@@ -19,7 +19,6 @@ Auditoría y guía de posicionamiento para la landing en `monitoring.cl`.
 | i18n ES (/) + EN (/en) | ✅ | `src/i18n/`, `LanguageSwitcher` |
 | `hreflang` es ↔ en | ✅ | `src/lib/metadata.ts` |
 | Alt en imágenes | ✅ | `src/data/images.ts` |
-| Demos `/estilos/*` noindex | ✅ | `src/app/estilos/layout.tsx` |
 | Portal `/acceso-cliente` noindex | ✅ | metadata de página |
 | API `/api/*` bloqueada en robots | ✅ | `robots.ts` |
 
@@ -30,7 +29,6 @@ Auditoría y guía de posicionamiento para la landing en `monitoring.cl`.
 | `/` | Sí (prioridad 1.0) | Sí (`es`, predeterminado) |
 | `/en` | Sí (prioridad 0.9) | Sí (`en`) |
 | `/acceso-cliente` | No | No (`noindex`, login) |
-| `/estilos` y `/estilos/*` | No | No (demos internas) |
 
 ## Palabras clave objetivo
 

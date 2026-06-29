@@ -40,7 +40,6 @@ export const es: Dictionary = {
   header: {
     homeAria: "Monitoring — inicio",
     navAria: "Navegación principal",
-    demoStyles: "15 estilos demo",
     clientAccess: "Acceso cliente",
     requestMeeting: "Solicitar Reunión",
     requestMeetingAria: "Solicitar reunión con un especialista",

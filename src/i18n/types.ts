@@ -18,7 +18,6 @@ export interface Dictionary {
   header: {
     homeAria: string;
     navAria: string;
-    demoStyles: string;
     clientAccess: string;
     requestMeeting: string;
     requestMeetingAria: string;

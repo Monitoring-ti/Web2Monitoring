@@ -87,14 +87,6 @@ export default function Header() {
           <div className="hidden md:flex items-center gap-2 shrink-0">
             <LanguageSwitcher scrolled={scrolled} />
             <Link
-              href="/estilos"
-              className={`text-xs font-semibold transition-colors duration-200 ${
-                scrolled ? "text-primary/60 hover:text-accent" : "text-white/70 hover:text-white"
-              }`}
-            >
-              {t.header.demoStyles}
-            </Link>
-            <Link
               href="/acceso-cliente"
               className={`inline-flex items-center gap-1.5 text-xs font-semibold transition-colors duration-200 ${
                 scrolled ? "text-primary hover:text-accent" : "text-white/90 hover:text-white"

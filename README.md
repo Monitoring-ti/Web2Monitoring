@@ -1,6 +1,6 @@
 # Web2Monitoring
 
-Sitio web corporativo y galería de estilos para **Monitoring Consultora** — consultora de gestión de activos, confiabilidad operacional e ingeniería de mantenimiento (EPCM/EPC, SAP PM).
+Sitio web corporativo para **Monitoring Consultora** — consultora de gestión de activos, confiabilidad operacional e ingeniería de mantenimiento (EPCM/EPC, SAP PM).
 
 ## URLs locales
 
@@ -8,8 +8,6 @@ Sitio web corporativo y galería de estilos para **Monitoring Consultora** — c
 |------|-------------|
 | `/` | Landing comercial en español (predeterminado) |
 | `/en` | Landing comercial en inglés |
-| `/estilos` | Galería de 15 demos en 3 grupos |
-| `/estilos/[variant]` | Demo de estilo individual |
 | `/acceso-cliente` | Portal de clientes |
 | `/api/contact` | Endpoint formulario de contacto |
 
@@ -46,26 +44,22 @@ NEXT_PUBLIC_CLIENT_PORTAL_URL=https://sistema.monitoring.cl
 ```
 src/
 ├── app/                    # Rutas Next.js App Router
-│   ├── page.tsx            # Home (metadata + JSON-LD)
+│   ├── page.tsx            # Home ES (metadata + JSON-LD)
+│   ├── en/page.tsx         # Home EN
 │   ├── layout.tsx          # Layout global y metadataBase
 │   ├── robots.ts           # robots.txt
 │   ├── sitemap.ts          # sitemap.xml
-│   ├── estilos/            # Demos de diseño (noindex)
 │   └── acceso-cliente/     # Login portal (noindex)
 ├── components/
 │   ├── sections/           # Secciones de la landing
-│   ├── demo/               # Landing temática para /estilos
-│   ├── pages/              # Páginas cliente (HomePage)
+│   ├── pages/              # HomePage
 │   └── seo/                # JSON-LD
 ├── data/
-│   ├── images.ts           # Rutas y alt de imágenes
-│   └── monitoring-content.ts
+│   └── images.ts           # Rutas y alt de imágenes
 └── lib/
     ├── site-config.ts      # Config SEO y marca
     ├── metadata.ts         # Metadata home con hreflang
-    ├── locale-path.ts      # Rutas por idioma
-    ├── themes.ts           # 15 temas en 3 grupos
-    └── nav.ts              # Navegación (demos)
+    └── locale-path.ts      # Rutas por idioma
 src/i18n/
 ├── dictionaries/es.ts      # Español (predeterminado)
 ├── dictionaries/en.ts      # Inglés
@@ -87,23 +81,11 @@ public/
 9. Biblioteca / descargas  
 10. Contacto  
 
-## Galería de estilos (presentación cliente)
-
-**3 grupos × 5 estilos = 15 versiones** en `/estilos`:
-
-| Grupo | Estilos |
-|-------|---------|
-| 1 — Autoridad y confianza | corporativo, minimalista, moderno, premium, institucional |
-| 2 — Ingeniería y terreno | geometrico, blueprint, industrial, organico, vintage |
-| 3 — Innovación | tecnologico, neon-tech, data-platform, creativo, ludico |
-
-Las demos tienen navegación **anterior / siguiente** y atajos de teclado ← →.
-
 ## Imágenes
 
 Rutas centralizadas en `src/data/images.ts`. Archivos en `public/images/`.
 
-Para reemplazar una imagen: sustituir el archivo en `public/images/` manteniendo el mismo nombre, o actualizar la ruta en `images.ts`.
+Los archivos JPEG sueltos en `public/` (subidas originales) se ignoran en git; solo se versionan las copias renombradas en `public/images/`.
 
 ## SEO
 
@@ -115,7 +97,7 @@ Documentación detallada: **[docs/SEO.md](docs/SEO.md)**
 - `robots.txt` y `sitemap.xml`  
 - Open Graph y Twitter Card con imagen hero  
 - JSON-LD (`ProfessionalService` + `WebSite`) en home  
-- Demos `/estilos/*` con `noindex` (no compiten con la landing)  
+- i18n: español (`/`) e inglés (`/en`) con `hreflang`  
 - `lang="es"`, keywords, descripciones por página  
 - Textos `alt` en imágenes vía `images.ts`  
 
@@ -125,8 +107,6 @@ Documentación detallada: **[docs/SEO.md](docs/SEO.md)**
 - [ ] Google Search Console + envío de sitemap  
 - [ ] Google Analytics 4 o alternativa  
 - [ ] LinkedIn corporativo en `sameAs` (JSON-LD)  
-- Versión en inglés en `/en` con selector de idioma en el header  
-- `hreflang` es ↔ en en metadata  
 - [ ] Conectar formulario a CRM / correo transaccional  
 
 ## Despliegue
