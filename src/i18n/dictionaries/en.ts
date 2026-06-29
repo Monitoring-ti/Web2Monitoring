@@ -23,23 +23,26 @@ export const en: Dictionary = {
     ],
   },
   nav: {
-    items: [
-      { label: "Company", href: "#empresa" },
-      { label: "Credibility", href: "#credibilidad" },
-      { label: "Differentiators", href: "#diferenciadores" },
+    primary: [
       { label: "Services", href: "#servicios" },
       { label: "Industries", href: "#industrias" },
       { label: "Cases", href: "#casos" },
       { label: "Team", href: "#equipo" },
+      { label: "Contact", href: "#contacto" },
+    ],
+    more: [
+      { label: "Company", href: "#empresa" },
+      { label: "Credibility", href: "#credibilidad" },
+      { label: "Differentiators", href: "#diferenciadores" },
       { label: "News", href: "#actualidad" },
       { label: "Library", href: "#biblioteca" },
-      { label: "Contact", href: "#contacto" },
     ],
   },
   header: {
     homeAria: "Monitoring — home",
     navAria: "Main navigation",
-    clientAccess: "Client login",
+    moreLabel: "More",
+    moreAria: "More site sections",
     requestMeeting: "Request Meeting",
     requestMeetingAria: "Request a meeting with a specialist",
     openMenu: "Open menu",
@@ -48,7 +51,6 @@ export const en: Dictionary = {
   },
   footer: {
     navAria: "Footer navigation",
-    clientPortal: "Client portal access",
     copyright: "All rights reserved.",
     privacy: "Privacy Policy",
     terms: "Terms of Service",

@@ -43,8 +43,8 @@ export default function Footer() {
             />
           </Link>
 
-          <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-3xl" aria-label={t.footer.navAria}>
-            {t.nav.items.map((link) => (
+          <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2 max-w-3xl" aria-label={t.footer.navAria}>
+            {[...t.nav.primary, ...t.nav.more].map((link) => (
               <button
                 key={link.href}
                 onClick={() => handleNavClick(link.href)}
@@ -68,15 +68,6 @@ export default function Footer() {
               </svg>
             </a>
           </div>
-        </div>
-
-        <div className="mt-8 text-center">
-          <Link
-            href="/acceso-cliente"
-            className="text-white/50 hover:text-white text-xs font-semibold transition-colors"
-          >
-            {t.footer.clientPortal}
-          </Link>
         </div>
 
         <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">

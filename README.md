@@ -8,7 +8,7 @@ Sitio web corporativo para **Monitoring Consultora** — consultora de gestión 
 |------|-------------|
 | `/` | Landing comercial en español (predeterminado) |
 | `/en` | Landing comercial en inglés |
-| `/acceso-cliente` | Portal de clientes |
+| `/acceso-cliente` | Portal de clientes (sin enlace público, noindex) |
 | `/api/contact` | Endpoint formulario de contacto |
 
 ## Requisitos

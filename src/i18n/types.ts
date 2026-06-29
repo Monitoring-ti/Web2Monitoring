@@ -13,12 +13,14 @@ export interface Dictionary {
     keywords: string[];
   };
   nav: {
-    items: NavItem[];
+    primary: NavItem[];
+    more: NavItem[];
   };
   header: {
     homeAria: string;
     navAria: string;
-    clientAccess: string;
+    moreLabel: string;
+    moreAria: string;
     requestMeeting: string;
     requestMeetingAria: string;
     openMenu: string;
@@ -27,7 +29,6 @@ export interface Dictionary {
   };
   footer: {
     navAria: string;
-    clientPortal: string;
     copyright: string;
     privacy: string;
     terms: string;

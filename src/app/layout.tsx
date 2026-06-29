@@ -55,7 +55,10 @@ export const metadata: Metadata = {
     card: "summary_large_image",
   },
   icons: {
-    icon: "/logo.png",
+    icon: [
+      { url: "/logo-circular.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/logo-circular.svg",
     apple: "/logo.png",
   },
 };
