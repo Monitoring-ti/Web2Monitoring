@@ -4,16 +4,16 @@ import { JsonLd, organizationJsonLd, webSiteJsonLd } from "@/components/seo/Json
 import { getDictionary } from "@/i18n/get-dictionary";
 import { buildHomeMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = buildHomeMetadata("es");
+export const metadata: Metadata = buildHomeMetadata("en");
 
-export default function Page() {
-  const dict = getDictionary("es");
+export default function EnglishPage() {
+  const dict = getDictionary("en");
 
   return (
     <>
-      <JsonLd data={organizationJsonLd(dict, "es")} />
-      <JsonLd data={webSiteJsonLd(dict, "es")} />
-      <HomePage locale="es" />
+      <JsonLd data={organizationJsonLd(dict, "en")} />
+      <JsonLd data={webSiteJsonLd(dict, "en")} />
+      <HomePage locale="en" />
     </>
   );
 }

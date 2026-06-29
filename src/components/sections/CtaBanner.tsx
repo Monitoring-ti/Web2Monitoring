@@ -1,8 +1,11 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
+import { useDictionary } from "@/context/LocaleProvider";
 
 export default function CtaBanner() {
+  const t = useDictionary();
+
   const scrollToContact = () => {
     const el = document.querySelector("#contacto");
     if (el) {
@@ -12,11 +15,7 @@ export default function CtaBanner() {
   };
 
   return (
-    <section
-      aria-label="Llamada a la acción"
-      className="py-24 bg-hero relative overflow-hidden"
-    >
-      {/* Accent glow */}
+    <section aria-label={t.ctaBanner.aria} className="py-24 bg-hero relative overflow-hidden">
       <div
         aria-hidden="true"
         className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-15 blur-3xl pointer-events-none"
@@ -28,7 +27,6 @@ export default function CtaBanner() {
         style={{ background: "radial-gradient(circle, #1D4ED8 0%, transparent 70%)" }}
       />
 
-      {/* Grid texture */}
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-[0.03]"
@@ -43,39 +41,36 @@ export default function CtaBanner() {
 
       <div className="container-custom relative z-10 text-center">
         <p className="text-accent text-sm font-semibold uppercase tracking-widest mb-4">
-          Próximo paso
+          {t.ctaBanner.eyebrow}
         </p>
         <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight max-w-3xl mx-auto">
-          ¿Necesita mejorar el desempeño de sus activos?
+          {t.ctaBanner.title}
         </h2>
         <p className="text-white/65 text-lg leading-relaxed max-w-xl mx-auto mb-10">
-          En 30 minutos le mostramos cómo otras operaciones en su industria han
-          logrado resultados medibles. Sin compromiso. Con claridad.
+          {t.ctaBanner.subtitle}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button
             id="cta-banner-primary"
             onClick={scrollToContact}
-            aria-label="Agendar una reunión gratuita con un especialista"
+            aria-label={t.ctaBanner.primaryAria}
             className="btn-primary text-base px-8 py-4"
           >
-            Agendar Reunión Ahora
+            {t.ctaBanner.primary}
             <ArrowRight size={18} aria-hidden="true" />
           </button>
           <button
             id="cta-banner-secondary"
             onClick={scrollToContact}
-            aria-label="Solicitar un diagnóstico gratuito"
+            aria-label={t.ctaBanner.secondaryAria}
             className="btn-outline-white text-base px-8 py-4"
           >
-            Solicitar Diagnóstico Gratuito
+            {t.ctaBanner.secondary}
           </button>
         </div>
 
-        <p className="text-white/30 text-xs mt-8">
-          Sin costo. Sin compromiso. Respuesta en menos de 24 horas.
-        </p>
+        <p className="text-white/30 text-xs mt-8">{t.ctaBanner.footnote}</p>
       </div>
     </section>
   );

@@ -1,55 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { images } from "@/data/images";
+import { useDictionary } from "@/context/LocaleProvider";
 
-interface Industry {
-  id: string;
-  name: string;
-  icon: string;
-  description: string;
-}
-
-const industries: Industry[] = [
-  {
-    id: "mineria",
-    name: "Minería",
-    icon: "⛏",
-    description: "Flotas de transporte, plantas de procesamiento SAG/bolas y sistemas de chancado crítico.",
-  },
-  {
-    id: "energia",
-    name: "Energía",
-    icon: "⚡",
-    description: "Generadoras hidráulicas, térmicas, eólicas e infraestructura de transmisión eléctrica.",
-  },
-  {
-    id: "infraestructura",
-    name: "Infraestructura",
-    icon: "🏗",
-    description: "Puertos, terminales de carga, autopistas y activos civiles de gran escala.",
-  },
-  {
-    id: "industrial",
-    name: "Industrial",
-    icon: "🏭",
-    description: "Plantas químicas, refinerías y sistemas de almacenamiento y procesamiento de fluidos.",
-  },
-  {
-    id: "manufactura",
-    name: "Manufactura",
-    icon: "⚙",
-    description: "Líneas de ensamble continuo, robótica y maquinaria de alta precisión.",
-  },
-  {
-    id: "utilities",
-    name: "Utilities",
-    icon: "💧",
-    description: "Sistemas de potabilización de agua, redes de distribución y saneamiento municipal.",
-  },
-];
+const industryImages: Record<string, string> = {
+  mineria: images.industrias.mineria.src,
+  "oil-gas": images.industrias.oilGas.src,
+  celulosa: images.industrias.celulosa.src,
+  energia: images.industrias.energia.src,
+  industrial: images.industrias.industrial.src,
+};
 
 export default function Industries() {
+  const t = useDictionary();
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -79,72 +45,67 @@ export default function Industries() {
     <section
       ref={ref}
       id="industrias"
-      aria-label="Industrias en las que operamos"
+      aria-label={t.industries.aria}
       className="section-padding bg-primary text-white"
     >
       <div className="container-custom">
-        {/* Section Header */}
         <div className="max-w-3xl mb-16">
           <span className="text-accent text-xs font-bold uppercase tracking-widest block mb-2">
-            Nuestros Sectores
+            {t.industries.eyebrow}
           </span>
           <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white mb-5">
-            Industrias
+            {t.industries.title}
           </h2>
-          <p className="text-white/70 text-base sm:text-lg leading-relaxed">
-            Trabajamos mano a mano con organizaciones complejas de la región. Entendemos los desafíos 
-            regulatorios, las dinámicas de repuestos y las criticidades operativas de cada vertical.
-          </p>
+          <p className="text-white/70 text-base sm:text-lg leading-relaxed">{t.industries.subtitle}</p>
         </div>
 
-        {/* Clean & Corporate Grid */}
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           role="list"
-          aria-label="Sectores industriales atendidos"
+          aria-label={t.industries.listAria}
         >
-          {industries.map((ind, i) => (
+          {t.industries.items.map((ind, i) => (
             <div
               key={ind.id}
               role="listitem"
-              className={`bg-white/5 border border-white/10 rounded-2xl p-6 transition-all duration-300 hover:bg-white/10 hover:border-white/20 flex flex-col justify-between ${
+              className={`rounded-2xl overflow-hidden border border-accent/40 transition-all duration-300 hover:bg-white/10 flex flex-col ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: `${i * 60}ms` }}
             >
-              <div>
-                <span className="text-4xl block mb-4" aria-hidden="true">
-                  {ind.icon}
-                </span>
-                <h3 className="font-display text-lg font-bold text-white mb-2">
-                  {ind.name}
-                </h3>
-                <p className="text-white/60 text-xs sm:text-sm leading-relaxed mb-6">
-                  {ind.description}
-                </p>
+              <div className="relative h-40 w-full">
+                <Image
+                  src={industryImages[ind.id] ?? images.industrias.mineria.src}
+                  alt={ind.imageAlt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-primary/20" />
+              </div>
+              <div className="p-6">
+                <h3 className="font-display text-lg font-bold text-white mb-2">{ind.name}</h3>
+                <p className="text-white/60 text-xs sm:text-sm leading-relaxed">{ind.description}</p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Affiliation Call to Action */}
         <div
           className={`mt-16 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6 transition-all duration-700 ${
             visible ? "opacity-100" : "opacity-0"
           }`}
         >
           <div>
-            <h4 className="font-bold text-base text-white">¿Opera en alguno de estos sectores?</h4>
-            <p className="text-white/60 text-xs sm:text-sm mt-1">
-              Descubra casos de estudio y soluciones metodológicas validadas para su línea de negocio.
-            </p>
+            <h4 className="font-bold text-base text-white">{t.industries.ctaTitle}</h4>
+            <p className="text-white/60 text-xs sm:text-sm mt-1">{t.industries.ctaSubtitle}</p>
           </div>
           <button
             onClick={handleContactClick}
             className="btn-primary text-sm shrink-0"
-            aria-label="Agendar una reunión para hablar sobre su industria"
+            aria-label={t.industries.ctaAria}
           >
-            Hablar con un especialista
+            {t.industries.ctaButton}
             <ArrowRight size={16} aria-hidden="true" />
           </button>
         </div>

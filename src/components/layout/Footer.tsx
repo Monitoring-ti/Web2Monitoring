@@ -1,17 +1,16 @@
 "use client";
 
 import Image from "next/image";
-
-const links = [
-  { label: "Empresa", href: "#empresa" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Industrias", href: "#industrias" },
-  { label: "Casos de éxito", href: "#casos" },
-  { label: "Biblioteca", href: "#biblioteca" },
-  { label: "Contacto", href: "#contacto" },
-];
+import Link from "next/link";
+import { useDictionary, useLocale } from "@/context/LocaleProvider";
+import { localePath } from "@/lib/locale-path";
+import { siteConfig } from "@/lib/site-config";
 
 export default function Footer() {
+  const t = useDictionary();
+  const locale = useLocale();
+  const homePath = localePath(locale);
+
   const handleNavClick = (href: string) => {
     const el = document.querySelector(href);
     if (el) {
@@ -23,43 +22,45 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white border-t border-white/10" role="contentinfo">
       <div className="container-custom py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          
-          {/* Logo & Info */}
-          <div 
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center cursor-pointer group"
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+          <Link
+            href={homePath}
+            onClick={(e) => {
+              if (homePath === window.location.pathname) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }
+            }}
+            className="flex items-center bg-white rounded-lg px-3 py-2"
           >
             <Image
               src="/logo.png"
               alt="Monitoring Logo"
-              width={140}
-              height={36}
-              className="h-9 w-auto object-contain brightness-0 invert"
+              width={180}
+              height={48}
+              className="h-9 w-auto object-contain"
               priority
             />
-          </div>
+          </Link>
 
-          {/* Short Navigation links */}
-          <nav className="flex flex-wrap justify-center gap-x-6 gap-y-2" aria-label="Navegación del pie de página">
-            {links.map((link) => (
+          <nav className="flex flex-wrap justify-center gap-x-4 gap-y-2 max-w-3xl" aria-label={t.footer.navAria}>
+            {t.nav.items.map((link) => (
               <button
-                key={link.label}
+                key={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className="text-white/60 hover:text-white text-xs sm:text-sm font-semibold transition-colors duration-200"
+                className="text-white/60 hover:text-white text-xs font-semibold transition-colors duration-200"
               >
                 {link.label}
               </button>
             ))}
           </nav>
 
-          {/* Social */}
           <div>
             <a
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Perfil corporativo en LinkedIn de Monitoring"
+              aria-label={t.footer.linkedinAria}
               className="w-9 h-9 rounded-lg bg-white/5 hover:bg-accent flex items-center justify-center transition-colors duration-200"
             >
               <svg className="w-4 h-4 fill-white/70" viewBox="0 0 24 24" aria-hidden="true">
@@ -67,32 +68,38 @@ export default function Footer() {
               </svg>
             </a>
           </div>
-
         </div>
 
-        {/* Legal & Copyright */}
-        <div className="mt-12 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-8 text-center">
+          <Link
+            href="/acceso-cliente"
+            className="text-white/50 hover:text-white text-xs font-semibold transition-colors"
+          >
+            {t.footer.clientPortal}
+          </Link>
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-[11px] sm:text-xs">
-            © {new Date().getFullYear()} Monitoring Consultora Ltda. Todos los derechos reservados.
+            © {new Date().getFullYear()} {siteConfig.legalName}. {t.footer.copyright}
           </p>
           <div className="flex gap-4">
-            <a 
-              href="#" 
+            <a
+              href="#"
               onClick={(e) => e.preventDefault()}
               className="text-white/30 hover:text-white/55 text-[11px] sm:text-xs transition-colors"
             >
-              Políticas de Privacidad
+              {t.footer.privacy}
             </a>
-            <a 
-              href="#" 
+            <a
+              href="#"
               onClick={(e) => e.preventDefault()}
               className="text-white/30 hover:text-white/55 text-[11px] sm:text-xs transition-colors"
             >
-              Condiciones de Servicio
+              {t.footer.terms}
             </a>
           </div>
         </div>
-
       </div>
     </footer>
   );
