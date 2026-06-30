@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Calendar, Download, GraduationCap, Newspaper, Trophy } from "lucide-react";
 import { images } from "@/data/images";
-import { useDictionary } from "@/context/LocaleProvider";
+import { useDictionary, useLocale } from "@/context/LocaleProvider";
+import { pagePath } from "@/lib/locale-path";
 
 const newsImages = [
   images.actualidad.newsletter.src,
@@ -21,6 +23,8 @@ const typeIcons = {
 
 export default function News() {
   const t = useDictionary();
+  const locale = useLocale();
+  const libraryPath = pagePath(locale, "biblioteca");
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -91,19 +95,13 @@ export default function News() {
                     </h3>
                     <p className="text-muted text-sm leading-relaxed">{item.summary}</p>
                   </div>
-                  <button
-                    onClick={() => {
-                      const el = document.querySelector("#biblioteca");
-                      if (el) {
-                        const top = el.getBoundingClientRect().top + window.scrollY - 80;
-                        window.scrollTo({ top, behavior: "smooth" });
-                      }
-                    }}
+                  <Link
+                    href={libraryPath}
                     className="mt-6 inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-accent transition-colors"
                   >
                     <Download size={14} aria-hidden="true" />
                     {t.news.viewLibrary}
-                  </button>
+                  </Link>
                 </div>
               </article>
             );

@@ -81,7 +81,7 @@ export default function AccesoClientePage() {
 
           <p className="text-center text-xs text-muted mt-6">
             ¿Problemas de acceso?{" "}
-            <Link href="/#contacto" className="text-accent font-semibold hover:underline">
+            <Link href="/contacto" className="text-accent font-semibold hover:underline">
               Contacte a soporte
             </Link>
           </p>

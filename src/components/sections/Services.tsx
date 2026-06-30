@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Settings,
   ShieldAlert,
@@ -12,7 +13,8 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { images } from "@/data/images";
-import { useDictionary } from "@/context/LocaleProvider";
+import { useDictionary, useLocale } from "@/context/LocaleProvider";
+import { pagePath } from "@/lib/locale-path";
 
 const serviceIcons: Record<string, React.ElementType> = {
   "gestion-activos": Settings,
@@ -34,6 +36,8 @@ const serviceImages: Record<string, string> = {
 
 export default function Services() {
   const t = useDictionary();
+  const locale = useLocale();
+  const contactPath = pagePath(locale, "contacto");
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -50,14 +54,6 @@ export default function Services() {
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
-
-  const handleCtaClick = () => {
-    const el = document.querySelector("#contacto");
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
 
   return (
     <section
@@ -124,8 +120,8 @@ export default function Services() {
 
                 <div className="px-6 sm:px-8 pb-6 sm:pb-8">
                   <div className="pt-4 border-t border-border/50">
-                    <button
-                      onClick={handleCtaClick}
+                    <Link
+                      href={contactPath}
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-primary group-hover:text-accent transition-colors duration-200"
                       aria-label={`${service.ctaText} — ${service.title}`}
                     >
@@ -135,7 +131,7 @@ export default function Services() {
                         className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                         aria-hidden="true"
                       />
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </article>

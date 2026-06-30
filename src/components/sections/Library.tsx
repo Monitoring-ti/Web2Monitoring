@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { BookOpen, FileText, Download, PlayCircle, ClipboardList, CheckCircle, Newspaper } from "lucide-react";
-import { useDictionary } from "@/context/LocaleProvider";
+import { useDictionary, useLocale } from "@/context/LocaleProvider";
+import { pagePath } from "@/lib/locale-path";
 
 const iconMap: Record<string, React.ElementType> = {
   whitepaper: BookOpen,
@@ -16,6 +18,9 @@ const iconMap: Record<string, React.ElementType> = {
 
 export default function Library() {
   const t = useDictionary();
+  const locale = useLocale();
+  const router = useRouter();
+  const contactPath = pagePath(locale, "contacto");
   const [visible, setVisible] = useState(false);
   const [activeType, setActiveType] = useState<string>("all");
   const [downloadedId, setDownloadedId] = useState<string | null>(null);
@@ -39,11 +44,7 @@ export default function Library() {
     setDownloadedId(id);
     setTimeout(() => {
       setDownloadedId(null);
-      const el = document.querySelector("#contacto");
-      if (el) {
-        const top = el.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({ top, behavior: "smooth" });
-      }
+      router.push(contactPath);
     }, 1200);
   };
 

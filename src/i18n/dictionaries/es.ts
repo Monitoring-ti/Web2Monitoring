@@ -25,18 +25,18 @@ export const es: Dictionary = {
   },
   nav: {
     primary: [
-      { label: "Servicios", href: "#servicios" },
-      { label: "Industrias", href: "#industrias" },
-      { label: "Casos", href: "#casos" },
-      { label: "Equipo", href: "#equipo" },
-      { label: "Contacto", href: "#contacto" },
+      { label: "Servicios", href: "/servicios" },
+      { label: "Industrias", href: "/industrias" },
+      { label: "Casos", href: "/casos" },
+      { label: "Equipo", href: "/equipo" },
+      { label: "Contacto", href: "/contacto" },
     ],
     more: [
-      { label: "Empresa", href: "#empresa" },
-      { label: "Credibilidad", href: "#credibilidad" },
-      { label: "Diferenciadores", href: "#diferenciadores" },
-      { label: "Actualidad", href: "#actualidad" },
-      { label: "Biblioteca", href: "#biblioteca" },
+      { label: "Empresa", href: "/" },
+      { label: "Credibilidad", href: "/credibilidad" },
+      { label: "Diferenciadores", href: "/diferenciadores" },
+      { label: "Actualidad", href: "/actualidad" },
+      { label: "Biblioteca", href: "/biblioteca" },
     ],
   },
   header: {

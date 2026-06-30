@@ -2,22 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
-import { localePath } from "@/lib/locale-path";
+import { localePath, resolveNavPath } from "@/lib/locale-path";
 import { siteConfig } from "@/lib/site-config";
 
 export default function Footer() {
   const t = useDictionary();
   const locale = useLocale();
+  const pathname = usePathname();
   const homePath = localePath(locale);
-
-  const handleNavClick = (href: string) => {
-    const el = document.querySelector(href);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
 
   return (
     <footer className="bg-primary text-white border-t border-white/10" role="contentinfo">
@@ -25,12 +19,6 @@ export default function Footer() {
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
           <Link
             href={homePath}
-            onClick={(e) => {
-              if (homePath === window.location.pathname) {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }
-            }}
             className="flex items-center bg-white rounded-lg px-3 py-2"
           >
             <Image
@@ -44,15 +32,20 @@ export default function Footer() {
           </Link>
 
           <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2 max-w-3xl" aria-label={t.footer.navAria}>
-            {[...t.nav.primary, ...t.nav.more].map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleNavClick(link.href)}
-                className="text-white/60 hover:text-white text-xs font-semibold transition-colors duration-200"
-              >
-                {link.label}
-              </button>
-            ))}
+            {[...t.nav.primary, ...t.nav.more].map((link) => {
+              const href = resolveNavPath(locale, link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={href}
+                  className={`text-xs font-semibold transition-colors duration-200 ${
+                    pathname === href ? "text-white" : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div>

@@ -2,9 +2,10 @@
 
 import { useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Globe } from "lucide-react";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
-import { alternateLocalePath } from "@/lib/locale-path";
+import { alternateLocalePath, slugFromPathname } from "@/lib/locale-path";
 
 interface LanguageSwitcherProps {
   scrolled?: boolean;
@@ -12,7 +13,10 @@ interface LanguageSwitcherProps {
 
 export default function LanguageSwitcher({ scrolled = false }: LanguageSwitcherProps) {
   const locale = useLocale();
+  const pathname = usePathname();
   const t = useDictionary();
+  const currentSlug = slugFromPathname(pathname);
+  const alternateHref = alternateLocalePath(locale, currentSlug);
 
   useEffect(() => {
     document.documentElement.lang = locale === "en" ? "en" : "es";
@@ -20,7 +24,7 @@ export default function LanguageSwitcher({ scrolled = false }: LanguageSwitcherP
 
   return (
     <Link
-      href={alternateLocalePath(locale)}
+      href={alternateHref}
       aria-label={t.language.aria}
       className={`inline-flex items-center gap-1.5 text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors duration-200 border ${
         scrolled

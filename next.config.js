@@ -1,16 +1,21 @@
 /** @type {import('next').NextConfig} */
+const isGithubPages = process.env.GITHUB_PAGES === "true";
+const basePath = isGithubPages ? "/Web2Monitoring" : "";
+
 const nextConfig = {
+  ...(isGithubPages ? { output: "export" } : {}),
+  basePath,
+  assetPrefix: basePath || undefined,
+  trailingSlash: true,
   images: {
-    domains: [],
+    unoptimized: true,
   },
   eslint: {
-    // Desactivar validación de eslint en producción para evitar incompatibilidades de versión de ESLint
     ignoreDuringBuilds: true,
   },
   typescript: {
-    // Desactivar detención de compilación por TS rules en build si es necesario, pero intentemos arreglar el tipo de CSS primero
     ignoreBuildErrors: true,
-  }
-}
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

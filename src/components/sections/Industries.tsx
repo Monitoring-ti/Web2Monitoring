@@ -2,9 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { images } from "@/data/images";
-import { useDictionary } from "@/context/LocaleProvider";
+import { useDictionary, useLocale } from "@/context/LocaleProvider";
+import { pagePath } from "@/lib/locale-path";
 
 const industryImages: Record<string, string> = {
   mineria: images.industrias.mineria.src,
@@ -16,6 +18,8 @@ const industryImages: Record<string, string> = {
 
 export default function Industries() {
   const t = useDictionary();
+  const locale = useLocale();
+  const contactPath = pagePath(locale, "contacto");
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -32,14 +36,6 @@ export default function Industries() {
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
-
-  const handleContactClick = () => {
-    const el = document.querySelector("#contacto");
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
 
   return (
     <section
@@ -100,14 +96,14 @@ export default function Industries() {
             <h4 className="font-bold text-base text-white">{t.industries.ctaTitle}</h4>
             <p className="text-white/60 text-xs sm:text-sm mt-1">{t.industries.ctaSubtitle}</p>
           </div>
-          <button
-            onClick={handleContactClick}
+          <Link
+            href={contactPath}
             className="btn-primary text-sm shrink-0"
             aria-label={t.industries.ctaAria}
           >
             {t.industries.ctaButton}
             <ArrowRight size={16} aria-hidden="true" />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

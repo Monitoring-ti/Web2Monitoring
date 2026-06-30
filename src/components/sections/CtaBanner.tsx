@@ -1,18 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { useDictionary } from "@/context/LocaleProvider";
+import { useDictionary, useLocale } from "@/context/LocaleProvider";
+import { pagePath } from "@/lib/locale-path";
 
 export default function CtaBanner() {
   const t = useDictionary();
-
-  const scrollToContact = () => {
-    const el = document.querySelector("#contacto");
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
+  const locale = useLocale();
+  const contactPath = pagePath(locale, "contacto");
 
   return (
     <section aria-label={t.ctaBanner.aria} className="py-24 bg-hero relative overflow-hidden">
@@ -51,23 +47,23 @@ export default function CtaBanner() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <button
+          <Link
             id="cta-banner-primary"
-            onClick={scrollToContact}
+            href={contactPath}
             aria-label={t.ctaBanner.primaryAria}
             className="btn-primary text-base px-8 py-4"
           >
             {t.ctaBanner.primary}
             <ArrowRight size={18} aria-hidden="true" />
-          </button>
-          <button
+          </Link>
+          <Link
             id="cta-banner-secondary"
-            onClick={scrollToContact}
+            href={contactPath}
             aria-label={t.ctaBanner.secondaryAria}
             className="btn-outline-white text-base px-8 py-4"
           >
             {t.ctaBanner.secondary}
-          </button>
+          </Link>
         </div>
 
         <p className="text-white/30 text-xs mt-8">{t.ctaBanner.footnote}</p>

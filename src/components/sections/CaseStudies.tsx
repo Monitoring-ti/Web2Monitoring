@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { ArrowRight, AlertTriangle, Search, Shield, Share2 } from "lucide-react";
-import { useDictionary } from "@/context/LocaleProvider";
+import { useDictionary, useLocale } from "@/context/LocaleProvider";
+import { pagePath } from "@/lib/locale-path";
 
 export default function CaseStudies() {
   const t = useDictionary();
+  const locale = useLocale();
+  const contactPath = pagePath(locale, "contacto");
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -23,16 +27,8 @@ export default function CaseStudies() {
     return () => observer.disconnect();
   }, []);
 
-  const handleCtaClick = () => {
-    const el = document.querySelector("#contacto");
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
-
   const handleShareCase = async (title: string) => {
-    const shareUrl = `${window.location.origin}${window.location.pathname}#casos`;
+    const shareUrl = window.location.href;
     const shareData = {
       title: `${t.cases.shareTitle}: ${title}`,
       text: t.cases.shareText,
@@ -139,14 +135,14 @@ export default function CaseStudies() {
                   </div>
 
                   <div className="pt-4 flex flex-wrap gap-4">
-                    <button
-                      onClick={handleCtaClick}
+                    <Link
+                      href={contactPath}
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-accent hover:text-accent-600 transition-colors"
                       aria-label={`${t.cases.requestSimilarAria} ${c.title}`}
                     >
                       {t.cases.requestSimilar}
                       <ArrowRight size={14} aria-hidden="true" />
-                    </button>
+                    </Link>
                     <button
                       onClick={() => handleShareCase(c.title)}
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-primary/60 hover:text-primary transition-colors"

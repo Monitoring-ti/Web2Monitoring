@@ -2,22 +2,19 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight, Download } from "lucide-react";
 import { images } from "@/data/images";
-import { useDictionary } from "@/context/LocaleProvider";
+import { useDictionary, useLocale } from "@/context/LocaleProvider";
+import { pagePath } from "@/lib/locale-path";
 
 const clientLogos = ["Codelco", "Engie", "Colbún", "Anglo American", "SQM"];
 
-function scrollToSection(href: string) {
-  const el = document.querySelector(href);
-  if (el) {
-    const top = el.getBoundingClientRect().top + window.scrollY - 80;
-    window.scrollTo({ top, behavior: "smooth" });
-  }
-}
-
 export default function Hero() {
   const t = useDictionary();
+  const locale = useLocale();
+  const contactPath = pagePath(locale, "contacto");
+  const libraryPath = pagePath(locale, "biblioteca");
   const [visible, setVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
@@ -102,24 +99,24 @@ export default function Hero() {
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
             >
-              <button
+              <Link
                 id="hero-cta-primary"
-                onClick={() => scrollToSection("#contacto")}
+                href={contactPath}
                 aria-label={t.hero.ctaPrimaryAria}
                 className="btn-primary text-sm sm:text-base px-8 py-4 justify-center"
               >
                 {t.hero.ctaPrimary}
                 <ArrowRight size={18} aria-hidden="true" />
-              </button>
-              <button
+              </Link>
+              <Link
                 id="hero-cta-secondary"
-                onClick={() => scrollToSection("#biblioteca")}
+                href={libraryPath}
                 aria-label={t.hero.ctaSecondaryAria}
                 className="btn-outline-white text-sm sm:text-base px-8 py-4 justify-center"
               >
                 <Download size={18} aria-hidden="true" />
                 {t.hero.ctaSecondary}
-              </button>
+              </Link>
             </div>
 
             <div
