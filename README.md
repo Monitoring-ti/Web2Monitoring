@@ -122,4 +122,4 @@ Dominio sugerido: `https://monitoring.cl`
 
 ## Licencia
 
-Proyecto privado — Monitoring Consultora Ltda.
+Proyecto privado — Monitoring SpA. Desarrollado por ti.soporte@monitoring.cl.

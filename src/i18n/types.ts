@@ -30,6 +30,7 @@ export interface Dictionary {
   footer: {
     navAria: string;
     copyright: string;
+    developedBy: string;
     privacy: string;
     terms: string;
     linkedinAria: string;

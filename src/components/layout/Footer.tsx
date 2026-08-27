@@ -64,9 +64,20 @@ export default function Footer() {
         </div>
 
         <div className="mt-8 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-[11px] sm:text-xs">
-            © {new Date().getFullYear()} {siteConfig.legalName}. {t.footer.copyright}
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-center sm:text-left">
+            <p className="text-white/30 text-[11px] sm:text-xs">
+              © {new Date().getFullYear()} {siteConfig.legalName}. {t.footer.copyright}
+            </p>
+            <p className="text-white/30 text-[11px] sm:text-xs">
+              {t.footer.developedBy}{" "}
+              <a
+                href={`mailto:${siteConfig.supportEmail}`}
+                className="text-white/45 hover:text-white/70 transition-colors"
+              >
+                {siteConfig.supportEmail}
+              </a>
+            </p>
+          </div>
           <div className="flex gap-4">
             <a
               href="#"

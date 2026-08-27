@@ -1,11 +1,12 @@
 export const siteConfig = {
   name: "Monitoring Consultora",
   shortName: "Monitoring",
-  legalName: "Monitoring Consultora Ltda.",
+  legalName: "Monitoring SpA",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://monitoring.cl",
   locale: "es_CL",
   language: "es",
   email: "contacto@monitoring.cl",
+  supportEmail: "ti.soporte@monitoring.cl",
   phone: "+56 2 2345 6789",
   tagline: "Optimizando sus activos desde la primera jugada",
   description:

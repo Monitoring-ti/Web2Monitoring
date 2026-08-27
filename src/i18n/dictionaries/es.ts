@@ -53,6 +53,7 @@ export const es: Dictionary = {
   footer: {
     navAria: "Navegación del pie de página",
     copyright: "Todos los derechos reservados.",
+    developedBy: "Desarrollado por",
     privacy: "Políticas de Privacidad",
     terms: "Condiciones de Servicio",
     linkedinAria: "Perfil corporativo en LinkedIn de Monitoring",
