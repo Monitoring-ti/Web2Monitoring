@@ -52,8 +52,6 @@ export interface Dictionary {
     ctaSecondaryAria: string;
     metricsAria: string;
     metrics: { value: string; label: string }[];
-    clientsLabel: string;
-    clientPrefix: string;
     fieldLabel: string;
     fieldCaption: string;
     fieldBadge: string;
@@ -64,6 +62,15 @@ export interface Dictionary {
     title: string;
     listAria: string;
     kpis: { value: number; suffix: string; label: string; description: string }[];
+    credentialsTitle: string;
+    credentialsNote: string;
+    credentials: { id: string; name: string }[];
+  };
+  clients: {
+    aria: string;
+    eyebrow: string;
+    title: string;
+    subtitle: string;
   };
   differentiators: {
     aria: string;
@@ -84,6 +91,8 @@ export interface Dictionary {
       description: string;
       ctaText: string;
       imageAlt: string;
+      ctaHref?: string;
+      callout?: { title: string; description: string };
     }[];
   };
   industries: {
@@ -136,6 +145,8 @@ export interface Dictionary {
     title: string;
     subtitle: string;
     presence: string;
+    peopleTitle: string;
+    people: { name: string; role: string; email: string; phone: string }[];
     galleryAlts: string[];
   };
   news: {
@@ -192,8 +203,13 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     subtitle: string;
+    body: string;
+    responseTitle: string;
     responseTime: string;
+    confidentialityTitle: string;
     confidentiality: string;
+    officesTitle: string;
+    offices: { city: string; address: string; phone: string }[];
     successTitle: string;
     successMessage: string;
     sendAnother: string;
@@ -214,6 +230,7 @@ export interface Dictionary {
     emailLabel: string;
     emailRequired: string;
     emailInvalid: string;
+    emailNotHuman: string;
     emailPlaceholder: string;
     messageLabel: string;
     messagePlaceholder: string;
@@ -228,5 +245,143 @@ export interface Dictionary {
     switchTo: string;
     current: string;
     aria: string;
+  };
+  mmi: {
+    aria: string;
+    brand: string;
+    home: {
+      aria: string;
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      quote: string;
+      cta: string;
+      ctaAria: string;
+    };
+    hero: {
+      eyebrow: string;
+      title: string;
+      titleHighlight: string;
+      subtitle: string;
+      formula: string;
+      ctaPrimary: string;
+      ctaPrimaryAria: string;
+      ctaSecondary: string;
+      ctaSecondaryAria: string;
+    };
+    flow: {
+      aria: string;
+      sources: string[];
+      result: string;
+      resultDetail: string;
+      caption: string;
+    };
+    example: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      badge: string;
+      kind: string;
+      question: string;
+      confidenceLabel: string;
+      confidence: string;
+      confidenceNote: string;
+      executionLabel: string;
+      execution: string;
+      openDemo: string;
+      panels: { title: string; text: string }[];
+    };
+    process: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      items: { title: string; text: string }[];
+    };
+    principles: string[];
+    problem: {
+      eyebrow: string;
+      title: string;
+      lead: string;
+      notReplaceLabel: string;
+      notReplace: string[];
+      worksWith: string;
+      notThisLabel: string;
+      notThis: string;
+      thisIsLabel: string;
+      thisIs: string;
+    };
+    ally: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      layers: string[];
+      boxTitle: string;
+      boxSubtitle: string;
+      outcome: string;
+      specialistNote: string;
+    };
+    sources: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      items: string[];
+    };
+    capabilities: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      items: { title: string; description: string }[];
+    };
+    differentials: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      items: { title: string; description: string }[];
+    };
+    specialists: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      coordinator: string;
+      roles: string[];
+      verifier: string;
+      functionTitle: string;
+      functions: string[];
+      note: string;
+    };
+    services: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      items: { title: string; description: string; contributes: string[] }[];
+      contributesLabel: string;
+      digitalTitle: string;
+      digitalLead: string;
+      digitalChain: string[];
+    };
+    evidence: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      chain: string[];
+      closing: string;
+    };
+    demo: {
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      context: string;
+      steps: { title: string; text: string }[];
+      result: string;
+    };
+    cta: {
+      title: string;
+      subtitle: string;
+      primary: string;
+      primaryAria: string;
+      secondary: string;
+      secondaryAria: string;
+      principle: string;
+    };
   };
 }

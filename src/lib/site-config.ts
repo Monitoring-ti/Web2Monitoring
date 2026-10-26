@@ -5,12 +5,12 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://monitoring.cl",
   locale: "es_CL",
   language: "es",
-  email: "contacto@monitoring.cl",
+  email: "soporte@monitoring.cl",
   supportEmail: "ti.soporte@monitoring.cl",
-  phone: "+56 2 2345 6789",
+  phone: "+56 2 2235 3090",
   tagline: "Optimizando sus activos desde la primera jugada",
   description:
-    "Consultora especializada en gestión de activos, confiabilidad operacional e ingeniería de mantenimiento con SAP PM. Desde proyectos EPCM/EPC hasta la operación en minería, Oil&Gas, celulosa y energía.",
+    "Consultora de ingeniería en gestión de activos físicos, mantenimiento y confiabilidad. Minería, energía, celulosa, puertos e industria.",
   keywords: [
     "gestión de activos",
     "confiabilidad operacional",
@@ -21,17 +21,17 @@ export const siteConfig = {
     "consultora minería Chile",
     "asset management",
     "mantenimiento industrial",
-    "oil and gas",
     "celulosa",
+    "puertos",
     "excelencia operacional",
   ],
-  ogImage: "/images/hero-faena-mineria.jpg",
+  ogImage: "/images/hero-ajedrez-mineria.jpg",
   twitterHandle: undefined as string | undefined,
   address: {
     country: "CL",
     region: "Región Metropolitana",
   },
-  industries: ["Minería", "Oil & Gas", "Celulosa", "Energía", "Industria"],
+  industries: ["Minería", "Energía", "Celulosa", "Puertos", "Industria"],
 } as const;
 
 export function absoluteUrl(path: string): string {

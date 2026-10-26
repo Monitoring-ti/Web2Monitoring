@@ -8,6 +8,15 @@ export function localePath(locale: Locale): string {
   return locale === defaultLocale ? "/" : `/${locale}`;
 }
 
+/** Compara rutas ignorando la barra final. */
+export function pathsMatch(a: string, b: string): boolean {
+  const normalize = (path: string) => {
+    if (path.length > 1 && path.endsWith("/")) return path.slice(0, -1);
+    return path || "/";
+  };
+  return normalize(a) === normalize(b);
+}
+
 /** Ruta de una página interna según idioma. */
 export function pagePath(locale: Locale, slug?: PageSlug | null): string {
   const base = localePath(locale);

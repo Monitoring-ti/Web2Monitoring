@@ -7,6 +7,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
+import VersionSwitch from "@/components/layout/VersionSwitch";
 import { localePath, pagePath, resolveNavPath } from "@/lib/locale-path";
 
 export default function Header() {
@@ -51,7 +52,7 @@ export default function Header() {
     const active = isActive(href);
     const base = compact
       ? "w-full text-left px-4 py-2.5 text-sm font-medium rounded-lg transition-colors"
-      : "whitespace-nowrap px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200";
+      : "whitespace-nowrap px-2.5 py-2 text-sm font-medium rounded-lg transition-all duration-200";
 
     if (compact) {
       return `${base} ${active ? "text-accent bg-accent/5" : "text-primary/80 hover:text-primary hover:bg-surface"}`;
@@ -79,17 +80,22 @@ export default function Header() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         headerSolid
           ? "bg-white/95 backdrop-blur-md shadow-sm border-b border-border"
-          : "bg-transparent"
+          : "bg-white/95 backdrop-blur-md border-b border-border lg:bg-transparent lg:border-transparent"
       }`}
       role="banner"
     >
+      <div className="border-b border-border bg-white/95">
+        <div className="container-custom flex justify-center py-2">
+          <VersionSwitch />
+        </div>
+      </div>
       <div className="container-custom">
         <div className="flex items-center justify-between gap-4 h-16 py-2">
           <Link
             href={homePath}
             aria-label={t.header.homeAria}
             className={`flex items-center shrink-0 rounded-lg transition-all duration-300 ${
-              headerSolid ? "" : "bg-white/95 shadow-sm px-2.5 py-1.5"
+              headerSolid ? "" : "lg:bg-white/95 lg:shadow-sm lg:px-2.5 lg:py-1.5"
             }`}
           >
             <Image
@@ -184,7 +190,9 @@ export default function Header() {
             <LanguageSwitcher scrolled={headerSolid} />
             <button
               className={`p-2 rounded-lg transition-colors shrink-0 ${
-                headerSolid ? "text-primary hover:bg-primary/5" : "text-white hover:bg-white/10"
+                headerSolid
+                  ? "text-primary hover:bg-primary/5"
+                  : "text-primary hover:bg-primary/5 lg:text-white lg:hover:bg-white/10"
               }`}
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? t.header.closeMenu : t.header.openMenu}
@@ -195,6 +203,32 @@ export default function Header() {
             </button>
           </div>
         </div>
+
+        <nav
+          className="lg:hidden flex flex-wrap justify-center gap-1.5 pb-2.5"
+          aria-label={t.header.navAria}
+        >
+          {t.nav.primary.map((item) => {
+            const contact = item.href === "/contacto";
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={resolveNavPath(locale, item.href)}
+                aria-current={active ? "page" : undefined}
+                className={`rounded-full px-2.5 py-1.5 text-[12.5px] font-semibold leading-none ${
+                  contact
+                    ? "bg-accent text-white"
+                    : active
+                      ? "bg-primary text-white"
+                      : "text-primary hover:bg-surface"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
       </div>
 
       <div

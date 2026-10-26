@@ -20,15 +20,20 @@ Auditoría y guía de posicionamiento para la landing en `monitoring.cl`.
 | `hreflang` es ↔ en | ✅ | `src/lib/metadata.ts` |
 | Alt en imágenes | ✅ | `src/data/images.ts` |
 | Portal `/acceso-cliente` noindex | ✅ | metadata de página |
-| API `/api/*` bloqueada en robots | ✅ | `robots.ts` |
+| `/api/` bloqueada en robots | ✅ | `robots.ts`. No existe ruta de contacto |
+| Páginas internas en sitemap | ✅ | `src/lib/pages.ts` vía `sitemap.ts` |
 
 ## URLs indexables
 
 | URL | Sitemap | Index |
 |-----|---------|-------|
-| `/` | Sí (prioridad 1.0) | Sí (`es`, predeterminado) |
+| `/` | Sí (prioridad 1.0) | Sí (`es`, predeterminado). El HTML indexable es la versión full |
 | `/en` | Sí (prioridad 0.9) | Sí (`en`) |
+| `/servicios`, `/mmi`, `/industrias`, `/casos`, `/equipo`, `/contacto` | Sí | Sí, y su par en `/en/...` |
+| `/credibilidad`, `/diferenciadores`, `/actualidad`, `/biblioteca` | Sí | Sí, y su par en `/en/...` |
 | `/acceso-cliente` | No | No (`noindex`, login) |
+
+La versión soft no tiene URL. Es una preferencia del navegador sobre el inicio.
 
 ## Palabras clave objetivo
 
@@ -42,9 +47,10 @@ Auditoría y guía de posicionamiento para la landing en `monitoring.cl`.
 ### Secundarias (sectores gerencia)
 
 - consultora minería Chile / LATAM  
-- gestión de activos oil and gas  
 - mantenimiento industrial celulosa  
 - excelencia operacional planta industrial  
+
+Oil & Gas no está entre las industrias publicadas.
 
 ### Marca
 
@@ -56,9 +62,9 @@ Auditoría y guía de posicionamiento para la landing en `monitoring.cl`.
 | Campo | Contenido |
 |-------|-----------|
 | **Title** | Monitoring \| Optimizando sus activos desde la primera jugada |
-| **Description** | Gestión de activos, confiabilidad, SAP PM. EPCM/EPC → operación. Minería, Oil&Gas, celulosa, energía. |
+| **Description** | Consultora de ingeniería en gestión de activos físicos, mantenimiento y confiabilidad. Minería, energía, celulosa, puertos e industria. |
 | **H1** | Optimizando sus activos desde la primera jugada |
-| **OG image** | `/images/hero-faena-mineria.jpg` |
+| **OG image** | `/images/hero-ajedrez-mineria.jpg` (no es la portada visible `portada-2.jpg`) |
 
 ## JSON-LD
 
@@ -104,13 +110,13 @@ sameAs: [
 
 - [ ] GA4: eventos `meeting_requested`, `download_brochure`, `form_submit`  
 - [ ] UTM en campañas LinkedIn / email  
-- [ ] CRM vinculado a `/api/contact`  
+- [ ] El formulario abre `mailto:soporte@monitoring.cl`. No hay CRM ni `/api/contact`  
 
 ## Métricas de éxito (12 meses — gerencia)
 
 | KPI | Fuente |
 |-----|--------|
-| Contactos calificados / mes | Formulario + CRM |
+| Contactos calificados / mes | Correos llegados a soporte@monitoring.cl |
 | Reuniones desde web | Evento CTA principal |
 | Tráfico orgánico | Search Console |
 | Impresiones marca "Monitoring" | Search Console + Analytics |

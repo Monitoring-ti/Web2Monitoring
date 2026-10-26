@@ -1,94 +1,94 @@
-/** Rutas de imágenes en /public/images — generadas desde el set de gerencia */
+/** Rutas de imágenes en /public/images. La portada es el collage de faena. */
 
 export const images = {
   hero: {
-    src: "/images/hero-faena-mineria.jpg",
-    alt: "Ingenieros Monitoring en planta concentradora minera, Chile",
+    src: "/images/portada-2.jpg",
+    alt: "Piezas de ajedrez sobre el tablero de una planta industrial",
   },
   lider: {
-    src: "/images/lider-tecnico-terreno.jpg",
-    alt: "Líder técnico senior revisando datos en terreno industrial",
+    src: "/images/ajedrez-proceso.jpg",
+    alt: "Planta de proceso con trazado de ingeniería",
   },
   equipo: {
-    src: "/images/equipo-multidisciplinario.jpg",
-    alt: "Equipo multidisciplinario trabajando en faena con planos y tablet",
+    src: "/images/ajedrez-planta.jpg",
+    alt: "Sala de máquinas industriales",
   },
   faena: {
-    src: "/images/faena-logistica-terreno.jpg",
-    alt: "Profesionales en operación logística e industrial en terreno",
+    src: "/images/ajedrez-planta.jpg",
+    alt: "Correas y equipos de planta, sin personal",
   },
   portal: {
-    src: "/images/servicio-transformacion-digital.jpg",
-    alt: "Profesional revisando dashboard de KPIs en planta industrial",
+    src: "/images/analitica-pantalla.jpg",
+    alt: "Pantalla de analítica de mantenimiento y confiabilidad",
   },
   galeria: [
-    { src: "/images/hero-faena-mineria.jpg", alt: "Planta de procesamiento minero en Chile" },
-    { src: "/images/equipo-multidisciplinario.jpg", alt: "Equipo integral en faena industrial" },
-    { src: "/images/lider-tecnico-terreno.jpg", alt: "Consultor senior en inspección de activos" },
-    { src: "/images/cierre-servicio-cliente.jpg", alt: "Cierre de servicio con cliente en planta" },
-    { src: "/images/servicio-confiabilidad.jpg", alt: "Mantenimiento de equipo crítico en operación" },
-    { src: "/images/galeria-faena-tech.jpg", alt: "Transformación digital aplicada en terreno" },
+    { src: "/images/hero-ajedrez-mineria.jpg", alt: "Rajo minero con camión de extracción" },
+    { src: "/images/ajedrez-acero.jpg", alt: "Laminador industrial en operación" },
+    { src: "/images/ajedrez-planta.jpg", alt: "Sala de máquinas y estrategia en planta" },
+    { src: "/images/ajedrez-proceso.jpg", alt: "Planta de proceso con trazado de ingeniería" },
+    { src: "/images/ajedrez-energia.jpg", alt: "Parque eólico y subestación eléctrica" },
+    { src: "/images/analitica-pantalla.jpg", alt: "Analítica de mantenimiento sobre una faena minera" },
   ],
   servicios: {
     gestionActivos: {
-      src: "/images/servicio-gestion-activos.jpg",
-      alt: "Ciclo de vida del activo desde proyecto EPCM/EPC hasta operación",
+      src: "/images/ajedrez-proceso.jpg",
+      alt: "Planta de proceso y ciclo de vida del activo",
     },
     confiabilidad: {
-      src: "/images/servicio-confiabilidad.jpg",
-      alt: "Mantenimiento y confiabilidad en molino SAG industrial",
+      src: "/images/ajedrez-acero.jpg",
+      alt: "Laminador y equipo crítico en operación",
     },
     sapPm: {
-      src: "/images/servicio-sap-pm.jpg",
-      alt: "Ingeniera usando tablet con datos de mantenimiento en terreno",
+      src: "/images/ajedrez-planta.jpg",
+      alt: "Sala de máquinas para ingeniería de mantenimiento",
     },
     supplyChain: {
-      src: "/images/servicio-supply-chain.jpg",
-      alt: "Bodega técnica con repuestos críticos identificados",
+      src: "/images/ajedrez-optimizacion.jpg",
+      alt: "Correas, estanques y flujo de materiales en planta",
     },
     excelencia: {
-      src: "/images/servicio-excelencia-operacional.jpg",
-      alt: "Sala de control con dashboards de operación minera",
+      src: "/images/analitica-pantalla.jpg",
+      alt: "Indicadores de operación minera en una pantalla de analítica",
     },
     digital: {
-      src: "/images/servicio-transformacion-digital.jpg",
-      alt: "Análisis de KPIs y datos operacionales en planta",
+      src: "/images/analitica-mineria.jpg",
+      alt: "Analítica de mantenimiento, confiabilidad y cadena de suministro",
     },
   },
   industrias: {
     mineria: {
-      src: "/images/industria-mineria.jpg",
-      alt: "Gran minería del cobre — planta de procesamiento regional",
+      src: "/images/hero-ajedrez-mineria.jpg",
+      alt: "Rajo abierto con camión de extracción",
     },
     oilGas: {
-      src: "/images/industria-oil-gas.jpg",
-      alt: "Instalación Oil & Gas con personal en protocolos de seguridad",
+      src: "/images/ajedrez-proceso.jpg",
+      alt: "Planta de proceso industrial",
     },
     celulosa: {
       src: "/images/industria-celulosa.jpg",
       alt: "Línea de producción de celulosa y forestal industrial",
     },
     energia: {
-      src: "/images/industria-energia.jpg",
-      alt: "Parque eólico y generación de energía renovable",
+      src: "/images/ajedrez-energia.jpg",
+      alt: "Parque eólico, líneas y subestación eléctrica",
     },
     industrial: {
-      src: "/images/servicio-confiabilidad.jpg",
-      alt: "Industria intensiva en activos — mantenimiento de equipos críticos",
+      src: "/images/ajedrez-acero.jpg",
+      alt: "Laminador industrial intensivo en activos",
     },
   },
   actualidad: {
     newsletter: {
-      src: "/images/newsletter-avance.jpg",
-      alt: "Equipo técnico revisando avances de proyecto con tablet",
+      src: "/images/analitica-pantalla.jpg",
+      alt: "Analítica de una operación minera",
     },
     cierre: {
-      src: "/images/cierre-servicio-cliente.jpg",
-      alt: "Cierre profesional de servicio con cliente en planta",
+      src: "/images/ajedrez-proceso.jpg",
+      alt: "Planta de proceso al cierre de la jornada",
     },
     curso: {
-      src: "/images/curso-sap-pm.jpg",
-      alt: "Capacitación en gestión de mantenimiento con SAP PM",
+      src: "/images/analitica-mineria.jpg",
+      alt: "Esquema de ingeniería de mantenimiento y confiabilidad",
     },
   },
 } as const;

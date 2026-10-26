@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Send, CheckCircle, Clock, Shield, Mail, Phone } from "lucide-react";
+import { Send, CheckCircle, Clock, Shield, Mail, Phone, MapPin } from "lucide-react";
 import { useDictionary } from "@/context/LocaleProvider";
+import { classifyHumanEmail } from "@/lib/human-email";
 import { siteConfig } from "@/lib/site-config";
 
 interface FormData {
@@ -15,13 +16,12 @@ interface FormData {
   phone: string;
   requirementType: string;
   message: string;
+  website: string;
 }
 
 export default function Contact() {
   const t = useDictionary();
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     register,
@@ -29,35 +29,39 @@ export default function Contact() {
     formState: { errors },
     reset,
   } = useForm<FormData>({
-    defaultValues: {
+      defaultValues: {
       requirementType: "reunion",
       industry: t.contact.industries[0],
+      website: "",
     },
   });
 
-  const onSubmit = async (data: FormData) => {
-    setLoading(true);
-    setSubmitError(null);
-
-    try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const payload = await response.json().catch(() => ({}));
-        throw new Error(payload.error ?? t.contact.submitError);
-      }
-
+  const onSubmit = (data: FormData) => {
+    if (data.website.trim()) {
       setSubmitted(true);
       reset();
-    } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : t.contact.submitError);
-    } finally {
-      setLoading(false);
+      return;
     }
+
+    const requirement =
+      t.contact.requirementTypes.find((item) => item.value === data.requirementType)?.label ??
+      data.requirementType;
+    const lines = [
+      `${t.contact.nameLabel}: ${data.name}`,
+      `${t.contact.companyLabel}: ${data.company}`,
+      `${t.contact.roleLabel}: ${data.role.trim() || "—"}`,
+      `${t.contact.industryLabel}: ${data.industry || "—"}`,
+      `${t.contact.phoneLabel}: ${data.phone}`,
+      `${t.contact.emailLabel}: ${data.email}`,
+      `${t.contact.requirementLabel}: ${requirement}`,
+      "",
+      data.message.trim() || "—",
+    ];
+    const href = `mailto:${siteConfig.email}?subject=${encodeURIComponent(`Contacto web: ${requirement} — ${data.name}`)}&body=${encodeURIComponent(lines.join("\n"))}`;
+
+    window.location.href = href;
+    setSubmitted(true);
+    reset();
   };
 
   return (
@@ -72,38 +76,62 @@ export default function Contact() {
             <span className="text-accent text-xs font-bold uppercase tracking-widest block mb-2">
               {t.contact.eyebrow}
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mb-6 leading-tight">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mb-4 leading-tight">
               {t.contact.title}
             </h2>
-            <p className="text-muted text-sm sm:text-base leading-relaxed mb-8">{t.contact.subtitle}</p>
+            <p className="text-primary text-base sm:text-lg font-medium leading-relaxed mb-4">
+              {t.contact.subtitle}
+            </p>
+            <p className="text-muted text-sm sm:text-base leading-relaxed mb-8">{t.contact.body}</p>
 
-            <div className="space-y-4 mb-8" role="list">
-              <div className="flex items-center gap-3 text-sm text-primary/80" role="listitem">
-                <Clock size={16} className="text-accent flex-shrink-0" aria-hidden="true" />
-                <span>{t.contact.responseTime}</span>
+            <div className="space-y-3 mb-8" role="list">
+              <div className="flex items-start gap-3 rounded-xl border border-border bg-surface px-4 py-3" role="listitem">
+                <Clock size={16} className="text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <p className="text-sm leading-relaxed text-primary/80">
+                  <span className="font-bold text-primary">{t.contact.responseTitle}: </span>
+                  {t.contact.responseTime}
+                </p>
               </div>
-              <div className="flex items-center gap-3 text-sm text-primary/80" role="listitem">
-                <Shield size={16} className="text-accent flex-shrink-0" aria-hidden="true" />
-                <span>{t.contact.confidentiality}</span>
+              <div className="flex items-start gap-3 rounded-xl border border-border bg-surface px-4 py-3" role="listitem">
+                <Shield size={16} className="text-accent mt-0.5 flex-shrink-0" aria-hidden="true" />
+                <p className="text-sm leading-relaxed text-primary/80">
+                  <span className="font-bold text-primary">{t.contact.confidentialityTitle}: </span>
+                  {t.contact.confidentiality}
+                </p>
               </div>
             </div>
 
-            <div className="pt-6 border-t border-border/50 space-y-3">
+            <div className="pt-6 border-t border-border/50 space-y-4">
               <a
                 href={`mailto:${siteConfig.email}`}
-                className="inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-accent transition-colors"
+                className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-accent transition-colors"
               >
                 <Mail size={14} aria-hidden="true" />
                 {siteConfig.email}
               </a>
-              <br />
-              <a
-                href="tel:+56223456789"
-                className="inline-flex items-center gap-2 text-xs font-bold text-primary hover:text-accent transition-colors"
-              >
-                <Phone size={14} aria-hidden="true" />
-                {siteConfig.phone}
-              </a>
+              <div>
+                <p className="text-xs font-bold uppercase tracking-widest text-muted mb-3">
+                  {t.contact.officesTitle}
+                </p>
+                <ul className="space-y-4">
+                  {t.contact.offices.map((office) => (
+                    <li key={office.city}>
+                      <p className="flex items-start gap-2 text-sm font-semibold text-primary">
+                        <MapPin size={14} className="text-accent mt-0.5 shrink-0" aria-hidden="true" />
+                        {office.city}
+                      </p>
+                      <p className="text-sm text-muted pl-6">{office.address}</p>
+                      <a
+                        href={`tel:${office.phone.replace(/[^\d+]/g, "")}`}
+                        className="inline-flex items-center gap-2 text-sm text-primary/80 hover:text-accent pl-6 mt-1"
+                      >
+                        <Phone size={14} aria-hidden="true" />
+                        {office.phone}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -129,8 +157,18 @@ export default function Contact() {
                 onSubmit={handleSubmit(onSubmit)}
                 noValidate
                 aria-label={t.contact.formAria}
-                className="bg-surface rounded-2xl border border-border p-6 sm:p-8 space-y-5 shadow-sm"
+                className="relative bg-surface rounded-2xl border border-border p-6 sm:p-8 space-y-5 shadow-sm"
               >
+                <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden="true">
+                  <label htmlFor="form-website">Website</label>
+                  <input
+                    id="form-website"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    {...register("website")}
+                  />
+                </div>
                 <div>
                   <label htmlFor="form-requirement" className="block text-xs font-bold text-primary/80 uppercase tracking-wider mb-2">
                     {t.contact.requirementLabel} <span className="text-accent" aria-hidden="true">*</span>
@@ -256,9 +294,11 @@ export default function Contact() {
                     className={`input-field ${errors.email ? "border-rose-400" : ""}`}
                     {...register("email", {
                       required: t.contact.emailRequired,
-                      pattern: {
-                        value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                        message: t.contact.emailInvalid,
+                      validate: (value) => {
+                        const result = classifyHumanEmail(value);
+                        if (result === "invalid") return t.contact.emailInvalid;
+                        if (result === "not-human") return t.contact.emailNotHuman;
+                        return true;
                       },
                     })}
                     aria-invalid={!!errors.email}
@@ -283,27 +323,14 @@ export default function Contact() {
                   />
                 </div>
 
-                {submitError && (
-                  <p className="text-rose-600 text-sm" role="alert">
-                    {submitError}
-                  </p>
-                )}
-
                 <button
                   type="submit"
-                  disabled={loading}
                   id="contact-submit-btn"
-                  className="btn-primary w-full justify-center py-4 text-sm font-bold uppercase tracking-wider disabled:opacity-70 disabled:cursor-not-allowed"
+                  className="btn-primary w-full justify-center py-4 text-sm font-bold uppercase tracking-wider"
                   aria-label={t.contact.submitAria}
                 >
-                  {loading ? (
-                    t.contact.processing
-                  ) : (
-                    <>
-                      <Send size={15} aria-hidden="true" />
-                      {t.contact.submit}
-                    </>
-                  )}
+                  <Send size={15} aria-hidden="true" />
+                  {t.contact.submit}
                 </button>
               </form>
             )}

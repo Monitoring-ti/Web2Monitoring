@@ -1,15 +1,21 @@
 # Web2Monitoring
 
-Sitio web corporativo para **Monitoring Consultora** — consultora de gestión de activos, confiabilidad operacional e ingeniería de mantenimiento (EPCM/EPC, SAP PM).
+Sitio web corporativo para **Monitoring Consultora** — consultora de gestión de activos, confiabilidad operacional e ingeniería de mantenimiento.
+
+Hay dos presentaciones en el mismo inicio: **Versión full** (varias páginas) y **Versión soft** (una página). El selector queda arriba y la elección se recuerda en el navegador. El detalle está en **[docs/SITIO.md](docs/SITIO.md)**.
 
 ## URLs locales
 
 | Ruta | Descripción |
 |------|-------------|
-| `/` | Landing comercial en español (predeterminado) |
-| `/en` | Landing comercial en inglés |
+| `/` | Inicio en español. Full: hero y clientes. Soft: página única |
+| `/en` | El mismo inicio en inglés |
+| `/servicios`, `/mmi`, `/industrias`, `/casos`, `/equipo`, `/contacto` | Páginas de la versión full |
+| `/credibilidad`, `/diferenciadores`, `/actualidad`, `/biblioteca` | Páginas del menú Más |
+| `/en/...` | Las mismas páginas en inglés |
 | `/acceso-cliente` | Portal de clientes (sin enlace público, noindex) |
-| `/api/contact` | Endpoint formulario de contacto |
+
+El formulario de contacto abre el correo del visitante hacia `soporte@monitoring.cl`. No hay API de envío.
 
 ## Requisitos
 
@@ -46,44 +52,33 @@ src/
 ├── app/                    # Rutas Next.js App Router
 │   ├── page.tsx            # Home ES (metadata + JSON-LD)
 │   ├── en/page.tsx         # Home EN
-│   ├── layout.tsx          # Layout global y metadataBase
+│   ├── [slug]/page.tsx     # Páginas internas ES
+│   ├── layout.tsx          # Layout global, metadataBase y selector de versión
 │   ├── robots.ts           # robots.txt
 │   ├── sitemap.ts          # sitemap.xml
-│   └── acceso-cliente/     # Login portal (noindex)
+│   └── acceso-cliente/     # Portal (noindex)
 ├── components/
-│   ├── sections/           # Secciones de la landing
-│   ├── pages/              # HomePage
+│   ├── sections/           # Secciones de la versión full
+│   ├── pages/              # HomePage, SoftHome, ContentPage
+│   ├── layout/             # Cabecera, pie y selector soft/full
 │   └── seo/                # JSON-LD
-├── data/
-│   └── images.ts           # Rutas y alt de imágenes
-└── lib/
-    ├── site-config.ts      # Config SEO y marca
-    ├── metadata.ts         # Metadata home con hreflang
-    └── locale-path.ts      # Rutas por idioma
-src/i18n/
-├── dictionaries/es.ts      # Español (predeterminado)
-├── dictionaries/en.ts      # Inglés
-└── get-dictionary.ts
-public/
-└── images/                 # Fotos optimizadas para web
+├── content/soft-site.ts    # Textos de la versión soft
+├── context/SiteVersion.tsx # Preferencia soft o full
+├── data/images.ts          # Rutas y alt de imágenes de la full
+└── lib/                    # Marca, metadata, rutas por idioma
+src/i18n/dictionaries/      # Español e inglés de la versión full
+public/images/              # Fotos, portadas, clientes y credenciales
 ```
 
-## Contenido y secciones (landing)
+## Contenido
 
-1. Hero — tagline y propuesta EPCM/EPC  
-2. Credibilidad — métricas  
-3. Diferenciadores  
-4. Servicios (6)  
-5. Industrias (minería, Oil&Gas, celulosa, energía, industrial)  
-6. Casos de éxito  
-7. Equipo y faena  
-8. Actualidad (newsletter, cierres, cursos)  
-9. Biblioteca / descargas  
-10. Contacto  
+Inicio full: hero (“Optimizando sus activos desde la primera jugada”) y cinta de clientes. Portada: `public/images/portada-2.jpg`.
+
+El resto vive en páginas propias. Industrias: minería, energía, celulosa, puertos e industria. Las certificaciones de consultores están en `/equipo`, no en el inicio.
 
 ## Imágenes
 
-Rutas centralizadas en `src/data/images.ts`. Archivos en `public/images/`.
+Rutas de la versión full en `src/data/images.ts`. Archivos en `public/images/`. La portada soft es `public/images/portada-faena.jpg`.
 
 Los archivos JPEG sueltos en `public/` (subidas originales) se ignoran en git; solo se versionan las copias renombradas en `public/images/`.
 
@@ -95,7 +90,7 @@ Documentación detallada: **[docs/SEO.md](docs/SEO.md)**
 
 - `metadataBase` y URLs canónicas  
 - `robots.txt` y `sitemap.xml`  
-- Open Graph y Twitter Card con imagen hero  
+- Open Graph y Twitter Card. La imagen social sigue siendo `/images/hero-ajedrez-mineria.jpg`
 - JSON-LD (`ProfessionalService` + `WebSite`) en home  
 - i18n: español (`/`) e inglés (`/en`) con `hreflang`  
 - `lang="es"`, keywords, descripciones por página  
@@ -107,7 +102,7 @@ Documentación detallada: **[docs/SEO.md](docs/SEO.md)**
 - [ ] Google Search Console + envío de sitemap  
 - [ ] Google Analytics 4 o alternativa  
 - [ ] LinkedIn corporativo en `sameAs` (JSON-LD)  
-- [ ] Conectar formulario a CRM / correo transaccional  
+- [ ] El contacto abre `mailto:`. No hay buzón automático del sitio
 
 ## Despliegue
 

@@ -29,7 +29,7 @@ export default function LanguageSwitcher({ scrolled = false }: LanguageSwitcherP
       className={`inline-flex items-center gap-1.5 text-xs font-semibold rounded-lg px-2.5 py-1.5 transition-colors duration-200 border ${
         scrolled
           ? "text-primary/70 hover:text-accent border-border hover:border-accent/30"
-          : "text-white/80 hover:text-white border-white/20 hover:border-white/40"
+          : "text-white/80 hover:text-white border-white/20 hover:border-white/40 max-lg:text-primary/70 max-lg:hover:text-accent max-lg:border-border max-lg:hover:border-accent/30"
       }`}
     >
       <Globe size={14} aria-hidden="true" />

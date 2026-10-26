@@ -15,12 +15,12 @@ interface ContentPageProps {
 export default function ContentPage({ locale, slug }: ContentPageProps) {
   const dictionary = getDictionary(locale);
   const Section = PAGE_COMPONENTS[slug];
-  const showCta = slug !== "contacto";
+  const showCta = slug !== "contacto" && slug !== "mmi";
 
   return (
     <LocaleProvider locale={locale} dictionary={dictionary}>
       <SiteLayout showFloatingCta={showCta}>
-        <main id="main-content" className="pt-16">
+        <main id="main-content" className="pt-44 lg:pt-32">
           <Section />
           {showCta && <CtaBanner />}
         </main>

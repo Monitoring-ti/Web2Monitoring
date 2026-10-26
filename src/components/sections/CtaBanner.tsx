@@ -46,27 +46,15 @@ export default function CtaBanner() {
           {t.ctaBanner.subtitle}
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Link
-            id="cta-banner-primary"
-            href={contactPath}
-            aria-label={t.ctaBanner.primaryAria}
-            className="btn-primary text-base px-8 py-4"
-          >
-            {t.ctaBanner.primary}
-            <ArrowRight size={18} aria-hidden="true" />
-          </Link>
-          <Link
-            id="cta-banner-secondary"
-            href={contactPath}
-            aria-label={t.ctaBanner.secondaryAria}
-            className="btn-outline-white text-base px-8 py-4"
-          >
-            {t.ctaBanner.secondary}
-          </Link>
-        </div>
-
-        <p className="text-white/30 text-xs mt-8">{t.ctaBanner.footnote}</p>
+        <Link
+          id="cta-banner-primary"
+          href={contactPath}
+          aria-label={t.ctaBanner.primaryAria}
+          className="btn-primary text-base px-8 py-4"
+        >
+          {t.ctaBanner.primary}
+          <ArrowRight size={18} aria-hidden="true" />
+        </Link>
       </div>
     </section>
   );

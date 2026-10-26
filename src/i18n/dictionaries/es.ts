@@ -5,7 +5,7 @@ export const es: Dictionary = {
     tagline: "Optimizando sus activos desde la primera jugada",
     taglineEn: "Optimize your assets in a single play",
     description:
-      "Consultora especializada en gestión de activos, confiabilidad operacional e ingeniería de mantenimiento con SAP PM. Desde proyectos EPCM/EPC hasta la operación en minería, Oil&Gas, celulosa y energía.",
+      "Ingeniería y consultoría en gestión de activos físicos, mantenimiento y confiabilidad. Más de 120 consultores y 14 años de trayectoria en minería, energía, celulosa, puertos e industria.",
     title: "Monitoring | Optimizando sus activos desde la primera jugada",
     ogImageAlt: "Monitoring — ingenieros en planta minera, gestión de activos",
     keywords: [
@@ -18,14 +18,17 @@ export const es: Dictionary = {
       "consultora minería Chile",
       "asset management",
       "mantenimiento industrial",
-      "oil and gas",
       "celulosa",
+      "puertos",
       "excelencia operacional",
+      "MMi",
+      "inteligencia de mantenimiento",
     ],
   },
   nav: {
     primary: [
       { label: "Servicios", href: "/servicios" },
+      { label: "MMi", href: "/mmi" },
       { label: "Industrias", href: "/industrias" },
       { label: "Casos", href: "/casos" },
       { label: "Equipo", href: "/equipo" },
@@ -64,27 +67,25 @@ export const es: Dictionary = {
   },
   hero: {
     aria: "Propuesta de valor principal",
-    badge: "Optimize your assets in a single play",
+    badge: "Gestión de activos · Mantenimiento y confiabilidad",
     title: "Optimizando sus activos",
     titleHighlight: "desde la primera jugada",
     subtitle:
-      "Definición de procesos y gestión de activos físicos desde proyectos EPCM/EPC hasta la operación. Confiabilidad, disponibilidad segura e ingeniería de mantenimiento con SAP PM.",
+      "Acompañamos a nuestros clientes desde la preparación operacional de sus proyectos hasta la gestión de sus activos en operación. Integramos estrategia, confiabilidad, planificación e ingeniería de mantenimiento, con soporte en SAP PM/MM y analítica para apoyar decisiones y mejorar la disponibilidad.",
     motto: "Los principales activos son los que te rodean.",
-    ctaPrimary: "Solicitar Reunión",
-    ctaPrimaryAria: "Solicitar una reunión con un especialista de Monitoring",
-    ctaSecondary: "Descargar Brochure",
-    ctaSecondaryAria: "Descargar la presentación corporativa de Monitoring",
+    ctaPrimary: "Conozca nuestras soluciones",
+    ctaPrimaryAria: "Conocer las soluciones de Monitoring",
+    ctaSecondary: "Conversemos sobre su operación",
+    ctaSecondaryAria: "Conversar sobre su operación con Monitoring",
     metricsAria: "Métricas clave de confianza",
     metrics: [
-      { value: "+20", label: "Años de experiencia" },
-      { value: "+150", label: "Proyectos" },
-      { value: "+40", label: "Profesionales senior" },
+      { value: "14", label: "Años de trayectoria" },
+      { value: "+120", label: "Consultores" },
+      { value: "+43", label: "Proyectos en distintas etapas" },
     ],
-    clientsLabel: "Respaldado por operadores líderes en la región",
-    clientPrefix: "Cliente",
-    fieldLabel: "En terreno",
-    fieldCaption: "Consultores con experiencia comprobable en faena",
-    fieldBadge: "Presencia real, no stock",
+    fieldLabel: "La jugada",
+    fieldCaption: "Activos en operación, con la decisión a la vista",
+    fieldBadge: "Operación, no retrato",
   },
   credibility: {
     aria: "Resultados y credibilidad",
@@ -93,30 +94,47 @@ export const es: Dictionary = {
     listAria: "Métricas de desempeño de la consultora",
     kpis: [
       {
-        value: 500,
-        suffix: "+",
-        label: "Proyectos ejecutados",
-        description: "Soluciones de confiabilidad y excelencia operacional implementadas.",
+        value: 14,
+        suffix: "",
+        label: "Años de trayectoria",
+        description: "Años acompañando la gestión de activos, el mantenimiento y la confiabilidad.",
       },
       {
-        value: 20,
+        value: 120,
         suffix: "+",
-        label: "Años de experiencia",
-        description: "Trayectoria sólida liderando la optimización de activos en la región.",
+        label: "Consultores",
+        description: "Profesionales que desarrollan los servicios.",
       },
       {
-        value: 15,
+        value: 43,
         suffix: "+",
-        label: "Industrias atendidas",
-        description: "Profundo conocimiento sectorial adaptado a cada desafío regulatorio.",
+        label: "Proyectos en distintas etapas",
+        description: "Iniciativas en curso y en distintas etapas. No es un recuento de proyectos cerrados.",
       },
       {
-        value: 95,
-        suffix: "%",
-        label: "Satisfacción garantizada",
-        description: "De nuestros clientes recomiendan nuestras metodologías de trabajo.",
+        value: 3,
+        suffix: "",
+        label: "Países con clientes",
+        description: "Clientes en Chile, Perú y México.",
       },
     ],
+    credentialsTitle: "Certificaciones",
+    credentialsNote:
+      "Son certificaciones y formación de nuestros consultores. No equivalen a una certificación ISO 55001 de la empresa ni a una alianza con SAP.",
+    credentials: [
+      { id: "amp-iam", name: "Asset Management Professional y membresía del Institute of Asset Management" },
+      { id: "smrp", name: "SMRP CMRP Certified" },
+      { id: "sap-hana", name: "SAP HANA" },
+      { id: "lean", name: "Lean Institute Chile" },
+      { id: "pmm", name: "PMM Enterprise Certification ISO 55001" },
+    ],
+  },
+  clients: {
+    aria: "Nuestros clientes",
+    eyebrow: "Nuestros clientes",
+    title: "Experiencia que construye confianza",
+    subtitle:
+      "Hemos acompañado a empresas de minería y otros sectores en sus desafíos de gestión de activos, mantenimiento y confiabilidad.",
   },
   differentiators: {
     aria: "Diferenciadores de Monitoring",
@@ -141,7 +159,13 @@ export const es: Dictionary = {
         title: "Consultores con experiencia en terreno",
         description:
           "Profesionales con trayectoria comprobable en faena, certificaciones técnicas y dominio de procesos de mejora, gestión de activos y SAP PM.",
-        proof: "+40 profesionales senior con presencia regional.",
+        proof: "Más de 120 consultores con experiencia en faena y en proyecto.",
+      },
+      {
+        title: "Tecnología propia aplicada al mantenimiento",
+        description:
+          "Nuestra experiencia en ingeniería y terreno se complementa con MMi, una capacidad desarrollada por Monitoring para trabajar sobre información técnica real y convertirla en conocimiento operacional.",
+        proof: "MMi by Monitoring — inteligencia con evidencia, no un software genérico.",
       },
     ],
   },
@@ -157,7 +181,7 @@ export const es: Dictionary = {
         id: "gestion-activos",
         title: "Gestión de Activos",
         description:
-          "Optimización del ciclo de vida desde proyectos EPCM/EPC hasta la operación, alineada con ISO 55000 y la estrategia del negocio.",
+          "Estrategia de activos físicos, operational readiness, gobernanza, abastecimiento estratégico e integridad, desde el proyecto hasta la operación.",
         ctaText: "Ver capacidades",
         imageAlt: "Ciclo de vida del activo desde proyecto EPCM/EPC hasta operación",
       },
@@ -175,7 +199,7 @@ export const es: Dictionary = {
         description:
           "Soporte integral en procesos de ingeniería de mantenimiento, estructuración de planes y alineación con SAP PM.",
         ctaText: "Ver ingeniería",
-        imageAlt: "Ingeniera usando tablet con datos de mantenimiento en terreno",
+        imageAlt: "Sala de máquinas para ingeniería de mantenimiento",
       },
       {
         id: "supply-chain",
@@ -191,65 +215,71 @@ export const es: Dictionary = {
         description:
           "Sistemas de gestión y mejora continua orientados a elevar la eficiencia y el OEE de su planta.",
         ctaText: "Elevar eficiencia",
-        imageAlt: "Equipo revisando indicadores de excelencia operacional en planta",
+        imageAlt: "Indicadores de operación minera en una pantalla de analítica",
       },
       {
         id: "transformacion-digital",
         title: "Transformación Digital",
         description:
-          "Habilitación de datos, sensórica e inteligencia de negocios para la toma de decisiones operacionales óptimas.",
-        ctaText: "Integrar datos",
-        imageAlt: "Profesional revisando dashboard de KPIs en planta industrial",
+          "Habilitación de datos, sensórica e inteligencia de negocios para la toma de decisiones operacionales óptimas. MMi es la aplicación concreta de esa transformación sobre procesos de mantenimiento.",
+        ctaText: "Conocer MMi",
+        imageAlt: "Analítica de mantenimiento, confiabilidad y cadena de suministro",
+        ctaHref: "/mmi",
+        callout: {
+          title: "MMi — Inteligencia de Mantenimiento",
+          description:
+            "Tecnología propia aplicada a la organización, análisis y trazabilidad del conocimiento técnico.",
+        },
       },
     ],
   },
   industries: {
     aria: "Industrias en las que operamos",
     listAria: "Sectores industriales atendidos",
-    eyebrow: "Nuestros Sectores",
-    title: "Clientes nacionales e internacionales",
+    eyebrow: "Nuestros sectores",
+    title: "Industrias donde acompañamos la operación",
     subtitle:
-      "Enfocados en gran minería regional e industrias intensivas en activos: celulosa, Oil&Gas, electricidad y operaciones industriales de alta criticidad.",
+      "La minería es nuestro sector principal. También acompañamos operaciones de energía, celulosa, puertos e industria en la gestión de sus activos, el mantenimiento y la confiabilidad.",
     items: [
       {
         id: "mineria",
         name: "Minería",
         description:
-          "Gran minería regional: flotas, plantas SAG/bolas, chancado y sistemas críticos de procesamiento.",
+          "Rajo abierto y subterránea: perforación, carguío y transporte; chancado, concentradoras, hidrometalurgia, fundición, relaves y sistemas contra incendio.",
         imageAlt: "Operación de gran minería en Chile",
       },
       {
-        id: "oil-gas",
-        name: "Oil & Gas",
+        id: "puertos",
+        name: "Puertos",
         description:
-          "Refinerías, terminales, ductos y activos de alta criticidad con gestión integral de riesgo operacional.",
-        imageAlt: "Instalación Oil & Gas con gestión de riesgo operacional",
+          "Plantas de filtros, shiploaders, sistemas contra incendio y desaladoras.",
+        imageAlt: "Operación logística industrial",
       },
       {
         id: "celulosa",
         name: "Celulosa y Forestal",
         description:
-          "Plantas de pulpa, líneas de producción continua y activos rotativos de alta disponibilidad.",
+          "Gestión de activos, mantenimiento y confiabilidad en plantas de celulosa y operaciones forestales.",
         imageAlt: "Planta de celulosa y producción continua",
       },
       {
         id: "energia",
         name: "Energía y Electricidad",
         description:
-          "Generación hidráulica, térmica, eólica y transmisión eléctrica con enfoque en confiabilidad.",
+          "Gestión de activos, mantenimiento y confiabilidad en operaciones de energía y electricidad.",
         imageAlt: "Infraestructura de generación y transmisión eléctrica",
       },
       {
         id: "industrial",
         name: "Industria Intensiva en Activos",
         description:
-          "Plantas químicas, manufactura pesada y procesos industriales con alto CAPEX y criticidad operacional.",
+          "Gestión de activos, mantenimiento y confiabilidad en plantas industriales intensivas en capital.",
         imageAlt: "Planta industrial intensiva en activos",
       },
     ],
-    ctaTitle: "¿Opera en alguno de estos sectores?",
+    ctaTitle: "¿Su operación está en uno de estos sectores?",
     ctaSubtitle:
-      "Descubra casos de estudio y soluciones metodológicas validadas para su línea de negocio.",
+      "Conversemos sobre el desafío de sus activos y cómo abordarlo en su industria.",
     ctaButton: "Hablar con un especialista",
     ctaAria: "Agendar una reunión para hablar sobre su industria",
   },
@@ -259,7 +289,7 @@ export const es: Dictionary = {
     eyebrow: "Demostración de Impacto",
     title: "Casos de éxito",
     subtitle:
-      "Consulte cómo aplicamos ingeniería y rigurosidad técnica para resolver brechas operacionales complejas. Resultados medibles y auditados por nuestros propios clientes.",
+      "Resultados de operaciones que hemos acompañado. Las estimaciones se distinguen de los resultados ya observados.",
     problemLabel: "Situación Inicial / Problema",
     diagnosisLabel: "Diagnóstico Técnico",
     implementationLabel: "Implementación y Solución",
@@ -272,73 +302,157 @@ export const es: Dictionary = {
     shareCopied: "Enlace del caso copiado al portapapeles.",
     items: [
       {
-        id: "caso-1",
+        id: "operational-readiness",
+        tag: "Operational Readiness",
+        title: "Preparación operacional de un transporte de mineral subterráneo",
+        industry: "Minería · Transporte de mineral",
+        problem:
+          "Implementar el estándar corporativo de operational readiness para un proyecto de inversión que transporta 4 millones de toneladas mensuales, con 40 equipos principales.",
+        diagnosis:
+          "El alcance incluye chancadores, correas transportadoras, harneros y sistemas contra incendio, entre otros equipos.",
+        implementation:
+          "Entregables según norma corporativa, con herramientas propias para los modelamientos.",
+        result: {
+          kpi: "40",
+          kpiLabel: "Equipos principales",
+          description:
+            "Modelo de confiabilidad y disponibilidad, priorización por criticidad, y planes de mantenimiento con mano de obra, servicios, repuestos, equipamiento e infraestructura.",
+        },
+      },
+      {
+        id: "planificacion",
+        tag: "Planificación",
+        title: "Planificación de planta y paradas",
+        industry: "Minería · Mina subterránea y planta",
+        problem:
+          "Mejorar la planificación de recursos, ampliar horizontes, subir la adherencia a los programas semanales y reducir detenciones programadas.",
+        diagnosis:
+          "Se requería cobertura en terreno para todos los procesos productivos.",
+        implementation:
+          "Planificación y programación detallada, metodología SWE y seguimiento en terreno, con 49 consultores.",
+        result: {
+          kpi: "21 días",
+          kpiLabel: "Planificación detallada",
+          description:
+            "Horizonte de planificación detallada de 21 días, con 49 consultores en terreno.",
+        },
+      },
+      {
+        id: "confiabilidad",
         tag: "Confiabilidad",
-        title: "Reducción de fallas críticas en planta concentradora",
-        industry: "Minería de Cobre — Chile",
+        title: "Confiabilidad y mejora continua",
+        industry: "Minería · Mina, planta y servicios",
         problem:
-          "Paradas no planificadas recurrentes en el sistema de molienda SAG, generando pérdidas operacionales estimadas en USD 350,000 por hora de inactividad.",
+          "Mejorar el análisis de fallas, aumentar el tiempo medio entre fallas y la disponibilidad, y reducir fallas recurrentes.",
         diagnosis:
-          "Análisis RCA determinó fatiga prematura de componentes por lubricación deficiente y desviaciones sistemáticas del plan de mantenimiento preventivo.",
+          "Servicio continuo de confiabilidad e integridad mecánica durante 14 meses, con 10 consultores.",
         implementation:
-          "Rediseño completo de la estrategia de lubricación e implantación de mantenimiento preventivo enfocado en confiabilidad (RCM) bajo la norma SAE JA1011.",
+          "Coaching, capacitación, análisis de causa raíz y FMECA en equipos críticos de todas las áreas.",
         result: {
-          kpi: "-42%",
-          kpiLabel: "Tasa de fallas mecánicas",
-          description: "Disminución directa de paradas no programadas en los primeros 6 meses.",
+          kpi: "91,9%",
+          kpiLabel: "Disponibilidad de palas",
+          description:
+            "Desde 78,3%. El tiempo medio entre fallas pasó de 24,3 a 34,6 horas. En chancado se eliminan fallas de control. En CAEX, las caídas en terreno por fallas mecánicas disminuyeron un 6%.",
         },
       },
       {
-        id: "caso-2",
-        tag: "Gestión de Activos",
-        title: "Optimización del ciclo de vida en parque eólico de 150 MW",
-        industry: "Energía Renovable — Colombia",
+        id: "estrategia-molienda",
+        tag: "Estrategia de mantenimiento",
+        title: "Frecuencia de detenciones en molienda",
+        industry: "Minería · Planta concentradora",
         problem:
-          "Incremento acelerado en los costos de OPEX y envejecimiento prematuro de multiplicadoras sin un plan financiero sustentado.",
+          "Optimizar la frecuencia de detenciones mayores y establecer los planes de mantenimiento del proceso.",
         diagnosis:
-          "Falta de alineación estratégica entre las áreas de operación y finanzas; ausencia de modelos predictivos del comportamiento de falla del activo.",
+          "Análisis RCM y FMECA según criticidad, con proyección de costos, disponibilidad (RAM) y mano de obra.",
         implementation:
-          "Establecimiento del Plan Estratégico de Gestión de Activos (PEGA) alineado con ISO 55001 y desarrollo de políticas de reemplazo por riesgo técnico-económico.",
+          "Se cambian las frecuencias de detenciones mayores de los molinos y se desarrollan planes, pautas y proyecciones alineadas al negocio.",
         result: {
-          kpi: "+18%",
-          kpiLabel: "Disponibilidad de turbinas",
-          description: "Amortización de OPEX anual y extensión de la vida útil de componentes clave.",
+          kpi: "2,4%",
+          kpiLabel: "Disponibilidad en molienda",
+          description:
+            "Incremento de disponibilidad en molienda, tras el ajuste de frecuencias y los planes de mantenimiento.",
         },
       },
       {
-        id: "caso-3",
-        tag: "Supply Chain",
-        title: "Reducción de capital inmovilizado en repuestos críticos",
-        industry: "Industrial / Manufactura — Perú",
+        id: "frecuencia-pdp",
+        tag: "Analítica",
+        title: "Frecuencia de paradas de planta",
+        industry: "Mantenimiento planificado",
         problem:
-          "Exceso de inventario en bodega por un valor de USD 4.8M y, al mismo tiempo, quiebres de stock en componentes esenciales de alta rotación.",
+          "Identificar la frecuencia de mantenimiento que ofrece el mayor potencial de disponibilidad.",
         diagnosis:
-          "Modelo de compras empírico sin categorización técnica de criticidad, rotación ni análisis de confiabilidad de proveedores.",
+          "Evaluación de escenarios con datos de enero de 2018 a abril de 2025, comparando mantenimientos planificados y no programados.",
         implementation:
-          "Aplicación de algoritmo de stock óptimo basado en confiabilidad (RBS) y reestructuración de acuerdos comerciales de entrega just-in-time.",
+          "Extensión del intervalo entre mantenimientos de 32 días a 7 semanas, dentro de los escenarios evaluados.",
         result: {
-          kpi: "-25%",
-          kpiLabel: "Capital en inventario",
-          description: "Liberación de flujo de caja manteniendo un nivel de servicio del 99.2% en bodega.",
+          kpi: "3,56%",
+          kpiLabel: "Potencial estimado",
+          description:
+            "Es una estimación, no un beneficio ya materializado. El potencial se sitúa en el orden de 35 millones de dólares al año, con un riesgo estimado de -1,44% y un intervalo de confianza del 90%.",
+        },
+      },
+      {
+        id: "reportabilidad",
+        tag: "Reportabilidad",
+        title: "De exportaciones manuales a un dato único",
+        industry: "SAP · Power BI",
+        problem:
+          "Cada cierre semanal dependía de exportaciones manuales en SAP, consolidación de planillas y un informe que llegaba tarde.",
+        diagnosis:
+          "Los cuellos de botella estaban en IW29, IW37N e IW39, y en el cruce manual de tablas dinámicas.",
+        implementation:
+          "Dashboards con datos de ERP en Power BI, tablas dinámicas por área, un informe HTML autocontenido y un correo ejecutivo con el Excel adjunto.",
+        result: {
+          kpi: "Power BI",
+          kpiLabel: "Reportes para decidir",
+          description:
+            "Reportes listos para decidir, construidos con los datos del ERP.",
         },
       },
     ],
   },
   team: {
-    aria: "Equipo y presencia en terreno",
-    eyebrow: "Presencia real",
-    title: "Personas, equipos y faena",
+    aria: "Nuestro equipo",
+    eyebrow: "Nuestro equipo",
+    title: "Conocimiento especializado que respalda nuestras soluciones",
     subtitle:
-      "Mostramos a nuestros consultores, líderes y equipos en acción. Sin imágenes genéricas: la confianza se construye viendo quiénes están detrás de cada proyecto.",
+      "Nuestros consultores cuentan con certificaciones y formación especializada en gestión de activos, mantenimiento y confiabilidad, para abordar los desafíos de cada operación con rigor técnico.",
     presence:
-      "Presencia en Chile y la región, apoyando clientes nacionales e internacionales en minería, energía, Oil&Gas, celulosa e industria intensiva en activos.",
+      "Oficinas en Santiago, Calama y Lima. Clientes en Chile, Perú y México.",
+    peopleTitle: "Dirección",
+    people: [
+      {
+        name: "Marcelo Marambio D.",
+        role: "Dirección de Consultoría – Gerente general",
+        email: "marcelo.marambio@monitoring.cl",
+        phone: "+56 9 8248 1201",
+      },
+      {
+        name: "Oscar Quezada R.",
+        role: "Gerente de operaciones",
+        email: "oscar.quezada@monitoring.cl",
+        phone: "+56 9 5372 2609",
+      },
+      {
+        name: "Alejandro Opitz S.",
+        role: "Gerente de operaciones",
+        email: "alejandro.opitz@monitoring.cl",
+        phone: "+56 9 8553 8044",
+      },
+      {
+        name: "Jorge Torres P.",
+        role: "Gerente comercial y soporte",
+        email: "jorge.torres@monitoring.cl",
+        phone: "+56 9 7951 7453",
+      },
+    ],
     galleryAlts: [
-      "Planta de procesamiento minero en Chile",
-      "Equipo integral en faena industrial",
-      "Consultor senior en inspección de activos",
-      "Cierre de servicio con cliente en planta",
-      "Mantenimiento de equipo crítico en operación",
-      "Transformación digital aplicada en terreno",
+      "Rajo minero con camión de extracción",
+      "Laminador industrial en operación",
+      "Sala de máquinas y estrategia en planta",
+      "Planta de proceso con trazado de ingeniería",
+      "Parque eólico y subestación eléctrica",
+      "Analítica de mantenimiento sobre una faena minera",
     ],
   },
   news: {
@@ -370,8 +484,8 @@ export const es: Dictionary = {
         date: "Abril 2026",
         title: "Cierre de servicio: optimización de confiabilidad en planta concentradora",
         summary:
-          "Proyecto finalizado con mejoras en disponibilidad operacional en rango del 15–20% y reducción de paradas no planificadas.",
-        imageAlt: "Cierre de servicio con cliente en planta industrial",
+          "Cierre del servicio de confiabilidad en una planta concentradora.",
+        imageAlt: "Planta de proceso al cierre de la jornada",
       },
       {
         id: "news-3",
@@ -411,7 +525,7 @@ export const es: Dictionary = {
         tag: "Corporativo",
         title: "Brochure Corporativo Monitoring 2026",
         description:
-          "Presentación ejecutiva con servicios, diferenciadores, industrias atendidas y resultados en rangos aprobados.",
+          "Servicios, diferenciadores, industrias atendidas y resultados de Monitoring.",
         leadMagnetName: "Descargar Brochure",
         corporate: true,
       },
@@ -479,14 +593,34 @@ export const es: Dictionary = {
     aria: "Formulario de contacto y solicitud de reunión",
     formAria: "Formulario de contacto para agendar reunión comercial",
     eyebrow: "Contacto",
-    title: "Comuníquenos sus requerimientos",
-    subtitle:
-      "Contacto inicial, agendamiento de reuniones o solicitud de material. Un ingeniero especialista de Monitoring responderá de forma confidencial.",
-    responseTime: "Promesa de respuesta en menos de 24 horas hábiles.",
-    confidentiality: "Acuerdo de confidencialidad estándar garantizado.",
-    successTitle: "Solicitud recibida correctamente",
+    title: "Conversemos sobre su próximo desafío operativo",
+    subtitle: "Transforme sus activos y datos en ventajas competitivas.",
+    body: "Ya sea para optimizar su plan de mantenimiento, implementar SAP o automatizar su analítica, nuestro equipo de ingenieros especialistas está listo para analizar su caso y diseñar una solución a medida.",
+    responseTitle: "Respuesta garantizada",
+    responseTime: "Un especialista le contactará en menos de 24 horas hábiles.",
+    confidentialityTitle: "Confidencialidad absoluta",
+    confidentiality: "Su información y los detalles de su operación están protegidos.",
+    officesTitle: "Oficinas",
+    offices: [
+      {
+        city: "Santiago, Chile",
+        address: "Antonio Varas 303, Of. 410, Providencia.",
+        phone: "+56 2 2235 3090",
+      },
+      {
+        city: "Calama, Chile",
+        address: "Bartolomé Vivar 1580, Of. 501, Torre B.",
+        phone: "+56 2 2725 0546",
+      },
+      {
+        city: "Lima, Perú",
+        address: "Av. José Pardo 601, Of. 1002, Miraflores.",
+        phone: "+51 904 854 456",
+      },
+    ],
+    successTitle: "Mensaje listo para enviar",
     successMessage:
-      "Hemos recibido sus datos. Uno de nuestros ingenieros senior se comunicará con usted en el plazo acordado.",
+      "Se abrió su correo con los datos del formulario. Envíe ese mensaje para que llegue a soporte@monitoring.cl.",
     sendAnother: "Enviar otra solicitud",
     requirementLabel: "Tipo de requerimiento",
     requirementRequired: "Seleccione un tipo de requerimiento",
@@ -505,6 +639,7 @@ export const es: Dictionary = {
     emailLabel: "Correo corporativo",
     emailRequired: "El correo es obligatorio",
     emailInvalid: "Formato de correo inválido",
+    emailNotHuman: "Use el correo de una persona. No se aceptan direcciones automáticas ni temporales.",
     emailPlaceholder: "Ej. juan@empresa.com",
     messageLabel: "Mensaje / Requerimiento",
     messagePlaceholder: "Describa brevemente su desafío operacional o el material que necesita...",
@@ -521,7 +656,7 @@ export const es: Dictionary = {
     ],
     industries: [
       "Minería",
-      "Oil & Gas",
+      "Puertos",
       "Celulosa / Forestal",
       "Energía / Electricidad",
       "Industrial",
@@ -532,5 +667,355 @@ export const es: Dictionary = {
     switchTo: "English",
     current: "ES",
     aria: "Cambiar idioma a inglés",
+  },
+  mmi: {
+    aria: "MMi by Monitoring, aliado tecnológico para el conocimiento de mantenimiento",
+    brand: "MMi by Monitoring",
+    home: {
+      aria: "MMi by Monitoring, tecnología desarrollada desde nuestra experiencia",
+      eyebrow: "Tecnología desarrollada desde nuestra experiencia",
+      title: "MMi by Monitoring",
+      subtitle:
+        "Nuestro aliado tecnológico para estructurar conocimiento de mantenimiento y entregar contexto con evidencia.",
+      quote:
+        "La tecnología no sustituye la experiencia. Hace que la experiencia trabaje con mejor información.",
+      cta: "Conocer MMi",
+      ctaAria: "Conocer MMi by Monitoring",
+    },
+    hero: {
+      eyebrow: "Inteligencia para mantenimiento y confiabilidad",
+      title: "Del dato al diagnóstico.",
+      titleHighlight: "Con evidencia.",
+      subtitle:
+        "MMi relaciona la información técnica de cada contrato para encontrar hallazgos, explicar hipótesis y orientar la verificación.",
+      formula: "Información separada por contrato · Resultados con fuentes y trazabilidad",
+      ctaPrimary: "Conocer cómo funciona",
+      ctaPrimaryAria: "Ver cómo funciona MMi",
+      ctaSecondary: "Solicitar demostración",
+      ctaSecondaryAria: "Solicitar una demostración de MMi",
+    },
+    flow: {
+      aria: "Planes, órdenes y FMECA pasan por MMi y salen como un hallazgo verificable",
+      sources: ["Planes", "Órdenes", "FMECA"],
+      result: "Hallazgo verificable",
+      resultDetail: "Evidencia y verificación",
+      caption: "Planes + OT + FMECA → MMi → Hallazgo verificable",
+    },
+    example: {
+      eyebrow: "Así se ve un análisis",
+      title: "Una pregunta técnica, un hallazgo y lo que falta confirmar",
+      subtitle:
+        "Ejemplo demostrativo con datos ficticios. Muestra el formato del análisis, no un caso de un cliente.",
+      badge: "Ejemplo demostrativo · datos ficticios",
+      kind: "Fallas recurrentes",
+      question: "¿Qué evidencia existe sobre las fallas recurrentes de la bomba CTS-DCH?",
+      confidenceLabel: "Confianza",
+      confidence: "Media",
+      confidenceNote:
+        "La recurrencia está en las órdenes. La causa no tiene una medición que la confirme.",
+      executionLabel: "Ejecución",
+      execution: "DEMO-2026-014",
+      openDemo: "Abrir demostración",
+      panels: [
+        {
+          title: "Hallazgo",
+          text: "En el historial del activo hay tres eventos de bajo caudal en 11 meses, con la misma descripción operativa. Las órdenes no cierran una causa raíz.",
+        },
+        {
+          title: "Evidencia",
+          text: "OT-1842. Marzo 2025. Bajo caudal y aumento de temperatura de cojinete. Se limpió el filtro. Resultado parcial.",
+        },
+        {
+          title: "Hipótesis",
+          text: "Una restricción de flujo en la succión es una explicación posible y todavía no confirmada. El cambio de sello no alcanza para sostener esa causa.",
+        },
+        {
+          title: "Verificación",
+          text: "Medir presión diferencial en operación estable e inspeccionar succión, filtro y válvula de aspiración antes de cerrar una causa.",
+        },
+      ],
+    },
+    process: {
+      eyebrow: "Cómo funciona",
+      title: "De una pregunta técnica a un análisis verificable",
+      subtitle:
+        "Cinco pasos, en orden. MMi organiza la evidencia disponible. El especialista mantiene la decisión.",
+      items: [
+        {
+          title: "Seleccionar el contexto",
+          text: "Contrato, ODS, activos y el corpus documental autorizado para ese alcance.",
+        },
+        {
+          title: "Formular la pregunta",
+          text: "Una pregunta técnica concreta, del tipo que haría un ingeniero de confiabilidad.",
+        },
+        {
+          title: "Recuperar la evidencia",
+          text: "Planes, órdenes, manuales, historial y registros FMECA o RCM relacionados.",
+        },
+        {
+          title: "Analizar relaciones",
+          text: "Recurrencias, discrepancias y cobertura entre esas fuentes, con criterios separados.",
+        },
+        {
+          title: "Entregar el análisis",
+          text: "Hallazgos, fuentes, hipótesis, confianza, brechas y verificaciones para revisar.",
+        },
+      ],
+    },
+    principles: [
+      "Mismo contrato, misma ODS y corpus autorizado",
+      "No inventa la evidencia que falta",
+      "El especialista mantiene la decisión",
+    ],
+    problem: {
+      eyebrow: "Idea central",
+      title: "Una capacidad tecnológica aliada",
+      lead: "MMi fortalece los servicios de mantenimiento, confiabilidad, gestión de activos e ingeniería. Ordena información técnica, relaciona antecedentes, encuentra evidencia y acelera el análisis.",
+      notReplaceLabel: "No reemplaza",
+      notReplace: [
+        "Experiencia en terreno",
+        "Ingeniería de mantenimiento",
+        "Metodologías RCM / FMECA / RCA",
+        "SAP PM / EAM / CMMS",
+        "Análisis experto",
+        "Consultoría especializada",
+      ],
+      worksWith:
+        "Ordenar información técnica, relacionar antecedentes, encontrar evidencia y acelerar el análisis.",
+      notThisLabel: "La propuesta no es",
+      notThis: "Monitoring tiene una nueva aplicación.",
+      thisIsLabel: "La propuesta es",
+      thisIs:
+        "Monitoring combina experiencia técnica, metodologías y tecnología propia para tomar mejores decisiones con evidencia.",
+    },
+    ally: {
+      eyebrow: "Aliado estratégico",
+      title: "Una capa que potencia lo que ya hacemos",
+      subtitle:
+        "MMi se muestra junto a la experiencia, la ingeniería, las metodologías y el conocimiento en terreno. No sustituye al especialista: le entrega mejor contexto.",
+      layers: [
+        "Experiencia Monitoring",
+        "Ingeniería",
+        "Metodologías",
+        "Conocimiento en terreno",
+      ],
+      boxTitle: "MMi by Monitoring",
+      boxSubtitle: "Inteligencia + Evidencia",
+      outcome: "Mejor contexto para decisiones de mantenimiento",
+      specialistNote: "MMi no sustituye al especialista. Le entrega mejor contexto.",
+    },
+    sources: {
+      eyebrow: "Qué información utiliza",
+      title: "Trabaja sobre información técnica real",
+      subtitle:
+        "MMi organiza y relaciona esta información manteniendo la procedencia y la evidencia documental.",
+      items: [
+        "Órdenes de Trabajo",
+        "Órdenes de Servicio",
+        "Manuales",
+        "Procedimientos",
+        "Planes de mantenimiento",
+        "FMECA",
+        "Informes técnicos",
+        "Históricos",
+        "Inspecciones",
+        "Excel operacionales",
+        "Documentación de equipos",
+        "Registros de fallas",
+        "Antecedentes de mantenimiento",
+      ],
+    },
+    capabilities: {
+      eyebrow: "Cómo organiza el conocimiento",
+      title: "Inteligencia que trabaja junto a nuestros especialistas",
+      subtitle:
+        "La experiencia técnica sigue siendo el centro. MMi convierte información dispersa en conocimiento organizado, relacionable y trazable.",
+      items: [
+        {
+          title: "Organiza",
+          description: "Integra información proveniente de distintas fuentes y formatos.",
+        },
+        {
+          title: "Relaciona",
+          description: "Conecta activos, documentos, OT, fallas, planes y antecedentes.",
+        },
+        {
+          title: "Analiza",
+          description: "Permite revisar grandes volúmenes de información de manera estructurada.",
+        },
+        {
+          title: "Verifica",
+          description: "Mantiene trazabilidad hacia documentos, versiones y fuentes.",
+        },
+      ],
+    },
+    differentials: {
+      eyebrow: "Diferencial",
+      title: "No es solo búsqueda documental",
+      subtitle: "MMi no se limita a encontrar archivos. Puede descubrir, comparar, organizar, relacionar y verificar.",
+      items: [
+        {
+          title: "Descubrir",
+          description: "Identificar qué información existe dentro de una carpeta o conjunto documental.",
+        },
+        {
+          title: "Comparar",
+          description:
+            "Determinar si la información es nueva, duplicada, una nueva versión o potencialmente conflictiva.",
+        },
+        {
+          title: "Organizar",
+          description: "Agrupar por sistema, equipo, tipo documental, periodo y contexto técnico.",
+        },
+        {
+          title: "Relacionar",
+          description: "Conectar activo, componentes, fallas, OT, FMECA, planes y documentos.",
+        },
+        {
+          title: "Verificar",
+          description: "Mantener evidencia hacia la fuente utilizada.",
+        },
+      ],
+    },
+    specialists: {
+      eyebrow: "Especialistas digitales",
+      title: "Apoyo para organizar e interpretar información",
+      subtitle:
+        "Estas capacidades especializadas funcionan como apoyo. No reemplazan al profesional de Monitoring.",
+      coordinator: "Coordinador MMi",
+      roles: ["Mantenimiento", "Confiabilidad", "FMECA-RCM"],
+      verifier: "Verificador de evidencia",
+      functionTitle: "Su función es",
+      functions: [
+        "Ordenar información",
+        "Detectar relaciones",
+        "Identificar antecedentes",
+        "Preparar resúmenes",
+        "Localizar evidencia",
+        "Reducir tiempo de revisión",
+      ],
+      note: "No reemplazan al profesional de Monitoring.",
+    },
+    services: {
+      eyebrow: "MMi + servicios Monitoring",
+      title: "Una relación directa con lo que ya entregamos",
+      subtitle:
+        "MMi complementa gestión de activos, ingeniería, confiabilidad, FMECA/RCM, diagnóstico y transformación digital.",
+      contributesLabel: "Aporta",
+      items: [
+        {
+          title: "Gestión de Activos + MMi",
+          description:
+            "Consolida información de activos, documentación técnica y antecedentes históricos.",
+          contributes: [
+            "Contexto técnico",
+            "Trazabilidad",
+            "Documentación relacionada",
+            "Identificación de información vigente",
+          ],
+        },
+        {
+          title: "Ingeniería de Mantenimiento + MMi",
+          description:
+            "Organiza y revisa planes, procedimientos, históricos, OT y documentación técnica.",
+          contributes: [
+            "Relaciones entre tareas y activos",
+            "Revisión documental",
+            "Búsqueda de evidencia",
+            "Comparación de antecedentes",
+          ],
+        },
+        {
+          title: "Confiabilidad + MMi",
+          description: "Relaciona fallas, OT, informes, FMECA, planes y procedimientos.",
+          contributes: [
+            "Identificación de patrones",
+            "Búsqueda de antecedentes",
+            "Relaciones entre eventos",
+            "Evidencia para análisis",
+          ],
+        },
+        {
+          title: "FMECA / RCM + MMi",
+          description:
+            "Organiza documentación asociada a modos de falla, efectos, tareas, equipos e históricos.",
+          contributes: [
+            "Contexto",
+            "Información relacionada",
+            "Evidencia documental",
+            "Trazabilidad del análisis",
+          ],
+        },
+        {
+          title: "Diagnóstico de Mantenimiento + MMi",
+          description: "Reúne antecedentes dispersos antes de iniciar un diagnóstico.",
+          contributes: [
+            "Resumen documental",
+            "Activos involucrados",
+            "Históricos disponibles",
+            "Documentos relacionados",
+            "Información faltante",
+          ],
+        },
+      ],
+      digitalTitle: "Transformación Digital + MMi",
+      digitalLead:
+        "MMi representa una aplicación concreta de transformación digital sobre procesos de mantenimiento. No digitaliza por digitalizar.",
+      digitalChain: ["Archivos", "Información", "Contexto", "Conocimiento", "Decisión"],
+    },
+    evidence: {
+      eyebrow: "Cómo llega a la evidencia",
+      title: "Experiencia humana + inteligencia operacional",
+      subtitle:
+        "Especialistas Monitoring, metodologías, experiencia en terreno y MMi se combinan para decidir con mejor base.",
+      chain: [
+        "Mayor contexto",
+        "Mayor trazabilidad",
+        "Menos tiempo buscando información",
+        "Mejor base para decidir",
+      ],
+      closing:
+        "MMi no reemplaza lo que Monitoring hace. Amplifica lo que Monitoring sabe hacer.",
+    },
+    demo: {
+      eyebrow: "Caso demostrativo",
+      title: "De carpetas dispersas a un diagnóstico con evidencia",
+      subtitle:
+        "Ilustración de cómo MMi prepara el terreno para un especialista, sin sustituir su juicio técnico.",
+      context:
+        "Ante un diagnóstico de mantenimiento, la información suele estar en OT, Excel, informes, FMECA y carpetas de equipos, sin una relación explícita entre sí.",
+      steps: [
+        {
+          title: "Descubrir",
+          text: "Identifica qué antecedentes existen y qué queda fuera del alcance documental.",
+        },
+        {
+          title: "Organizar",
+          text: "Agrupa por sistema, activo, tipo documental y periodo, conservando versiones.",
+        },
+        {
+          title: "Relacionar",
+          text: "Conecta activo, componentes, fallas, OT, FMECA, planes y documentos de respaldo.",
+        },
+        {
+          title: "Verificar",
+          text: "Deja trazabilidad hacia la fuente original para que el especialista valide cada hallazgo.",
+        },
+      ],
+      result:
+        "El especialista inicia el análisis con contexto, relaciones y evidencia, no con una búsqueda manual de archivos.",
+    },
+    cta: {
+      title: "Conozca cómo MMi trabaja junto a nuestros especialistas",
+      subtitle:
+        "MMi by Monitoring complementa nuestros servicios de mantenimiento, confiabilidad e ingeniería organizando documentación, históricos y registros operacionales.",
+      primary: "Solicitar demostración",
+      primaryAria: "Solicitar una demostración de MMi",
+      secondary: "Hablar con un especialista",
+      secondaryAria: "Hablar con un especialista de Monitoring",
+      principle:
+        "MMi no reemplaza lo que Monitoring hace. Amplifica lo que Monitoring sabe hacer.",
+    },
   },
 };

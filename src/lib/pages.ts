@@ -10,11 +10,13 @@ import TeamField from "@/components/sections/TeamField";
 import News from "@/components/sections/News";
 import Library from "@/components/sections/Library";
 import Contact from "@/components/sections/Contact";
+import Mmi from "@/components/sections/MmiSection";
 
 export const PAGE_SLUGS = [
   "credibilidad",
   "diferenciadores",
   "servicios",
+  "mmi",
   "industrias",
   "casos",
   "equipo",
@@ -29,6 +31,7 @@ export const PAGE_COMPONENTS: Record<PageSlug, ComponentType> = {
   credibilidad: Credibility,
   diferenciadores: Differentiators,
   servicios: Services,
+  mmi: Mmi,
   industrias: Industries,
   casos: CaseStudies,
   equipo: TeamField,
@@ -57,6 +60,10 @@ export function getPageMeta(locale: Locale, slug: PageSlug) {
     servicios: {
       title: `${dict.services.title} | ${brand}`,
       description: dict.services.subtitle,
+    },
+    mmi: {
+      title: dict.mmi.hero.title,
+      description: dict.mmi.hero.subtitle,
     },
     industrias: {
       title: `${dict.industries.title} | ${brand}`,

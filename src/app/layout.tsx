@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
+import { SiteVersionProvider } from "@/context/SiteVersion";
 import { siteConfig } from "@/lib/site-config";
 
 const inter = Inter({
@@ -9,11 +10,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const sora = Sora({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  variable: "--font-sora",
+  variable: "--font-montserrat",
   display: "swap",
-  weight: ["400", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -69,8 +70,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang={siteConfig.language} className={`${inter.variable} ${sora.variable}`}>
-      <body className="font-sans antialiased">{children}</body>
+    <html lang={siteConfig.language} className={`${inter.variable} ${montserrat.variable}`}>
+      <body className="font-sans antialiased overflow-x-hidden">
+        <SiteVersionProvider>{children}</SiteVersionProvider>
+      </body>
     </html>
   );
 }

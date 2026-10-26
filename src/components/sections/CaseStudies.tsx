@@ -89,7 +89,11 @@ export default function CaseStudies() {
                   </div>
 
                   <div className="border-t border-white/10 pt-6 mt-8">
-                    <div className="font-display text-5xl font-extrabold text-accent mb-2">
+                    <div
+                      className={`font-display font-extrabold text-accent mb-2 leading-tight ${
+                        c.result.kpi.length > 8 ? "text-3xl" : "text-5xl"
+                      }`}
+                    >
                       {c.result.kpi}
                     </div>
                     <div className="text-sm font-bold text-white mb-1">{c.result.kpiLabel}</div>

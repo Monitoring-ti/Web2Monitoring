@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { MessageSquare } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
-import { pagePath, localePath } from "@/lib/locale-path";
+import { useSiteVersion } from "@/context/SiteVersion";
+import { pagePath, localePath, pathsMatch } from "@/lib/locale-path";
 
 interface SiteLayoutProps {
   children: React.ReactNode;
@@ -18,9 +19,18 @@ export default function SiteLayout({ children, showFloatingCta = true }: SiteLay
   const t = useDictionary();
   const locale = useLocale();
   const pathname = usePathname();
+  const router = useRouter();
+  const { version } = useSiteVersion();
   const contactPath = pagePath(locale, "contacto");
-  const isHome = pathname === localePath(locale);
+  const homePath = localePath(locale);
+  const isHome = pathsMatch(pathname, homePath);
   const [showFloatingButton, setShowFloatingButton] = useState(false);
+
+  useEffect(() => {
+    if (version === "soft" && !isHome) {
+      router.replace(homePath);
+    }
+  }, [version, isHome, homePath, router]);
 
   useEffect(() => {
     if (!showFloatingCta || !isHome) {
