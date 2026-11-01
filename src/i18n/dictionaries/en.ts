@@ -27,10 +27,10 @@ export const en: Dictionary = {
   nav: {
     primary: [
       { label: "Services", href: "/servicios" },
-      { label: "MMi", href: "/mmi" },
       { label: "Industries", href: "/industrias" },
       { label: "Cases", href: "/casos" },
       { label: "Team", href: "/equipo" },
+      { label: "MMi", href: "/mmi" },
       { label: "Contact", href: "/contacto" },
     ],
     more: [
@@ -76,15 +76,6 @@ export const en: Dictionary = {
     ctaPrimaryAria: "Explore Monitoring solutions",
     ctaSecondary: "Let's talk about your operation",
     ctaSecondaryAria: "Talk with Monitoring about your operation",
-    metricsAria: "Key trust metrics",
-    metrics: [
-      { value: "14", label: "Years in the market" },
-      { value: "+120", label: "Consultants" },
-      { value: "+43", label: "Projects at different stages" },
-    ],
-    fieldLabel: "The move",
-    fieldCaption: "Assets in operation, with the decision in view",
-    fieldBadge: "The operation, not a portrait",
   },
   credibility: {
     aria: "Results and credibility",
@@ -108,7 +99,7 @@ export const en: Dictionary = {
         value: 43,
         suffix: "+",
         label: "Projects at different stages",
-        description: "Initiatives underway and at different stages. Not a count of closed projects.",
+        description: "Initiatives underway and at different stages.",
       },
       {
         value: 3,
@@ -130,10 +121,94 @@ export const en: Dictionary = {
   },
   clients: {
     aria: "Our clients",
-    eyebrow: "Our clients",
+    eyebrow: "Trust",
     title: "Experience that builds trust",
     subtitle:
       "We have supported mining companies and organizations in other sectors through their asset management, maintenance, and reliability challenges.",
+  },
+  story: {
+    challenges: {
+      aria: "Challenges we take on",
+      eyebrow: "Challenges we take on",
+      title: "Availability, recurring failures, planning, spare parts, and information",
+      subtitle: "Operating situations we work on with clients.",
+      items: [
+        {
+          title: "Availability",
+          description:
+            "Safer process availability and reliability, using RCM, RCA, and risk analysis.",
+          href: "/servicios#confiabilidad",
+        },
+        {
+          title: "Recurring failures",
+          description:
+            "Failure analysis, root cause, and FMECA on critical equipment to reduce repetition.",
+          href: "/casos#confiabilidad",
+        },
+        {
+          title: "Planning",
+          description: "Resource planning, longer horizons, and stronger adherence to the programs.",
+          href: "/casos#planificacion",
+        },
+        {
+          title: "Spare parts",
+          description: "Critical spare parts and logistics support to avoid shutdowns.",
+          href: "/servicios#supply-chain",
+        },
+        {
+          title: "Information",
+          description: "From manual exports and spreadsheets to a figure that can be reviewed.",
+          href: "/casos#reportabilidad",
+        },
+      ],
+    },
+    servicesMore: "View the specialties",
+    servicesMoreAria: "View the specialties page",
+    results: {
+      aria: "Highlighted results",
+      eyebrow: "Highlighted results",
+      title: "Results in our clients’ operations",
+      subtitle: "Operational readiness, field planning, reliability, and maintenance strategy.",
+      more: "View all cases",
+      moreAria: "View the cases page",
+    },
+    method: {
+      aria: "Way of working",
+      eyebrow: "Way of working",
+      title: "Diagnosis, proposal, implementation, and follow-up",
+      subtitle:
+        "Understand the operation, define the scope, work on site, and sustain performance.",
+      steps: [
+        {
+          title: "Diagnosis",
+          description: "The situation of the operation and the technical scope.",
+        },
+        {
+          title: "Proposal",
+          description: "How to approach the challenge and what the work includes.",
+        },
+        {
+          title: "Implementation",
+          description: "The team on the operation, with the service deliverables.",
+        },
+        {
+          title: "Follow-up",
+          description: "On-site support until performance holds.",
+        },
+      ],
+    },
+    field: {
+      aria: "Field experience",
+      eyebrow: "Field experience",
+      title: "Consultants in the operation",
+      cta: "Meet the team",
+      ctaAria: "View the team and the consultants' certifications",
+    },
+    contact: {
+      aria: "Invitation to talk",
+      cta: "Let's talk",
+      ctaAria: "Go to contact to talk about the operation",
+    },
   },
   differentiators: {
     aria: "Monitoring differentiators",
@@ -284,10 +359,9 @@ export const en: Dictionary = {
   cases: {
     aria: "Case studies and success stories",
     listAria: "Developed success cases",
-    eyebrow: "Proven Impact",
-    title: "Success stories",
-    subtitle:
-      "Results from operations we have supported. Estimates are kept distinct from results already observed.",
+    eyebrow: "Business cases",
+    title: "Results in our clients’ operations",
+    subtitle: "Operational readiness, field planning, reliability, and maintenance strategy.",
     problemLabel: "Initial Situation / Problem",
     diagnosisLabel: "Technical Diagnosis",
     implementationLabel: "Implementation & Solution",
@@ -301,108 +375,39 @@ export const en: Dictionary = {
     items: [
       {
         id: "operational-readiness",
-        tag: "Operational Readiness",
-        title: "Operational readiness for underground ore transport",
-        industry: "Mining · Ore transport",
-        problem:
-          "Implement the corporate operational readiness standard for an investment project moving 4 million tonnes per month, with 40 main pieces of equipment.",
-        diagnosis:
-          "The scope includes crushers, conveyors, screens, and fire systems, among other equipment.",
-        implementation:
-          "Deliverables against the corporate standard, using in-house tools for the models.",
-        result: {
-          kpi: "40",
-          kpiLabel: "Main equipment items",
-          description:
-            "Reliability and availability model, criticality ranking, and maintenance plans with labor, services, spares, equipment, and infrastructure.",
-        },
+        tag: "Operational readiness",
+        title: "Mining investment projects",
+        body: "Early engineering to the client’s standard: reliability models, equipment criticality, RCM and maintenance plans.",
       },
       {
         id: "planificacion",
-        tag: "Planning",
-        title: "Plant and shutdown planning",
-        industry: "Mining · Underground mine and plant",
-        problem:
-          "Improve resource planning, extend planning horizons, raise adherence to weekly schedules, and reduce planned downtime.",
-        diagnosis: "Field coverage was required across all production processes.",
-        implementation:
-          "Detailed planning and scheduling, SWE methodology, and field follow-up, with 49 consultants.",
-        result: {
-          kpi: "21 days",
-          kpiLabel: "Detailed planning",
-          description: "A 21-day detailed planning horizon, with 49 consultants in the field.",
-        },
+        tag: "Plant and shutdown planning",
+        title: "Detailed planning in the field",
+        body: "Work-safety method, detailed planning and scheduling, with a team deployed on site.",
       },
       {
         id: "confiabilidad",
-        tag: "Reliability",
-        title: "Reliability and continuous improvement",
-        industry: "Mining · Mine, plant, and services",
-        problem:
-          "Improve failure analysis, increase mean time between failures and availability, and reduce recurring failures.",
-        diagnosis:
-          "Continuous reliability and mechanical integrity service for 14 months, with 10 consultants.",
-        implementation:
-          "Coaching, training, root-cause analysis, and FMECA on critical equipment in every area.",
-        result: {
-          kpi: "91.9%",
-          kpiLabel: "Shovel availability",
-          description:
-            "Up from 78.3%. Mean time between failures moved from 24.3 to 34.6 hours. In crushing, control-related failures are eliminated. For haul trucks, in-pit stops from mechanical failures fell by 6%.",
-        },
+        tag: "Reliability and continuous improvement",
+        title: "Mine, plant and services",
+        body: "Ongoing coaching, root-cause analysis and FMECA on critical equipment to raise availability and reduce recurring failures.",
       },
       {
         id: "estrategia-molienda",
         tag: "Maintenance strategy",
-        title: "Shutdown frequency in grinding",
-        industry: "Mining · Concentrator plant",
-        problem:
-          "Optimize the frequency of major shutdowns and set the maintenance plans for the process.",
-        diagnosis:
-          "RCM and FMECA by criticality, with cost, availability (RAM), and labor projections.",
-        implementation:
-          "Major mill shutdown frequencies are changed, and plans, routines, and projections are developed in line with the business.",
-        result: {
-          kpi: "2.4%",
-          kpiLabel: "Grinding availability",
-          description:
-            "Availability increase in grinding, after the frequency change and the maintenance plans.",
-        },
+        title: "Frequency optimization",
+        body: "RCM, FMECA and RAM analysis to optimize major shutdowns and availability in a concentrator plant.",
       },
       {
         id: "frecuencia-pdp",
         tag: "Analytics",
         title: "Plant shutdown frequency",
-        industry: "Planned maintenance",
-        problem: "Identify the maintenance frequency that offers the highest availability potential.",
-        diagnosis:
-          "Scenario evaluation with data from January 2018 to April 2025, comparing planned and unplanned maintenance.",
-        implementation:
-          "Extension of the interval between maintenance events from 32 days to 7 weeks, within the scenarios evaluated.",
-        result: {
-          kpi: "3.56%",
-          kpiLabel: "Estimated potential",
-          description:
-            "This is an estimate, not a benefit already realized. The potential is on the order of USD 35 million per year, with an estimated risk of -1.44% and a 90% confidence interval.",
-        },
+        body: "A comparison of scenarios to find the maintenance frequency with the highest availability potential. This is an estimate, not a benefit already realized.",
       },
       {
         id: "reportabilidad",
         tag: "Reporting",
         title: "From manual exports to a single data set",
-        industry: "SAP · Power BI",
-        problem:
-          "Each weekly close depended on manual SAP exports, spreadsheet consolidation, and a report that arrived late.",
-        diagnosis:
-          "The bottlenecks were in IW29, IW37N, and IW39, and in the manual cross-checking of pivot tables.",
-        implementation:
-          "Dashboards on ERP data in Power BI, pivot tables by area, a self-contained HTML report, and an executive email with the Excel file attached.",
-        result: {
-          kpi: "Power BI",
-          kpiLabel: "Reports for decisions",
-          description:
-            "Reports ready for decisions, built from ERP data.",
-        },
+        body: "From manual SAP exports and spreadsheets to reports ready for decisions, built from ERP data.",
       },
     ],
   },
@@ -454,7 +459,7 @@ export const en: Dictionary = {
     eyebrow: "News",
     title: "News and updates",
     subtitle:
-      "Material to share with clients: newsletters, service closures, courses, and commercial team updates. Monthly refresh.",
+      "Newsletters, service closures, courses, and commercial team updates. Monthly refresh.",
     viewLibrary: "View in library",
     typeLabels: {
       newsletter: "Newsletter",
@@ -499,7 +504,7 @@ export const en: Dictionary = {
     eyebrow: "Shared Knowledge",
     title: "Library & downloads",
     subtitle:
-      "Brochures, newsletters, whitepapers, and technical guides to share with clients and internal teams.",
+      "Brochures, newsletters, whitepapers, and technical guides on asset management, maintenance, and reliability.",
     filters: { all: "View All", corporate: "Corporate" },
     typeLabels: {
       whitepaper: "Whitepaper",
@@ -529,7 +534,7 @@ export const en: Dictionary = {
         tag: "Newsletter",
         title: "May 2026 Newsletter — Client advances",
         description:
-          "Monthly summary of projects, client acknowledgments, and team news to share in commercial meetings.",
+          "Monthly summary of projects, client acknowledgments, and team news.",
         leadMagnetName: "Download Newsletter",
         corporate: true,
       },
@@ -696,10 +701,10 @@ export const en: Dictionary = {
       caption: "Plans + work orders + FMECA → MMi → Verifiable finding",
     },
     example: {
-      eyebrow: "What an analysis looks like",
-      title: "A technical question, a finding, and what still needs confirmation",
+      eyebrow: "Analysis example",
+      title: "Analysis example",
       subtitle:
-        "Demonstration example with fictional data. It shows the analysis format, not a client case.",
+        "Example with fictional data. It is not a client case.",
       badge: "Demonstration example · fictional data",
       kind: "Recurring failures",
       question: "What evidence exists about recurring failures of the CTS-DCH pump?",
@@ -787,7 +792,7 @@ export const en: Dictionary = {
       eyebrow: "Strategic ally",
       title: "A layer that strengthens what we already do",
       subtitle:
-        "MMi sits alongside experience, engineering, methodologies, and field knowledge. It does not replace the specialist: it gives them better context.",
+        "MMi works with field experience, engineering, methodologies, and site knowledge. It does not replace the specialist: it gives them better context.",
       layers: [
         "Monitoring experience",
         "Engineering",
@@ -1008,8 +1013,6 @@ export const en: Dictionary = {
       primaryAria: "Request an MMi demonstration",
       secondary: "Talk with a specialist",
       secondaryAria: "Talk with a Monitoring specialist",
-      principle:
-        "MMi does not replace what Monitoring does. It amplifies what Monitoring already knows how to do.",
     },
   },
 };

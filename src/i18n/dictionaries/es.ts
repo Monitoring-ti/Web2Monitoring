@@ -28,10 +28,10 @@ export const es: Dictionary = {
   nav: {
     primary: [
       { label: "Servicios", href: "/servicios" },
-      { label: "MMi", href: "/mmi" },
       { label: "Industrias", href: "/industrias" },
       { label: "Casos", href: "/casos" },
       { label: "Equipo", href: "/equipo" },
+      { label: "MMi", href: "/mmi" },
       { label: "Contacto", href: "/contacto" },
     ],
     more: [
@@ -77,15 +77,6 @@ export const es: Dictionary = {
     ctaPrimaryAria: "Conocer las soluciones de Monitoring",
     ctaSecondary: "Conversemos sobre su operación",
     ctaSecondaryAria: "Conversar sobre su operación con Monitoring",
-    metricsAria: "Métricas clave de confianza",
-    metrics: [
-      { value: "14", label: "Años de trayectoria" },
-      { value: "+120", label: "Consultores" },
-      { value: "+43", label: "Proyectos en distintas etapas" },
-    ],
-    fieldLabel: "La jugada",
-    fieldCaption: "Activos en operación, con la decisión a la vista",
-    fieldBadge: "Operación, no retrato",
   },
   credibility: {
     aria: "Resultados y credibilidad",
@@ -109,7 +100,7 @@ export const es: Dictionary = {
         value: 43,
         suffix: "+",
         label: "Proyectos en distintas etapas",
-        description: "Iniciativas en curso y en distintas etapas. No es un recuento de proyectos cerrados.",
+        description: "Iniciativas en curso y en distintas etapas.",
       },
       {
         value: 3,
@@ -131,10 +122,97 @@ export const es: Dictionary = {
   },
   clients: {
     aria: "Nuestros clientes",
-    eyebrow: "Nuestros clientes",
+    eyebrow: "Confianza",
     title: "Experiencia que construye confianza",
     subtitle:
       "Hemos acompañado a empresas de minería y otros sectores en sus desafíos de gestión de activos, mantenimiento y confiabilidad.",
+  },
+  story: {
+    challenges: {
+      aria: "Desafíos que abordamos",
+      eyebrow: "Desafíos que abordamos",
+      title: "Disponibilidad, fallas, planificación, repuestos e información",
+      subtitle: "Situaciones de la operación que trabajamos con los clientes.",
+      items: [
+        {
+          title: "Disponibilidad",
+          description:
+            "Mejora de disponibilidad y confiabilidad del proceso, de forma segura, con RCM, RCA y análisis de riesgo.",
+          href: "/servicios#confiabilidad",
+        },
+        {
+          title: "Fallas recurrentes",
+          description:
+            "Análisis de fallas, causa raíz y FMECA en equipos críticos para reducir la repetición.",
+          href: "/casos#confiabilidad",
+        },
+        {
+          title: "Planificación",
+          description:
+            "Planificación de recursos, horizontes más amplios y mayor adherencia a los programas.",
+          href: "/casos#planificacion",
+        },
+        {
+          title: "Repuestos",
+          description:
+            "Disponibilidad de repuestos críticos y soporte logístico para evitar paradas.",
+          href: "/servicios#supply-chain",
+        },
+        {
+          title: "Información",
+          description:
+            "De exportaciones manuales y planillas a un dato que se pueda revisar.",
+          href: "/casos#reportabilidad",
+        },
+      ],
+    },
+    servicesMore: "Ver las especialidades",
+    servicesMoreAria: "Ver la página de especialidades",
+    results: {
+      aria: "Resultados destacados",
+      eyebrow: "Resultados destacados",
+      title: "Resultados en la operación de nuestros clientes",
+      subtitle: "Preparación operacional, planificación en terreno, confiabilidad y estrategia de mantenimiento.",
+      more: "Ver todos los casos",
+      moreAria: "Ver la página de casos",
+    },
+    method: {
+      aria: "Forma de trabajo",
+      eyebrow: "Forma de trabajo",
+      title: "Diagnóstico, propuesta, implementación y seguimiento",
+      subtitle:
+        "Entender la operación, definir el alcance, trabajar en terreno y sostener el desempeño.",
+      steps: [
+        {
+          title: "Diagnóstico",
+          description: "La situación de la operación y el alcance técnico.",
+        },
+        {
+          title: "Propuesta",
+          description: "Cómo abordar el desafío y qué incluye el trabajo.",
+        },
+        {
+          title: "Implementación",
+          description: "El equipo en la operación, con los entregables del servicio.",
+        },
+        {
+          title: "Seguimiento",
+          description: "Acompañamiento en terreno hasta sostener el desempeño.",
+        },
+      ],
+    },
+    field: {
+      aria: "Experiencia en terreno",
+      eyebrow: "Experiencia en terreno",
+      title: "Consultores en la operación",
+      cta: "Conocer al equipo",
+      ctaAria: "Ver el equipo y las certificaciones de los consultores",
+    },
+    contact: {
+      aria: "Invitación a conversar",
+      cta: "Conversemos",
+      ctaAria: "Ir al contacto para conversar sobre la operación",
+    },
   },
   differentiators: {
     aria: "Diferenciadores de Monitoring",
@@ -286,10 +364,9 @@ export const es: Dictionary = {
   cases: {
     aria: "Casos de estudio y éxito",
     listAria: "Casos de éxito desarrollados",
-    eyebrow: "Demostración de Impacto",
-    title: "Casos de éxito",
-    subtitle:
-      "Resultados de operaciones que hemos acompañado. Las estimaciones se distinguen de los resultados ya observados.",
+    eyebrow: "Casos de negocio",
+    title: "Resultados en la operación de nuestros clientes",
+    subtitle: "Preparación operacional, planificación en terreno, confiabilidad y estrategia de mantenimiento.",
     problemLabel: "Situación Inicial / Problema",
     diagnosisLabel: "Diagnóstico Técnico",
     implementationLabel: "Implementación y Solución",
@@ -304,110 +381,38 @@ export const es: Dictionary = {
       {
         id: "operational-readiness",
         tag: "Operational Readiness",
-        title: "Preparación operacional de un transporte de mineral subterráneo",
-        industry: "Minería · Transporte de mineral",
-        problem:
-          "Implementar el estándar corporativo de operational readiness para un proyecto de inversión que transporta 4 millones de toneladas mensuales, con 40 equipos principales.",
-        diagnosis:
-          "El alcance incluye chancadores, correas transportadoras, harneros y sistemas contra incendio, entre otros equipos.",
-        implementation:
-          "Entregables según norma corporativa, con herramientas propias para los modelamientos.",
-        result: {
-          kpi: "40",
-          kpiLabel: "Equipos principales",
-          description:
-            "Modelo de confiabilidad y disponibilidad, priorización por criticidad, y planes de mantenimiento con mano de obra, servicios, repuestos, equipamiento e infraestructura.",
-        },
+        title: "Proyectos de inversión minera",
+        body: "Ingeniería temprana según el estándar del cliente: modelos de confiabilidad, criticidad de equipos, RCM y planes de mantenimiento.",
       },
       {
         id: "planificacion",
-        tag: "Planificación",
-        title: "Planificación de planta y paradas",
-        industry: "Minería · Mina subterránea y planta",
-        problem:
-          "Mejorar la planificación de recursos, ampliar horizontes, subir la adherencia a los programas semanales y reducir detenciones programadas.",
-        diagnosis:
-          "Se requería cobertura en terreno para todos los procesos productivos.",
-        implementation:
-          "Planificación y programación detallada, metodología SWE y seguimiento en terreno, con 49 consultores.",
-        result: {
-          kpi: "21 días",
-          kpiLabel: "Planificación detallada",
-          description:
-            "Horizonte de planificación detallada de 21 días, con 49 consultores en terreno.",
-        },
+        tag: "Planificación de planta y paradas",
+        title: "Planificación detallada en terreno",
+        body: "Metodología de seguridad en el trabajo, planificación y programación detallada, con un equipo desplegado en terreno.",
       },
       {
         id: "confiabilidad",
-        tag: "Confiabilidad",
-        title: "Confiabilidad y mejora continua",
-        industry: "Minería · Mina, planta y servicios",
-        problem:
-          "Mejorar el análisis de fallas, aumentar el tiempo medio entre fallas y la disponibilidad, y reducir fallas recurrentes.",
-        diagnosis:
-          "Servicio continuo de confiabilidad e integridad mecánica durante 14 meses, con 10 consultores.",
-        implementation:
-          "Coaching, capacitación, análisis de causa raíz y FMECA en equipos críticos de todas las áreas.",
-        result: {
-          kpi: "91,9%",
-          kpiLabel: "Disponibilidad de palas",
-          description:
-            "Desde 78,3%. El tiempo medio entre fallas pasó de 24,3 a 34,6 horas. En chancado se eliminan fallas de control. En CAEX, las caídas en terreno por fallas mecánicas disminuyeron un 6%.",
-        },
+        tag: "Confiabilidad y mejora continua",
+        title: "Mina, planta y servicios",
+        body: "Coaching continuo, análisis de causa raíz y FMECA en equipos críticos para aumentar disponibilidad y reducir fallas recurrentes.",
       },
       {
         id: "estrategia-molienda",
         tag: "Estrategia de mantenimiento",
-        title: "Frecuencia de detenciones en molienda",
-        industry: "Minería · Planta concentradora",
-        problem:
-          "Optimizar la frecuencia de detenciones mayores y establecer los planes de mantenimiento del proceso.",
-        diagnosis:
-          "Análisis RCM y FMECA según criticidad, con proyección de costos, disponibilidad (RAM) y mano de obra.",
-        implementation:
-          "Se cambian las frecuencias de detenciones mayores de los molinos y se desarrollan planes, pautas y proyecciones alineadas al negocio.",
-        result: {
-          kpi: "2,4%",
-          kpiLabel: "Disponibilidad en molienda",
-          description:
-            "Incremento de disponibilidad en molienda, tras el ajuste de frecuencias y los planes de mantenimiento.",
-        },
+        title: "Optimización de frecuencias",
+        body: "Análisis RCM, FMECA y RAM para optimizar paradas mayores y disponibilidad en planta concentradora.",
       },
       {
         id: "frecuencia-pdp",
         tag: "Analítica",
         title: "Frecuencia de paradas de planta",
-        industry: "Mantenimiento planificado",
-        problem:
-          "Identificar la frecuencia de mantenimiento que ofrece el mayor potencial de disponibilidad.",
-        diagnosis:
-          "Evaluación de escenarios con datos de enero de 2018 a abril de 2025, comparando mantenimientos planificados y no programados.",
-        implementation:
-          "Extensión del intervalo entre mantenimientos de 32 días a 7 semanas, dentro de los escenarios evaluados.",
-        result: {
-          kpi: "3,56%",
-          kpiLabel: "Potencial estimado",
-          description:
-            "Es una estimación, no un beneficio ya materializado. El potencial se sitúa en el orden de 35 millones de dólares al año, con un riesgo estimado de -1,44% y un intervalo de confianza del 90%.",
-        },
+        body: "Comparación de escenarios para ubicar la frecuencia de mantenimiento con mayor potencial de disponibilidad. Es una estimación, no un beneficio ya materializado.",
       },
       {
         id: "reportabilidad",
         tag: "Reportabilidad",
         title: "De exportaciones manuales a un dato único",
-        industry: "SAP · Power BI",
-        problem:
-          "Cada cierre semanal dependía de exportaciones manuales en SAP, consolidación de planillas y un informe que llegaba tarde.",
-        diagnosis:
-          "Los cuellos de botella estaban en IW29, IW37N e IW39, y en el cruce manual de tablas dinámicas.",
-        implementation:
-          "Dashboards con datos de ERP en Power BI, tablas dinámicas por área, un informe HTML autocontenido y un correo ejecutivo con el Excel adjunto.",
-        result: {
-          kpi: "Power BI",
-          kpiLabel: "Reportes para decidir",
-          description:
-            "Reportes listos para decidir, construidos con los datos del ERP.",
-        },
+        body: "De exportaciones manuales en SAP y planillas a reportes listos para decidir, construidos con los datos del ERP.",
       },
     ],
   },
@@ -460,7 +465,7 @@ export const es: Dictionary = {
     eyebrow: "Actualidad",
     title: "Noticias y avances",
     subtitle:
-      "Material para compartir con clientes: newsletters, cierres de servicio, cursos y novedades del equipo comercial. Actualización mensual.",
+      "Newsletters, cierres de servicio, cursos y novedades del equipo comercial. Actualización mensual.",
     viewLibrary: "Ver en biblioteca",
     typeLabels: {
       newsletter: "Newsletter",
@@ -505,7 +510,7 @@ export const es: Dictionary = {
     eyebrow: "Conocimiento Compartido",
     title: "Biblioteca y descargas",
     subtitle:
-      "Brochures, newsletters, whitepapers y guías técnicas para compartir con clientes y equipos internos.",
+      "Brochures, newsletters, whitepapers y guías técnicas de gestión de activos, mantenimiento y confiabilidad.",
     filters: { all: "Ver Todo", corporate: "Corporativo" },
     typeLabels: {
       whitepaper: "Whitepaper",
@@ -535,7 +540,7 @@ export const es: Dictionary = {
         tag: "Newsletter",
         title: "Newsletter Mayo 2026 — Avances con clientes",
         description:
-          "Resumen mensual de proyectos, felicitaciones de clientes y novedades del equipo para compartir en reuniones comerciales.",
+          "Resumen mensual de proyectos, felicitaciones de clientes y novedades del equipo.",
         leadMagnetName: "Descargar Newsletter",
         corporate: true,
       },
@@ -702,10 +707,10 @@ export const es: Dictionary = {
       caption: "Planes + OT + FMECA → MMi → Hallazgo verificable",
     },
     example: {
-      eyebrow: "Así se ve un análisis",
-      title: "Una pregunta técnica, un hallazgo y lo que falta confirmar",
+      eyebrow: "Ejemplo de análisis",
+      title: "Ejemplo de análisis",
       subtitle:
-        "Ejemplo demostrativo con datos ficticios. Muestra el formato del análisis, no un caso de un cliente.",
+        "Ejemplo con datos ficticios. No corresponde a un caso de un cliente.",
       badge: "Ejemplo demostrativo · datos ficticios",
       kind: "Fallas recurrentes",
       question: "¿Qué evidencia existe sobre las fallas recurrentes de la bomba CTS-DCH?",
@@ -793,7 +798,7 @@ export const es: Dictionary = {
       eyebrow: "Aliado estratégico",
       title: "Una capa que potencia lo que ya hacemos",
       subtitle:
-        "MMi se muestra junto a la experiencia, la ingeniería, las metodologías y el conocimiento en terreno. No sustituye al especialista: le entrega mejor contexto.",
+        "MMi trabaja junto a la experiencia, la ingeniería, las metodologías y el conocimiento en terreno. No sustituye al especialista: le entrega mejor contexto.",
       layers: [
         "Experiencia Monitoring",
         "Ingeniería",
@@ -1014,8 +1019,6 @@ export const es: Dictionary = {
       primaryAria: "Solicitar una demostración de MMi",
       secondary: "Hablar con un especialista",
       secondaryAria: "Hablar con un especialista de Monitoring",
-      principle:
-        "MMi no reemplaza lo que Monitoring hace. Amplifica lo que Monitoring sabe hacer.",
     },
   },
 };

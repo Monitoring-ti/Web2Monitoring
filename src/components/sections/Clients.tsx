@@ -2,6 +2,7 @@
 
 import { useDictionary } from "@/context/LocaleProvider";
 import { presentationClients } from "@/data/presentation";
+import { CredibilityFigures } from "@/components/sections/Credibility";
 import LogoMarquee from "@/components/sections/LogoMarquee";
 
 export default function Clients() {
@@ -26,6 +27,7 @@ export default function Clients() {
           </h2>
           <p className="text-base leading-relaxed text-muted">{t.clients.subtitle}</p>
         </div>
+        <CredibilityFigures />
       </div>
 
       <LogoMarquee items={presentationClients} label={t.clients.aria} />

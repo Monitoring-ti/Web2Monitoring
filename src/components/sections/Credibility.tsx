@@ -7,7 +7,7 @@ import { useDictionary } from "@/context/LocaleProvider";
 const kpiIcons = [Target, Award, Layers, Users];
 
 function useCountUp(target: number, duration = 1500, active = false) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(target);
   useEffect(() => {
     if (!active) return;
     let start = 0;
@@ -52,28 +52,69 @@ function KPICard({
   );
 }
 
-export default function Credibility() {
+export function CredibilityFigures() {
   const t = useDictionary();
   const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const arm = () => setVisible(true);
+    const inView = () => {
+      const rect = node.getBoundingClientRect();
+      return rect.bottom > 0 && rect.top < window.innerHeight;
+    };
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
+        if (entry.isIntersecting) arm();
       },
-      { threshold: 0.1 }
+      { threshold: 0.15 },
     );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+
+    const onScroll = () => {
+      if (inView()) arm();
+    };
+
+    observer.observe(node);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   return (
-    <section
+    <div
       ref={ref}
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 divide-y md:divide-y-0 lg:divide-x divide-border"
+      role="list"
+      aria-label={t.credibility.listAria}
+    >
+      {t.credibility.kpis.map((kpi, i) => (
+        <div
+          key={kpi.label}
+          role="listitem"
+          className={`pt-6 md:pt-0 lg:px-4 first:pt-0 transition-all duration-700 ${
+            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+          style={{ transitionDelay: `${i * 100}ms` }}
+        >
+          <KPICard kpi={kpi} active={visible} Icon={kpiIcons[i] ?? Target} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export default function Credibility() {
+  const t = useDictionary();
+
+  return (
+    <section
       id="credibilidad"
       aria-label={t.credibility.aria}
       className="py-12 sm:py-16 bg-white border-b border-border"
@@ -88,24 +129,7 @@ export default function Credibility() {
           </h2>
         </div>
 
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 divide-y md:divide-y-0 lg:divide-x divide-border"
-          role="list"
-          aria-label={t.credibility.listAria}
-        >
-          {t.credibility.kpis.map((kpi, i) => (
-            <div
-              key={kpi.label}
-              role="listitem"
-              className={`pt-6 md:pt-0 lg:px-4 first:pt-0 transition-all duration-700 ${
-                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-              }`}
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              <KPICard kpi={kpi} active={visible} Icon={kpiIcons[i] ?? Target} />
-            </div>
-          ))}
-        </div>
+        <CredibilityFigures />
       </div>
     </section>
   );

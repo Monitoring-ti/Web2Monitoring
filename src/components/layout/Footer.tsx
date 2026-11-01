@@ -66,22 +66,6 @@ export default function Footer() {
               </a>
             </p>
           </div>
-          <div className="flex gap-4">
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="text-white/30 hover:text-white/55 text-[11px] sm:text-xs transition-colors"
-            >
-              {t.footer.privacy}
-            </a>
-            <a
-              href="#"
-              onClick={(e) => e.preventDefault()}
-              className="text-white/30 hover:text-white/55 text-[11px] sm:text-xs transition-colors"
-            >
-              {t.footer.terms}
-            </a>
-          </div>
         </div>
       </div>
     </footer>

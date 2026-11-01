@@ -34,16 +34,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html:has(.soft-site) {
-  scroll-padding-top: 11rem;
-}
-
-@media (min-width: 640px) {
-  html:has(.soft-site) {
-    scroll-padding-top: 8.5rem;
-  }
-}
-
 body {
   background-color: var(--color-white);
   color: var(--color-tinta);

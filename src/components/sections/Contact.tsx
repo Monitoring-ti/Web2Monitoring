@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { Send, CheckCircle, Clock, Shield, Mail, Phone, MapPin } from "lucide-react";
 import { useDictionary } from "@/context/LocaleProvider";
+import { images } from "@/data/images";
 import { classifyHumanEmail } from "@/lib/human-email";
 import { siteConfig } from "@/lib/site-config";
 
@@ -71,6 +73,15 @@ export default function Contact() {
       className="section-padding bg-white border-t border-border"
     >
       <div className="container-custom">
+        <div className="relative mb-12 aspect-[21/9] overflow-hidden rounded-3xl border border-border">
+          <Image
+            src={images.lider.src}
+            alt={images.lider.alt}
+            fill
+            sizes="(max-width: 1280px) 100vw, 1152px"
+            className="object-cover object-[72%_center]"
+          />
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5 flex flex-col justify-center">
             <span className="text-accent text-xs font-bold uppercase tracking-widest block mb-2">

@@ -1,20 +1,20 @@
 # SEO — Monitoring Web
 
-Auditoría y guía de posicionamiento para la landing en `monitoring.cl`.
+Auditoría y guía de posicionamiento para el sitio en `monitoring.lat`.
 
 ## Estado actual (implementación técnica)
 
 | Elemento | Estado | Ubicación |
 |----------|--------|-----------|
-| Título y descripción | ✅ | `src/lib/site-config.ts`, `src/app/page.tsx` |
+| Título y descripción | ✅ | `src/lib/metadata.ts`, `src/lib/site-config.ts` |
 | `metadataBase` | ✅ | `src/app/layout.tsx` |
-| URL canónica home | ✅ | `src/app/page.tsx` |
+| URL canónica home | ✅ | `src/lib/metadata.ts` |
 | Open Graph (imagen, locale) | ✅ | Home + layout |
 | Twitter Card | ✅ | `summary_large_image` |
 | `robots.txt` | ✅ | `src/app/robots.ts` |
 | `sitemap.xml` | ✅ | `src/app/sitemap.ts` |
-| JSON-LD Organization | ✅ | `src/components/seo/JsonLd.tsx` |
-| JSON-LD WebSite | ✅ | Home |
+| JSON-LD `@graph` | ✅ | `src/components/seo/JsonLd.tsx` |
+| JSON-LD por página interna | ✅ | `src/app/[slug]/page.tsx` y `src/app/en/[slug]/page.tsx` |
 | `lang="es"` | ✅ | `layout.tsx` + selector en `/en` |
 | i18n ES (/) + EN (/en) | ✅ | `src/i18n/`, `LanguageSwitcher` |
 | `hreflang` es ↔ en | ✅ | `src/lib/metadata.ts` |
@@ -22,18 +22,30 @@ Auditoría y guía de posicionamiento para la landing en `monitoring.cl`.
 | Portal `/acceso-cliente` noindex | ✅ | metadata de página |
 | `/api/` bloqueada en robots | ✅ | `robots.ts`. No existe ruta de contacto |
 | Páginas internas en sitemap | ✅ | `src/lib/pages.ts` vía `sitemap.ts` |
+| Rastreadores de IA declarados | ✅ | `src/app/robots.ts` |
+| Índice de texto para asistentes | ✅ | `src/app/llms.txt/route.ts` |
 
 ## URLs indexables
 
 | URL | Sitemap | Index |
 |-----|---------|-------|
-| `/` | Sí (prioridad 1.0) | Sí (`es`, predeterminado). El HTML indexable es la versión full |
+| `/` | Sí (prioridad 1.0) | Sí (`es`, predeterminado) |
 | `/en` | Sí (prioridad 0.9) | Sí (`en`) |
 | `/servicios`, `/mmi`, `/industrias`, `/casos`, `/equipo`, `/contacto` | Sí | Sí, y su par en `/en/...` |
 | `/credibilidad`, `/diferenciadores`, `/actualidad`, `/biblioteca` | Sí | Sí, y su par en `/en/...` |
 | `/acceso-cliente` | No | No (`noindex`, login) |
 
-La versión soft no tiene URL. Es una preferencia del navegador sobre el inicio.
+`/llms.txt` y `/robots.txt` no son páginas indexables. El sitio no tiene una variante alternativa del inicio: el HTML que ve una persona es el mismo que ve un buscador.
+
+## Copia espejo de GitHub Pages
+
+La CI publica una copia exportada del mismo sitio en `monitoring-ti.github.io/Web2Monitoring`. No es un canal indexable:
+
+- Declara `canonical` y `sitemap` de `https://monitoring.lat`, así que Google consolida la señal en el canónico.
+- Sale con `<meta name="robots" content="noindex, nofollow">` y con `robots.txt` en `Disallow: /`.
+- El middleware no corre en una exportación estática, así que esa copia no aplica los 301 de los dominios alias.
+
+El flag es `GITHUB_PAGES=true`, leído en `src/lib/config.ts` (`IS_STATIC_EXPORT`).
 
 ## Palabras clave objetivo
 
@@ -61,19 +73,30 @@ Oil & Gas no está entre las industrias publicadas.
 
 | Campo | Contenido |
 |-------|-----------|
-| **Title** | Monitoring \| Optimizando sus activos desde la primera jugada |
-| **Description** | Consultora de ingeniería en gestión de activos físicos, mantenimiento y confiabilidad. Minería, energía, celulosa, puertos e industria. |
+| **Title** | Monitoring \| Gestión de activos (EN: Monitoring \| Asset management) |
+| **Description** | Ingeniería en gestión de activos, mantenimiento y confiabilidad para minería, energía, celulosa y puertos. Santiago, Calama y Lima. soporte@monitoring.cl. |
 | **H1** | Optimizando sus activos desde la primera jugada |
 | **OG image** | `/images/hero-ajedrez-mineria.jpg` (no es la portada visible `portada-2.jpg`) |
 
+La descripción de la home es un híbrido: primero la propuesta de valor y después el NAP, para caber en el recorte del snippet sin perder la señal local. La dirección completa y los teléfonos quedan en `/contacto`, en el pie y en el JSON-LD.
+
+Las páginas internas no fijan su propio título completo: `src/app/layout.tsx` aplica la plantilla `%s | Monitoring`, así que el título final conserva la marca.
+
 ## JSON-LD
 
-La home incluye:
+La home entrega un `@graph` con:
 
-1. **ProfessionalService** — nombre legal, contacto, áreas de servicio, slogan  
-2. **WebSite** — sitio y publisher  
+1. **Organization / ProfessionalService** — nombre legal, contacto,logan, direcciones de las tres oficinas, `areaServed`, `knowsAbout`, `hasOfferCatalog` con los seis servicios y `employee` con las cuatro personas de dirección
+2. **WebSite** — sitio y `publisher` por `@id`
+3. **ItemList** — las secciones del menú
 
-Para enriquecer en producción, agregar en `organizationJsonLd()`:
+Cada página interna añade:
+
+- **WebPage** o **ContactPage** — en `/contacto` el tipo es `ContactPage`
+- **BreadcrumbList** — Inicio y la sección actual
+- **OfferCatalog** en `/servicios` y **SoftwareApplication** en `/mmi`
+
+Para enriquecer en producción, agregar en `organizationNode()`:
 
 ```ts
 sameAs: [
@@ -85,9 +108,11 @@ sameAs: [
 
 ### Técnico
 
-- [ ] `NEXT_PUBLIC_SITE_URL=https://monitoring.cl` en producción  
-- [ ] Verificar `https://monitoring.cl/robots.txt`  
-- [ ] Verificar `https://monitoring.cl/sitemap.xml`  
+- [ ] `NEXT_PUBLIC_SITE_URL=https://monitoring.lat` en producción  
+- [ ] Verificar `https://monitoring.lat/robots.txt`  
+- [ ] Verificar `https://monitoring.lat/sitemap.xml`  
+- [ ] Verificar `https://monitoring.lat/llms.txt`  
+- [ ] Confirmar que `monitoring.cl` responde 301 hacia el canónico  
 - [ ] Probar rich results: [Google Rich Results Test](https://search.google.com/test/rich-results)  
 - [ ] Probar OG: [opengraph.xyz](https://www.opengraph.xyz/) o similar  
 - [ ] Lighthouse SEO ≥ 90 en `/`  
@@ -95,7 +120,7 @@ sameAs: [
 ### Search Console
 
 - [ ] Verificar propiedad del dominio  
-- [ ] Enviar sitemap: `https://monitoring.cl/sitemap.xml`  
+- [ ] Enviar sitemap: `https://monitoring.lat/sitemap.xml`  
 - [ ] Solicitar indexación de `/`  
 - [ ] Monitorear cobertura y errores  
 
@@ -125,10 +150,12 @@ sameAs: [
 ## Mejoras futuras
 
 1. ~~**i18n** — `/en` con `hreflang` es ↔ en~~ ✅ Implementado  
-2. **Blog / actualidad** — URLs propias indexables (`/actualidad/[slug]`)  
-3. **Casos** — páginas `/casos/[slug]` compartibles e indexables  
-4. **FAQ schema** — bloque preguntas frecuentes en home  
-5. **LocalBusiness** — si se publica dirección física de oficina  
+2. ~~**JSON-LD por página** — `WebPage`, `ContactPage` y `BreadcrumbList`~~ ✅ Implementado  
+3. ~~**Rastreadores de IA** — reglas explícitas en `robots.txt` y `llms.txt`~~ ✅ Implementado  
+4. **Blog / actualidad** — URLs propias indexables (`/actualidad/[slug]`)  
+5. **Casos** — páginas `/casos/[slug]` compartibles e indexables  
+6. **FAQ schema** — bloque preguntas frecuentes en home  
+7. **LocalBusiness** — si se publica dirección física de oficina  
 
 ## Verificación local
 
@@ -137,6 +164,7 @@ Tras `npm run build && npm start`:
 ```
 http://localhost:3000/robots.txt
 http://localhost:3000/sitemap.xml
+http://localhost:3000/llms.txt
 ```
 
 View source en `/` → buscar `application/ld+json`.

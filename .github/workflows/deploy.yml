@@ -33,7 +33,6 @@ jobs:
       - name: Build static site
         env:
           GITHUB_PAGES: "true"
-          NEXT_PUBLIC_SITE_URL: https://monitoring-ti.github.io/Web2Monitoring
         run: npm run build
 
       - name: Upload artifact

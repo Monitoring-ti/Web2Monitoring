@@ -58,7 +58,6 @@ export function MmiFlow({ flow }: { flow: FlowCopy }) {
           <p className="text-xs text-white/60">{flow.resultDetail}</p>
         </div>
       </div>
-      <p className="mt-3 text-center text-xs text-white/55 sm:text-left">{flow.caption}</p>
     </div>
   );
 }

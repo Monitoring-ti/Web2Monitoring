@@ -7,7 +7,6 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
-import VersionSwitch from "@/components/layout/VersionSwitch";
 import { localePath, pagePath, resolveNavPath } from "@/lib/locale-path";
 
 export default function Header() {
@@ -84,11 +83,6 @@ export default function Header() {
       }`}
       role="banner"
     >
-      <div className="border-b border-border bg-white/95">
-        <div className="container-custom flex justify-center py-2">
-          <VersionSwitch />
-        </div>
-      </div>
       <div className="container-custom">
         <div className="flex items-center justify-between gap-4 h-16 py-2">
           <Link

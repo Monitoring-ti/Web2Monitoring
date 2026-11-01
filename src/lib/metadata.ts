@@ -7,13 +7,26 @@ import { getPageMeta, type PageSlug } from "@/lib/pages";
 import { absoluteUrl } from "@/lib/site-config";
 import { siteConfig } from "@/lib/site-config";
 
+const searchTitle = {
+  es: "Monitoring | Gestión de activos",
+  en: "Monitoring | Asset management",
+} as const;
+
+/** Propuesta de valor primero y NAP al final, dentro del recorte del snippet. */
+const searchDescription = {
+  es: "Ingeniería en gestión de activos, mantenimiento y confiabilidad para minería, energía, celulosa y puertos. Santiago, Calama y Lima. soporte@monitoring.cl.",
+  en: "Engineering in asset management, maintenance and reliability for mining, energy, pulp and ports. Santiago, Calama and Lima. soporte@monitoring.cl.",
+} as const;
+
 export function buildHomeMetadata(locale: Locale): Metadata {
   const dict = getDictionary(locale);
   const path = locale === "es" ? "/" : `/${locale}`;
+  const title = searchTitle[locale];
+  const description = searchDescription[locale];
 
   return {
-    title: dict.meta.title,
-    description: dict.meta.description,
+    title: { absolute: title },
+    description,
     keywords: [...dict.meta.keywords],
     alternates: {
       canonical: absoluteUrl(path),
@@ -28,8 +41,8 @@ export function buildHomeMetadata(locale: Locale): Metadata {
       locale: localeOg[locale],
       url: absoluteUrl(path),
       siteName: siteConfig.shortName,
-      title: dict.meta.title,
-      description: dict.meta.description,
+      title,
+      description,
       images: [
         {
           url: siteConfig.ogImage,
@@ -41,8 +54,8 @@ export function buildHomeMetadata(locale: Locale): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: dict.meta.title,
-      description: dict.meta.description,
+      title,
+      description,
       images: [siteConfig.ogImage],
     },
   };

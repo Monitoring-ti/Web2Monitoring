@@ -12,36 +12,26 @@ Ingeniería y consultoría en gestión de activos físicos, mantenimiento y conf
 MMi se presenta como tecnología propia de Monitoring (“MMi by Monitoring”), aliada de los servicios. No reemplaza al especialista.
 
 Razón social y datos de marca: `src/lib/site-config.ts`.  
-Textos de la versión completa: `src/i18n/dictionaries/es.ts` y `en.ts`.  
-Textos de la versión simple: `src/content/soft-site.ts`.
+Textos: `src/i18n/dictionaries/es.ts` y `en.ts`.
 
-## 2. Dos versiones
+## 2. Estructura del sitio
 
-El mismo sitio tiene dos presentaciones. El selector **Versión soft / Versión full** va en una franja fija al inicio de la cabecera. La elección se guarda en `localStorage` con la clave `monitoring-site-version`. Si no hay elección, se muestra la versión full.
+El sitio tiene una sola presentación. La home resume la propuesta y las páginas propias deepen cada tema. No hay selector de versión ni preferencia guardada en el navegador.
 
-| Versión | Qué es | Dónde vive |
+| Pieza | Qué es | Dónde vive |
 |---|---|---|
-| Full | Sitio de varias páginas: inicio, servicios, MMi, industrias, casos, equipo y el resto | `HomePage` con `SiteLayout`, más `src/lib/pages.ts` |
-| Soft | Una sola página, clara, al estilo del HTML móvil de referencia | `src/components/pages/SoftHome.tsx` |
+| Home | Resumen del relato: hero, clientes, desafíos, servicios, resultados, método, terreno, MMi y contacto | `src/components/pages/HomePage.tsx` y `src/components/sections/HomeNarrative.tsx` |
+| Páginas | Servicios, MMi, industrias, casos, equipo, contacto y el menú Más | `src/lib/pages.ts` con `src/components/pages/ContentPage.tsx` |
 
-La versión soft solo reemplaza el inicio. No tiene URL propia. Quien llega a una página interna con soft guardado vuelve al inicio. Los buscadores ven la versión full: el HTML inicial del servidor es el de full y el cambio ocurre en el navegador.
+El HTML inicial del servidor ya es el definitivo: no hay variante que se arme en el cliente, así que los buscadores ven exactamente lo que ve una persona.
 
-La soft no reutiliza los textos de la full. Trae su propio relato: filosofía de riesgo, servicios en lista, MMI en cuatro pasos, industrias mineras y no mineras, casos sin las cifras de la full, logos, certificaciones de consultores y contacto por `mailto:`. Incluye afirmaciones que la full no publica (Monitoring Academy, vibración, aceite, termografía y servidor independiente de MMI). Esas frases quedan solo en la soft.
-
-Portadas:
-
-| Versión | Archivo | Qué se ve |
-|---|---|---|
-| Full | `/images/portada-2.jpg` | Planta industrial y piezas de ajedrez. El archivo trae una franja azul a la izquierda; el hero la recorta y muestra la planta y las piezas |
-| Soft | `/images/portada-faena.jpg` | Collage del operador con casco frente a la faena |
-
-Fotos de la soft: `public/images/soft/`.
+Portada: `/images/portada-2.jpg` — planta industrial y piezas de ajedrez. El archivo trae una franja azul a la izquierda; el hero la recorta y muestra la planta y las piezas.
 
 ## 3. Stack y cómo se sirve
 
 | Pieza | Valor |
 |---|---|
-| Framework | Next.js 14 (App Router), React 18, TypeScript |
+| Framework | Next.js 15.5 (App Router), React 19, TypeScript 5.9 |
 | Estilos | Tailwind CSS |
 | Fuentes | Inter (texto) y Montserrat (títulos), vía `next/font` |
 | Iconos | Lucide |
@@ -50,22 +40,26 @@ Fotos de la soft: `public/images/soft/`.
 | Imágenes | `next/image` con `unoptimized: true` |
 | Barra final en URLs | Activada (`trailingSlash: true`) |
 | Idiomas | Español en `/`. Inglés con prefijo `/en` |
+| Lint | ESLint 9 con configuración plana (`eslint.config.mjs`). `next lint` quedó deprecado en Next 15.5 |
+| Puertas del build | `next build` valida tipos y pasa ESLint. Las dos excepciones (`ignoreBuildErrors`, `ignoreDuringBuilds`) están quitadas |
 | Arranque | `npm run dev` (puerto 3000), `npm run build`, `npm start` |
 
 Variables públicas:
 
 | Variable | Uso | Si no se define |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Canónica, sitemap, Open Graph, JSON-LD | `https://monitoring.cl` |
+| `NEXT_PUBLIC_SITE_URL` | Canónica, sitemap, Open Graph, JSON-LD | `https://monitoring.lat` |
 | `NEXT_PUBLIC_CLIENT_PORTAL_URL` | Botón del portal en `/acceso-cliente` | El código de ejemplo usa `https://sistema.monitoring.cl` |
 
 `GITHUB_PAGES=true` activa exportación estática y el prefijo `/Web2Monitoring`. No hay ruta `/api/contact`. `robots.txt` igual niega `/api/`.
 
+El build de GitHub Pages no fija `NEXT_PUBLIC_SITE_URL`, así que la copia exportada declara la canónica y el sitemap de `https://monitoring.lat`. No es una copia rival: es la misma web servida en otro host. Como no es el sitio canónico, esa copia se publica con `noindex, nofollow` y con `robots.txt` en `Disallow: /`. El flag se lee en `src/lib/config.ts` (`IS_STATIC_EXPORT`).
+
 ## 4. Dominios
 
-La canónica del build sigue siendo `NEXT_PUBLIC_SITE_URL`, con respaldo `https://monitoring.cl`.
+La canónica del build es `NEXT_PUBLIC_SITE_URL`, con respaldo `https://monitoring.lat`.
 
-El 21 de octubre de 2026, `monitoring.lat` servía un build anterior de este Next.js y no incluía `/mmi`. Esta actualización de documentación no volvió a comprobar el hosting. Un despliegue nuevo reemplaza el sitio que esté en el dominio elegido. No se publica hasta confirmar dominio, canónica y sobrescritura.
+`src/middleware.ts` responde 301 hacia el canónico cuando la petición llega por `www.monitoring.lat`, `monitoring.cl`, `www.monitoring.cl`, `monitoring.pe`, `www.monitoring.pe`, `monitoring.com.pe` o `www.monitoring.com.pe`. Un despliegue nuevo reemplaza el sitio que esté en el dominio elegido. No se publica hasta confirmar dominio, canónica y sobrescritura.
 
 ## 5. Mapa de rutas
 
@@ -73,7 +67,7 @@ Todas las rutas internas existen en español y en inglés. Ejemplo: `/mmi/` y `/
 
 | Ruta | Página | Qué muestra |
 |---|---|---|
-| `/` | Inicio full | Hero y cinta de clientes. En soft, la página única |
+| `/` | Inicio | Hero, cinta de clientes y ocho bloques de relato |
 | `/servicios` | Servicios | Seis grupos. Transformación Digital enlaza a MMi |
 | `/mmi` | MMi by Monitoring | Página del aliado tecnológico, con flujo, ejemplo y pasos |
 | `/industrias` | Industrias | Minería, puertos, celulosa, energía, industria |
@@ -87,42 +81,42 @@ Todas las rutas internas existen en español y en inglés. Ejemplo: `/mmi/` y `/
 | `/en` y `/en/...` | Las mismas páginas en inglés | |
 | `/acceso-cliente` | Portal | `noindex`. Sin enlace en el menú público |
 | `/sitemap.xml` | Sitemap | Home, `/en` y las diez páginas internas en ambos idiomas |
-| `/robots.txt` | Robots | Permite `/`. Niega `/acceso-cliente` y `/api/` |
+| `/robots.txt` | Robots | Permite `/`. Niega `/acceso-cliente` y `/api/`. Reglas explícitas para rastreadores de IA |
+| `/llms.txt` | Índice de texto | Servicios, industrias, certificaciones, oficinas, dirección y el mapa de URLs en ambos idiomas |
 
 “Empresa” en el menú Más apunta al inicio.
 
-La página MMi no muestra el banner de reunión. Contacto tampoco. El resto de páginas internas sí. El botón flotante “Agendar Reunión” aparece al bajar en el inicio de la versión full.
+La página MMi no muestra el banner de reunión. Contacto tampoco. El resto de páginas internas sí. El botón flotante “Agendar Reunión” aparece al bajar en el inicio.
 
 ## 6. Cabecera, pie y móvil
 
-Cabecera fija, con la franja del selector arriba.
+Cabecera fija.
 
-- Logo `/logo.png` hacia el inicio. En el hero oscuro de escritorio el logo va en caja blanca; la franja del selector permanece blanca.
+- Logo `/logo.png` hacia el inicio. En el hero oscuro de escritorio el logo va en caja blanca.
 - Menú principal: Servicios, MMi, Industrias, Casos, Equipo, Contacto.
 - Menú Más: Empresa, Credibilidad, Diferenciadores, Actualidad, Biblioteca.
 - Idioma: ES / English, conservando la misma página.
 - Acción de escritorio: “Solicitar Reunión” hacia `/contacto`.
 - En móvil, las mismas entradas principales quedan en pastillas siempre visibles. Contacto va en naranja. El ícono de menú abre Más y “Solicitar Reunión”.
 
-La soft tiene su propia cabecera, con anclas: Quiénes somos, Servicios, IA, Industrias, Clientes, Certificaciones y Contacto.
+En pantallas chicas el hero no ocupa toda la altura: texto, botones, cifras y foto bajan en columna. El cuerpo lleva `overflow-x-hidden`. El relleno de sección es más corto bajo `lg`.
 
-En pantallas chicas el hero de la full no ocupa toda la altura: texto, botones, cifras y foto bajan en columna. El cuerpo lleva `overflow-x-hidden`. El relleno de sección es más corto bajo `lg`.
+Pie: logo, los enlaces del menú, copyright del año en curso de Monitoring SpA y “Desarrollado por” con `ti.soporte@monitoring.cl`.
 
-Pie de la full: logo, los enlaces del menú, copyright del año en curso de Monitoring SpA y “Desarrollado por” con `ti.soporte@monitoring.cl`.
+No hay enlaces a “Políticas de Privacidad” ni a “Condiciones de Servicio”. No hay URL de LinkedIn publicada.
 
-“Políticas de Privacidad” y “Condiciones de Servicio” apuntan a `#`. No hay URL de LinkedIn publicada.
-
-## 7. Inicio full
+## 7. Inicio
 
 ### Hero
 
 - Antetítulo: “Gestión de activos · Mantenimiento y confiabilidad”.
 - Título: “Optimizando sus activos desde la primera jugada”.
 - Texto: acompañamiento desde la preparación operacional del proyecto hasta la operación. Estrategia, confiabilidad, planificación e ingeniería de mantenimiento, con SAP PM/MM y analítica.
-- Lema: “Los principales activos son los que te rodean.”
-- Acciones: “Conozca nuestras soluciones” (va a Servicios) y “Conversemos sobre su operación” (va a Contacto).
-- Cifras animadas al entrar en pantalla: **14** años, **+120** consultores, **+43** proyectos en distintas etapas. El conteo corre aunque el sistema pida menos movimiento; el cambio de escala no.
+- Lema: “Los principales activos son los que te rodea.”
+- Acciones: “Conozca nuestras soluciones” (baja a `#servicios`) y “Conversemos sobre su operación” (baja a `#contacto`). Ambas apuntan a bloques de la misma home.
 - Imagen: `/images/portada-2.jpg`. Texto alternativo: “Piezas de ajedrez sobre el tablero de una planta industrial”.
+
+El hero ya no lleva las cifras animadas: 14 años, +120 consultores y +43 proyectos viven en `/credibilidad`, con el conteo al verse.
 
 ### Clientes
 
@@ -134,9 +128,23 @@ Perú: Newmont Yanacocha, Marcobre, Minsur, Antamina.
 
 México: Equinox Gold, Newmont Peñasquito, First Majestic.
 
-Esos logos no afirman un contrato vigente ni se asignan a un caso anónimo.
+Esos logos no afirmar un contrato vigente ni se asignan a un caso anónimo.
 
-El inicio full no incluye el bloque MMi, las certificaciones ni el banner de reunión. Esos contenidos están en sus páginas.
+### Desafíos, servicios, resultados, método, terreno, MMi y contacto
+
+Después del hero y la cinta de clientes, la home encadena siete bloques más, en `src/components/sections/HomeNarrative.tsx`:
+
+| Bloque | Qué muestra | Destino |
+|---|---|---|
+| Desafíos | Cinco situaciones de la operación: disponibilidad, fallas recurrentes, planificación, repuestos e información | Enlaces a `/servicios#confiabilidad`, `/casos#confiabilidad`, `/casos#planificacion`, `/servicios#supply-chain` y `/casos#reportabilidad` |
+| Servicios | Las seis especialidades, con su descripción y la acción de cada tarjeta | `/servicios` y sus anclas |
+| Resultados destacados | Cuatro casos: `operational-readiness`, `planificacion`, `confiabilidad` y `estrategia-molienda` | `/casos#id` |
+| Forma de trabajo | Diagnóstico, propuesta, implementación y seguimiento | — |
+| Experiencia en terreno | Tres fotos de galería, las cuatro personas de dirección y el enlace al equipo | `/equipo` |
+| Capacidad tecnológica | Bloque oscuro con el flujo de MMi | `/mmi` |
+| Invitación a conversar | Cierre con el botón a contacto y el correo general | `/contacto` |
+
+Las certificaciones de consultores siguen únicamente en `/equipo`. La home no lleva el banner de reunión.
 
 ## 8. Credibilidad
 
@@ -171,7 +179,7 @@ Título: “Del proyecto a la operación”. Seis tarjetas en `/servicios`, en u
 | `excelencia-operacional` | Excelencia Operacional | Sistemas de gestión, mejora continua y OEE |
 | `transformacion-digital` | Transformación Digital | Datos, sensórica e inteligencia. Recuadro “MMi — Inteligencia de Mantenimiento”. La acción es “Conocer MMi” |
 
-Planificación, paradas y Monitoring Academy no tienen tarjeta en la full. La soft sí nombra planificación, confiabilidad y el portal Monitoring Academy dentro de sus listas.
+Planificación, paradas y Monitoring Academy no tienen tarjeta propia en `/servicios`.
 
 ## 11. MMi
 
@@ -191,7 +199,7 @@ Principio publicado: “MMi no reemplaza lo que Monitoring hace. Amplifica lo qu
 
 La propuesta no es “Monitoring tiene una nueva aplicación”. Es que Monitoring combina experiencia, metodologías y tecnología propia para decidir con evidencia.
 
-Estas capacidades están redactadas en el sitio. Falta la validación comercial de que cada una se puede ofrecer así. La full no dice que MMi corra en un servidor independiente ni que interprete vibración, aceite o termografía. Eso está solo en la soft.
+Estas capacidades están redactadas en el sitio. Falta la validación comercial de que cada una se puede ofrecer así. El sitio no afirma que MMi corra en un servidor independiente ni que interprete vibración, aceite o termografía.
 
 ## 12. Industrias
 
@@ -246,7 +254,7 @@ Oficinas, también en Contacto:
 Correo general: `soporte@monitoring.cl`.  
 Correo de desarrollo en el pie: `ti.soporte@monitoring.cl`.
 
-La misión “ser un socio estratégico…” está en la versión soft, no como bloque de la full.
+La misión “ser un socio estratégico…” no se publica como bloque.
 
 ## 15. Contacto
 
@@ -290,41 +298,58 @@ Paleta aplicada, alineada con `DESIGN.md` y `tailwind.config.ts`:
 
 | Token | Color | Uso |
 |---|---|---|
-| `primary` | `#332A83` | Índigo. Títulos, botones de la soft, pie de algunos bloques |
+| `primary` | `#332A83` | Índigo. Títulos, botones principales y pie de algunos bloques |
 | `accent` | `#F09321` | Naranja. Botones, pastilla de Contacto, flechas del ejemplo |
 | `celeste` | `#36A9DF` | Acentos del flujo MMi y del degradado del hero |
-| `fondo-claro` | `#EEF0F8` | Fondos de la soft |
-| `tinta` / `navy` | `#1A1B2E` | Texto y pie de la soft |
+| `fondo-claro` | `#EEF0F8` | Fondos claros alternos |
+| `tinta` / `navy` | `#1A1B2E` | Texto principal y pie |
 | `muted` | `#5B6070` | Texto secundario |
 | `surface` | `#F8FAFC` | Fondos alternos |
 | `border` | `#E2E8F0` | Bordes |
 
-El hero de la full usa un degradado de azul muy oscuro, índigo y celeste. Tipografía: Montserrat en títulos, Inter en cuerpo.
+El hero usa un degradado de azul muy oscuro, índigo y celeste. Tipografía: Montserrat en títulos, Inter en cuerpo.
 
 Logos propios:
 
 - `/logo.png` en cabecera y pie
 - `/logo-circular.svg` como favicon
 
-Fotos de secciones en `public/images/`. Logos de clientes en `public/images/clients/`. Credenciales en `public/images/credentials/`. El inventario de la full está en `src/data/images.ts` y `src/data/presentation.ts`.
+Fotos de secciones en `public/images/`. Logos de clientes en `public/images/clients/`. Credenciales en `public/images/credentials/`. El inventario de imágenes está en `src/data/images.ts` y `src/data/presentation.ts`.
 
 La imagen social de Open Graph sigue siendo `/images/hero-ajedrez-mineria.jpg`. No es la portada visible.
 
 ## 19. SEO
 
-- Título por defecto: “Monitoring | Optimizando sus activos desde la primera jugada”.
-- Descripción de `site-config`: minería, energía, celulosa, puertos e industria. La de la home añade trayectoria y consultores, e incluye “MMi”.
+- Título por defecto: “Monitoring | Optimizando sus activos desde la primera jugada”. La home usa título absoluto, “Monitoring | Gestión de activos” y “Monitoring | Asset management” en inglés.
+- Descripción de `site-config`: minería, energía, celulosa, puertos e industria. La de la home es un híbrido: propuesta de valor primero y NAP al final, dentro del recorte del snippet.
 - `hreflang` entre español e inglés.
-- JSON-LD `ProfessionalService` y `WebSite` en la home.
+- JSON-LD con `@graph` en la home y en cada página interna. La home agrupa `Organization`, `ProfessionalService`, `WebSite` y un `ItemList` de navegación. Las páginas internas suman `WebPage` o `ContactPage`, `BreadcrumbList` y, según la ruta, `OfferCatalog` en `/servicios` o `SoftwareApplication` en `/mmi`.
 - Sitemap con las rutas públicas. Sin `/acceso-cliente`.
+- `robots.txt` con reglas explícitas para los rastreadores de IA y `/llms.txt` como índice de texto.
 - Más notas en `docs/SEO.md`.
 
-## 20. Qué falta cerrar
+## 20. Seguridad de dependencias
 
-- Decidir si la canónica de un despliegue en `monitoring.lat` es `.lat` o sigue siendo `.cl`, y publicar solo con confirmación de sobrescritura.
+El sitio se actualizó de Next.js 14.2.35 a 15.5.28 y de React 18 a 19.2 en octubre de 2026, por los avisos de seguridad que afectaban al hosting propio. `npm audit` bajó de 27 avisos (1 crítico) a 16.
+
+Los 16 que quedan son de herramientas de construcción, no del sitio en ejecución:
+
+| Aviso | Paquete | Riesgo | Por qué no se aplica al sitio |
+|---|---|---|---|
+| 1 alta | `postcss` dentro de `next@15.5.28` | XSS al serializar CSS y lectura de `.map` | Solo actúa al compilar. Se corrige en Next 16 |
+| 15 moderadas | `minimatch` en la cadena de ESLint | DoS con patrones glob-crafted | Solo actúa en `npm run lint`, con configuración propia. No entra en el bundle |
+
+Forzar `minimatch@11` con `overrides` los borra del reporte, pero rompe el lint: `@eslint/eslintrc` lo importa como CommonJS y la versión 11 es ESM puro. Se dejó el árbol estable.
+
+Las rutas que quedan quedan corregidas al subir a Next 16, que exige Node 20.9+, renombra `middleware.ts` a `proxy.ts` y elimina `next lint`.
+
+## 21. Qué falta cerrar
+
+- Publicar solo con confirmación de dominio, canónica y sobrescritura. La canónica es `https://monitoring.lat`; `monitoring.cl` responde con 301 hacia ella.
 - Mostrar en `/equipo` la nota de que las certificaciones son de consultores, si se quiere que el visitante la lea. Hoy está en el diccionario y no en la página.
 - Decidir si la imagen social debe pasar a `portada-2.jpg`.
 - Confirmar archivo del brochure y retirar descargas que no existen.
-- Poner URL real de LinkedIn, privacidad y condiciones, o quitar esos enlaces.
+- Poner URL real de LinkedIn en el JSON-LD.
 - Validar con Monitoring cada capacidad de MMi antes de tratarla como oferta cerrada.
-- Revisar si las afirmaciones exclusivas de la soft (Academy, condición de equipos, servidor independiente) deben quedarse ahí.
+- Decidir si Monitoring Academy, la condición de equipos y el servidor independiente de MMI son afirmaciones publicables.
+- Planificar la subida a Next 16 cuando toque, para cerrar el aviso alto de `postcss`.

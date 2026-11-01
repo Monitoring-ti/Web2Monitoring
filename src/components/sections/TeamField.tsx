@@ -78,6 +78,9 @@ export default function TeamField() {
           })}
           label={t.credibility.credentialsTitle}
         />
+        <p className="container-custom mt-4 max-w-3xl text-center text-xs leading-relaxed text-muted">
+          {t.credibility.credentialsNote}
+        </p>
       </div>
 
       <div className="container-custom">

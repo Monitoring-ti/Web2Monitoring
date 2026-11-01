@@ -50,11 +50,6 @@ export interface Dictionary {
     ctaPrimaryAria: string;
     ctaSecondary: string;
     ctaSecondaryAria: string;
-    metricsAria: string;
-    metrics: { value: string; label: string }[];
-    fieldLabel: string;
-    fieldCaption: string;
-    fieldBadge: string;
   };
   credibility: {
     aria: string;
@@ -71,6 +66,44 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     subtitle: string;
+  };
+  story: {
+    challenges: {
+      aria: string;
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      items: { title: string; description: string; href: string }[];
+    };
+    servicesMore: string;
+    servicesMoreAria: string;
+    results: {
+      aria: string;
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      more: string;
+      moreAria: string;
+    };
+    method: {
+      aria: string;
+      eyebrow: string;
+      title: string;
+      subtitle: string;
+      steps: { title: string; description: string }[];
+    };
+    field: {
+      aria: string;
+      eyebrow: string;
+      title: string;
+      cta: string;
+      ctaAria: string;
+    };
+    contact: {
+      aria: string;
+      cta: string;
+      ctaAria: string;
+    };
   };
   differentiators: {
     aria: string;
@@ -132,11 +165,7 @@ export interface Dictionary {
       id: string;
       tag: string;
       title: string;
-      industry: string;
-      problem: string;
-      diagnosis: string;
-      implementation: string;
-      result: { kpi: string; kpiLabel: string; description: string };
+      body: string;
     }[];
   };
   team: {
@@ -381,7 +410,6 @@ export interface Dictionary {
       primaryAria: string;
       secondary: string;
       secondaryAria: string;
-      principle: string;
     };
   };
 }

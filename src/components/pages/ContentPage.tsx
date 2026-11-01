@@ -20,7 +20,7 @@ export default function ContentPage({ locale, slug }: ContentPageProps) {
   return (
     <LocaleProvider locale={locale} dictionary={dictionary}>
       <SiteLayout showFloatingCta={showCta}>
-        <main id="main-content" className="pt-44 lg:pt-32">
+        <main id="main-content" className="pt-32 lg:pt-24">
           <Section />
           {showCta && <CtaBanner />}
         </main>

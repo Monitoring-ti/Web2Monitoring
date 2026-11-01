@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
-import { SiteVersionProvider } from "@/context/SiteVersion";
+import { IS_STATIC_EXPORT } from "@/lib/config";
 import { siteConfig } from "@/lib/site-config";
 
 const inter = Inter({
@@ -29,16 +29,18 @@ export const metadata: Metadata = {
   creator: siteConfig.shortName,
   publisher: siteConfig.legalName,
   category: "business",
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  robots: IS_STATIC_EXPORT
+    ? { index: false, follow: false }
+    : {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      },
   openGraph: {
     type: "website",
     locale: siteConfig.locale,
@@ -72,7 +74,7 @@ export default function RootLayout({
   return (
     <html lang={siteConfig.language} className={`${inter.variable} ${montserrat.variable}`}>
       <body className="font-sans antialiased overflow-x-hidden">
-        <SiteVersionProvider>{children}</SiteVersionProvider>
+        {children}
       </body>
     </html>
   );

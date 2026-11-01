@@ -21,6 +21,9 @@ yarn-error.log*
 # local env files
 .env*.local
 
+# deployment metadata (contains account identifiers)
+/.hostinger/
+
 # Vercel
 .vercel
 

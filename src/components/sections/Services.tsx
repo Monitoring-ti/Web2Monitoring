@@ -61,8 +61,9 @@ export default function Services() {
             return (
               <article
                 key={service.id}
+                id={service.id}
                 role="listitem"
-                className="bg-white rounded-2xl border border-border shadow-sm transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 flex h-full flex-col justify-between overflow-hidden group"
+                className="scroll-mt-44 bg-white rounded-2xl border border-border shadow-sm transition-all duration-300 hover:shadow-card-hover hover:-translate-y-1 flex h-full flex-col justify-between overflow-hidden group"
               >
                 <div>
                   <div className="relative h-48 w-full overflow-hidden bg-primary/5">

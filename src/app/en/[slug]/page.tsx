@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ContentPage from "@/components/pages/ContentPage";
+import { JsonLd, pageJsonLd } from "@/components/seo/JsonLd";
 import { buildPageMetadata } from "@/lib/metadata";
 import { isValidPageSlug, PAGE_SLUGS } from "@/lib/pages";
 
 interface PageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export function generateStaticParams() {
@@ -13,14 +14,21 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  if (!isValidPageSlug(params.slug)) return {};
-  return buildPageMetadata("en", params.slug);
+  const { slug } = await params;
+  if (!isValidPageSlug(slug)) return {};
+  return buildPageMetadata("en", slug);
 }
 
-export default function EnglishContentPage({ params }: PageProps) {
-  if (!isValidPageSlug(params.slug)) {
+export default async function EnglishContentPage({ params }: PageProps) {
+  const { slug } = await params;
+  if (!isValidPageSlug(slug)) {
     notFound();
   }
 
-  return <ContentPage locale="en" slug={params.slug} />;
+  return (
+    <>
+      <JsonLd data={pageJsonLd("en", slug)} />
+      <ContentPage locale="en" slug={slug} />
+    </>
+  );
 }
