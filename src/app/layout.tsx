@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: [...siteConfig.keywords],
+  verification: {
+    google: "LkyUB-qh7NJ-XoI5PGq2K1Jn34ycHi0LZv8FhU6zJw0",
+  },
   authors: [{ name: siteConfig.legalName }],
   creator: siteConfig.shortName,
   publisher: siteConfig.legalName,
