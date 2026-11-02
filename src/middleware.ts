@@ -20,6 +20,15 @@ const INTERNAL_PREFIX = "/_next/";
 /** Un archivo tiene extensión si el último segmento incluye un punto. */
 const HAS_EXTENSION = /\/[^/]*\.[^/]+$/;
 
+/**
+ * Next sirve el HTML prerenderizado con `s-maxage=31536000`: la CDN del hosting
+ * lo guarda un año y, tras un despliegue, sigue entregando el contenido viejo
+ * a quien visita y a los rastreadores. Se acorta a diez minutos con
+ * revalidación en segundo plano, para que un push se vea en el sitio sin
+ * depender de que alguien limpie la caché a mano.
+ */
+const HTML_CACHE_CONTROL = "public, max-age=0, s-maxage=600, stale-while-revalidate=86400";
+
 export function middleware(request: NextRequest) {
   const host = (request.headers.get("host") ?? "").split(":")[0].toLowerCase();
 
@@ -48,7 +57,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(destination, 308);
   }
 
-  return NextResponse.next();
+  const response = NextResponse.next();
+
+  if (!pathname.startsWith(INTERNAL_PREFIX)) {
+    response.headers.set("Cache-Control", HTML_CACHE_CONTROL);
+  }
+
+  return response;
 }
 
 export const config = {

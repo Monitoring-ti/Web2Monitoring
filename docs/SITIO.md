@@ -55,11 +55,13 @@ Variables públicas:
 
 La CI de GitHub Pages construye la copia con `NEXT_PUBLIC_SITE_URL=https://monitoring-ti.github.io/Web2Monitoring`, así que esa copia se autocanoniza. No compite con el canónico porque se publica con `noindex, nofollow` y con `robots.txt` en `Disallow: /`: el flag se lee en `src/lib/config.ts` (`IS_STATIC_EXPORT`). Quitar el override de `NEXT_PUBLIC_SITE_URL` para que apunte a `https://monitoring.lat` requiere editar `.github/workflows/deploy.yml`, y ese cambio no se puede subir con el token actual de git, que no tiene el alcance `workflow`.
 
-### Optimizador de imágenes y barra final
+### Optimizador de imágenes, barra final y caché
 
 El sitio se sirve en Hostinger como **servidor Next.js**, no como export estático: por eso funcionan las redirecciones 301 del `middleware` y por eso puede usar el optimizador de imágenes de Next con `sharp` (viene en las `optionalDependencies` de Next y se instala solo en Linux). Con el optimizador activo, cada `<img>` declara su `srcset` y el navegador descarga la resolución que corresponde a cada pantalla, en vez de una sola imagen para todos los dispositivos.
 
 Para que eso funcionara hubo que desactivar la redirección automática de barra final de Next (`skipTrailingSlashRedirect: true`). La regla interna de barra final captura cualquier ruta sin extensión, y `/_next/image` —la ruta del optimizador— no tiene extensión: cada imagen pagaba un 308 antes de servirse. Con esa regla desactivada, la barra final de las páginas se resuelve en `src/middleware.ts`, que ya controlaba las redirecciones de alias. El orden queda explícito: primero el 301 de los dominios alias (`monitoring.cl`, `.pe`, `.com.pe`) al canónico, después la 308 de barra final, y `/_next/` nunca se redirige.
+
+El mismo `middleware` acorta la caché del HTML. Next sirve el contenido prerenderizado con `s-maxage=31536000`, o sea un año: la CDN del hosting guardaba cada página ese tiempo y, tras un despliegue, seguía entregando el contenido viejo tanto a los visitantes como a los rastreadores. Con `s-maxage=600` y `stale-while-revalidate=86400`, un push se ve en el sitio en diez minutos como máximo, sin depender de que alguien limpie la caché a mano. Las rutas internas de Next quedan fuera: `/_next/static` conserva su caché inmutable por hash y `/_next/image` la de `max-age=60` que el optimizador ya define.
 
 ## 4. Dominios
 
@@ -74,7 +76,7 @@ Hay dos destinos y funcionan de forma distinta:
 | Destino | Mecanismo | Estado |
 |---|---|---|
 | `monitoring.lat` (producción) | Hostinger toma `main` del repo, compila y reinicia la app Node | Funcionando. Un push a `main` actualiza el sitio en 1-2 minutos |
-| `monitoring-ti.github.io/Web2Monitoring` (espejo) | GitHub Actions, build estático | El job `build` pasa, pero el job `deploy` falla: GitHub Pages no está habilitado en el repo |
+| `monitoring-ti.github.io/Web2Monitoring` (espejo) | GitHub Actions, build estático | Funcionando. Pages quedó habilitado el 2 de noviembre de 2026 con `build_type: workflow`; el job `build` y el `deploy` pasan |
 
 El espejo es secondary: sale con `noindex` y `Disallow: /`, así que no compite con el canónico.
 
