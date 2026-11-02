@@ -39,6 +39,7 @@ function organizationNode(dict: Dictionary) {
     image: `${siteConfig.url}${siteConfig.ogImage}`,
     description: dict.meta.description,
     slogan: dict.meta.tagline,
+    sameAs: [...siteConfig.sameAs],
     email: siteConfig.email,
     telephone: dict.contact.offices[0]?.phone ?? siteConfig.phone,
     address: dict.contact.offices.map((office) => ({

@@ -32,10 +32,29 @@ export const siteConfig = {
     region: "Región Metropolitana",
   },
   industries: ["Minería", "Energía", "Celulosa", "Puertos", "Industria"],
+  /** Perfiles oficiales que respaldan la identidad de marca ante los buscadores. */
+  sameAs: ["https://www.linkedin.com/company/monitoring-spa"],
+  /**
+   * Fecha de la última revisión del contenido. Va fija a propósito: si el sitemap
+   * usa la hora del build, cada despliegue le dice a Google que todo cambió y
+   * se gasta el presupuesto de rastreo en páginas que no se movieron.
+   */
+  contentLastUpdated: "2026-11-01",
 } as const;
 
 export function absoluteUrl(path: string): string {
   const base = siteConfig.url.replace(/\/$/, "");
   const normalized = path.startsWith("/") ? path : `/${path}`;
   return `${base}${normalized}`;
+}
+
+/**
+ * URL absoluta con barra final. El sitio usa `trailingSlash: true`, así que la
+ * canonical que emite Next la lleva. El sitemap y el índice de texto deben
+ * apuntar exactamente a la misma URL que la canonical.
+ */
+export function absoluteUrlWithSlash(path: string): string {
+  const base = siteConfig.url.replace(/\/$/, "");
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${base}${normalized.endsWith("/") ? normalized : `${normalized}/`}`;
 }

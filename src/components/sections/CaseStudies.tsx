@@ -12,9 +12,9 @@ export default function CaseStudies() {
           <span className="text-accent text-xs font-bold uppercase tracking-widest block mb-2">
             {t.cases.eyebrow}
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-primary mb-5">
+          <h1 className="font-display text-3xl sm:text-4xl font-extrabold text-primary mb-5">
             {t.cases.title}
-          </h2>
+          </h1>
           <p className="text-muted text-base sm:text-lg leading-relaxed">{t.cases.subtitle}</p>
         </div>
 

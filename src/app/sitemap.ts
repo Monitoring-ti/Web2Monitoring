@@ -1,22 +1,22 @@
 import type { MetadataRoute } from "next";
 import { pagePath } from "@/lib/locale-path";
 import { PAGE_SLUGS } from "@/lib/pages";
-import { absoluteUrl } from "@/lib/site-config";
+import { absoluteUrlWithSlash, siteConfig } from "@/lib/site-config";
 
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
+  const lastModified = new Date(siteConfig.contentLastUpdated);
   const entries: MetadataRoute.Sitemap = [
     {
-      url: absoluteUrl("/"),
-      lastModified: now,
+      url: absoluteUrlWithSlash("/"),
+      lastModified,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: absoluteUrl("/en"),
-      lastModified: now,
+      url: absoluteUrlWithSlash("/en"),
+      lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -24,14 +24,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of PAGE_SLUGS) {
     entries.push({
-      url: absoluteUrl(pagePath("es", slug)),
-      lastModified: now,
+      url: absoluteUrlWithSlash(pagePath("es", slug)),
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     });
     entries.push({
-      url: absoluteUrl(pagePath("en", slug)),
-      lastModified: now,
+      url: absoluteUrlWithSlash(pagePath("en", slug)),
+      lastModified,
       changeFrequency: "monthly",
       priority: 0.7,
     });

@@ -4,11 +4,10 @@ import type { Locale } from "@/i18n/config";
 import type { Dictionary } from "@/i18n/types";
 import { pagePath } from "@/lib/locale-path";
 import { PAGE_SLUGS, type PageSlug } from "@/lib/pages";
-import { absoluteUrl, siteConfig } from "@/lib/site-config";
+import { absoluteUrlWithSlash, siteConfig } from "@/lib/site-config";
 
 function pageUrl(locale: Locale, slug?: PageSlug): string {
-  const path = pagePath(locale, slug);
-  return absoluteUrl(path.endsWith("/") ? path : `${path}/`);
+  return absoluteUrlWithSlash(pagePath(locale, slug));
 }
 
 function pageLines(dict: Dictionary, locale: Locale): string {

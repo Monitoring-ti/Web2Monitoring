@@ -45,9 +45,9 @@ export default function Services() {
           <span className="text-accent text-xs font-bold uppercase tracking-widest block mb-2">
             {t.services.eyebrow}
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-primary mb-5">
+          <h1 className="font-display text-3xl sm:text-4xl font-bold text-primary mb-5">
             {t.services.title}
-          </h2>
+          </h1>
           <p className="text-muted text-base sm:text-lg leading-relaxed">{t.services.subtitle}</p>
         </div>
 

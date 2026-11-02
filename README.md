@@ -78,26 +78,30 @@ src/middleware.ts           # 301 de los dominios alias al canónico
 
 ## Contenido
 
-La home encadena nueve bloques: hero, cinta de clientes, desafíos, servicios, resultados destacados, forma de trabajo, experiencia en terreno, capacidad tecnológica (MMi) e invitación a contacto. Portada: `public/images/portada-2.jpg`.
+La home encadena nueve bloques: hero, cinta de clientes, desafíos, servicios, resultados destacados, forma de trabajo, experiencia en terreno, capacidad tecnológica (MMi) e invitación a contacto. Portada: `public/images/portada-2.webp`.
 
 El resto vive en páginas propias. Industrias: minería, energía, celulosa, puertos e industria. Las certificaciones de consultores están en `/equipo`, no en la home.
 
 ## Imágenes
 
-Rutas en `src/data/images.ts`. Archivos en `public/images/`.
+Rutas en `src/data/images.ts` y `src/data/presentation.ts`. Archivos en `public/images/`.
+
+Todas las fotos y logos están en **WebP**. La única excepción es `/images/hero-ajedrez-mineria.jpg`, que se mantiene en JPEG porque es la imagen social (`og:image`) y ni Facebook ni LinkedIn aceptan WebP ahí.
 
 Los archivos JPEG sueltos en `public/` (subidas originales) se ignoran en git; solo se versionan las copias renombradas en `public/images/`.
 
 ## SEO
 
-Documentación detallada: **[docs/SEO.md](docs/SEO.md)**
+Documentación detallada y plan de posicionamiento: **[docs/SEO.md](docs/SEO.md)**
 
 ### Implementado en código
 
 - `metadataBase` y URLs canónicas  
-- `robots.txt` y `sitemap.xml`  
+- `robots.txt` y `sitemap.xml` con barra final y fecha de contenido estable  
 - Open Graph y Twitter Card. La imagen social sigue siendo `/images/hero-ajedrez-mineria.jpg`
 - JSON-LD con `@graph` en la home y en cada página interna: `Organization`, `ProfessionalService`, `WebSite`, `WebPage`, `ContactPage`, `BreadcrumbList`, `OfferCatalog` y `SoftwareApplication`  
+- `sameAs` con el perfil oficial de LinkedIn  
+- Un solo `h1` por página, incluida cada página interna  
 - i18n: español (`/`) e inglés (`/en`) con `hreflang`  
 - `lang="es"`, keywords, descripciones por página  
 - Texto `alt` en imágenes vía `images.ts`  

@@ -62,7 +62,7 @@ export const metadata: Metadata = {
       { url: "/logo-circular.svg", type: "image/svg+xml" },
     ],
     shortcut: "/logo-circular.svg",
-    apple: "/logo.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 

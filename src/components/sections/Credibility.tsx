@@ -124,9 +124,9 @@ export default function Credibility() {
           <span className="text-accent text-[11px] font-bold uppercase tracking-widest block mb-2">
             {t.credibility.eyebrow}
           </span>
-          <h2 className="font-display text-xl sm:text-2xl font-bold text-primary">
+          <h1 className="font-display text-xl sm:text-2xl font-bold text-primary">
             {t.credibility.title}
-          </h2>
+          </h1>
         </div>
 
         <CredibilityFigures />

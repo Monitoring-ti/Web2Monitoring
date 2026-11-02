@@ -27,9 +27,9 @@ export default function Differentiators() {
             </span>
           </Reveal>
           <Reveal delay={100}>
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-primary mb-5">
+            <h1 className="font-display text-3xl sm:text-4xl font-extrabold text-primary mb-5">
               {t.differentiators.title}
-            </h2>
+            </h1>
           </Reveal>
           <Reveal delay={200}>
             <p className="text-muted text-base sm:text-lg leading-relaxed">{t.differentiators.subtitle}</p>

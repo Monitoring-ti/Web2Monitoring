@@ -34,9 +34,9 @@ export default function TeamField() {
           <span className="text-accent text-xs font-bold uppercase tracking-widest block mb-2">
             {t.team.eyebrow}
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-primary mb-5">
+          <h1 className="font-display text-3xl sm:text-4xl font-extrabold text-primary mb-5">
             {t.team.title}
-          </h2>
+          </h1>
           <p className="text-muted text-base leading-relaxed mb-6">{t.team.subtitle}</p>
           <div className="flex items-start gap-3 text-sm text-primary/80">
             <MapPin size={18} className="text-accent flex-shrink-0 mt-0.5" aria-hidden="true" />

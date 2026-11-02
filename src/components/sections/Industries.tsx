@@ -33,9 +33,9 @@ export default function Industries() {
             {t.industries.eyebrow}
           </span>
           <Reveal className="mb-5">
-            <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-white leading-tight">
+            <h1 className="font-display text-3xl sm:text-4xl font-extrabold text-white leading-tight">
               {t.industries.title}
-            </h2>
+            </h1>
           </Reveal>
           <p className="text-white/70 text-base sm:text-lg leading-relaxed">{t.industries.subtitle}</p>
         </div>

@@ -87,9 +87,9 @@ export default function Contact() {
             <span className="text-accent text-xs font-bold uppercase tracking-widest block mb-2">
               {t.contact.eyebrow}
             </span>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mb-4 leading-tight">
+            <h1 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-primary mb-4 leading-tight">
               {t.contact.title}
-            </h2>
+            </h1>
             <p className="text-primary text-base sm:text-lg font-medium leading-relaxed mb-4">
               {t.contact.subtitle}
             </p>

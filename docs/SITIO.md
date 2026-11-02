@@ -314,7 +314,7 @@ Logos propios:
 - `/logo.png` en cabecera y pie
 - `/logo-circular.svg` como favicon
 
-Fotos de secciones en `public/images/`. Logos de clientes en `public/images/clients/`. Credenciales en `public/images/credentials/`. El inventario de imágenes está en `src/data/images.ts` y `src/data/presentation.ts`.
+Fotos de secciones en `public/images/`. Logos de clientes en `public/images/clients/`. Credenciales en `public/images/credentials/`. Todo en WebP salvo la imagen social, que queda en JPEG porque `og:image` no acepta WebP. El inventario de imágenes está en `src/data/images.ts` y `src/data/presentation.ts`.
 
 La imagen social de Open Graph sigue siendo `/images/hero-ajedrez-mineria.jpg`. No es la portada visible.
 
@@ -326,6 +326,9 @@ La imagen social de Open Graph sigue siendo `/images/hero-ajedrez-mineria.jpg`. 
 - JSON-LD con `@graph` en la home y en cada página interna. La home agrupa `Organization`, `ProfessionalService`, `WebSite` y un `ItemList` de navegación. Las páginas internas suman `WebPage` o `ContactPage`, `BreadcrumbList` y, según la ruta, `OfferCatalog` en `/servicios` o `SoftwareApplication` en `/mmi`.
 - Sitemap con las rutas públicas. Sin `/acceso-cliente`.
 - `robots.txt` con reglas explícitas para los rastreadores de IA y `/llms.txt` como índice de texto.
+- Un solo `h1` por página. El título de cada página interna es su `h1`; los subtítulos de sección son `h2`.
+- `sameAs` declara el perfil oficial de LinkedIn.
+- El `sitemap` usa barra final, la misma forma que la canonical, y una fecha de contenido fija en vez de la hora del build.
 - Más notas en `docs/SEO.md`.
 
 ## 20. Seguridad de dependencias
