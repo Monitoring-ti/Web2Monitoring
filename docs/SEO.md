@@ -188,6 +188,8 @@ No hace falta volver a tocar nada de esto:
 | `logo.png` (precargado en cada página) | 104 KB, 1868×576 | 33 KB, 560 px |
 | Favicon `logo-circular.svg` | 253 KB | 21 KB |
 | `apple-touch-icon` | El logo horizontal, deformado | Ícono cuadrado de 180 px |
+| Imágenes en el hosting | 57 de 57 sin `srcset`, una sola resolución para todos los dispositivos | Optimizador activo: `srcset` responsivo y formatos modernos por pantalla |
+| Redirección de cada imagen | 308 de `_next/image` en cada descarga | Respuesta directa, sin redirect |
 
 ### Lo que falta, por impacto
 
@@ -219,9 +221,9 @@ Hoy el sitio tiene 22 URLs. Cada URL adicional bien enfocada es una búsqueda m�
 
 #### 4. Técnico menor
 
-- **`srcset` en las imágenes**: `images.unoptimized` está en `true`, así que no hay variantes responsive y un móvil descarga la imagen de escritorio. Se puede activando el optimizador de Next en producción (exige que `sharp` funcione en el hosting) o pre-generando anchos.
 - **`manifest.webmanifest`** para instalación en móvil.
 - **Prueba de resultados enriquecidos** con Rich Results Test antes de publicar.
+- **Caché de las imágenes optimizadas**: Next las sirve con `max-age=60`. Con una cabecera más larga habría menos recálculos, a costa de que un reemplazo de imagen tarde más en propagarse.
 
 ### Orden sugerido
 
