@@ -41,7 +41,7 @@ Auditoría y guía de posicionamiento para el sitio en `monitoring.lat`.
 
 La CI publica una copia exportada del mismo sitio en `monitoring-ti.github.io/Web2Monitoring`. No es un canal indexable:
 
-- Declara `canonical` y `sitemap` de `https://monitoring.lat`, así que Google consolida la señal en el canónico.
+- Se autocanoniza (`monitoring-ti.github.io/Web2Monitoring`) y además sale con `noindex`, así que Google no la indexa ni compite con el canónico.
 - Sale con `<meta name="robots" content="noindex, nofollow">` y con `robots.txt` en `Disallow: /`.
 - El middleware no corre en una exportación estática, así que esa copia no aplica los 301 de los dominios alias.
 

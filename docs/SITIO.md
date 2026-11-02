@@ -53,7 +53,7 @@ Variables públicas:
 
 `GITHUB_PAGES=true` activa exportación estática y el prefijo `/Web2Monitoring`. No hay ruta `/api/contact`. `robots.txt` igual niega `/api/`.
 
-El build de GitHub Pages no fija `NEXT_PUBLIC_SITE_URL`, así que la copia exportada declara la canónica y el sitemap de `https://monitoring.lat`. No es una copia rival: es la misma web servida en otro host. Como no es el sitio canónico, esa copia se publica con `noindex, nofollow` y con `robots.txt` en `Disallow: /`. El flag se lee en `src/lib/config.ts` (`IS_STATIC_EXPORT`).
+La CI de GitHub Pages construye la copia con `NEXT_PUBLIC_SITE_URL=https://monitoring-ti.github.io/Web2Monitoring`, así que esa copia se autocanoniza. No compite con el canónico porque se publica con `noindex, nofollow` y con `robots.txt` en `Disallow: /`: el flag se lee en `src/lib/config.ts` (`IS_STATIC_EXPORT`). Quitar el override de `NEXT_PUBLIC_SITE_URL` para que apunte a `https://monitoring.lat` requiere editar `.github/workflows/deploy.yml`, y ese cambio no se puede subir con el token actual de git, que no tiene el alcance `workflow`.
 
 ## 4. Dominios
 
