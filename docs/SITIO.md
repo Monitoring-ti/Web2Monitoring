@@ -61,6 +61,22 @@ La canónica del build es `NEXT_PUBLIC_SITE_URL`, con respaldo `https://monitori
 
 `src/middleware.ts` responde 301 hacia el canónico cuando la petición llega por `www.monitoring.lat`, `monitoring.cl`, `www.monitoring.cl`, `monitoring.pe`, `www.monitoring.pe`, `monitoring.com.pe` o `www.monitoring.com.pe`. Un despliegue nuevo reemplaza el sitio que esté en el dominio elegido. No se publica hasta confirmar dominio, canónica y sobrescritura.
 
+## 4.1 Despliegue
+
+Hay dos destinos y funcionan de forma distinta:
+
+| Destino | Mecanismo | Estado |
+|---|---|---|
+| `monitoring.lat` (producción) | Hostinger toma `main` del repo, compila y reinicia la app Node | Funcionando. Un push a `main` actualiza el sitio en 1-2 minutos |
+| `monitoring-ti.github.io/Web2Monitoring` (espejo) | GitHub Actions, build estático | El job `build` pasa, pero el job `deploy` falla: GitHub Pages no está habilitado en el repo |
+
+El espejo es secondary: sale con `noindex` y `Disallow: /`, así que no compite con el canónico.
+
+### Limitación del token de git
+
+El token que usa el credencial manager es una OAuth App sin el alcance `workflow`. GitHub rechaza cualquier push que cree o modifique `.github/workflows/`. Por eso el override de `NEXT_PUBLIC_SITE_URL` en `deploy.yml` quedó pendiente: se aplicó un cambio equivalente por código (`IS_STATIC_EXPORT` en `src/lib/config.ts`), que es más fuerte porque el espejo sale entero con `noindex`.
+
+Para editar ese archivo hay que hacerlo desde la interfaz de GitHub o con un token que tenga el alcance `workflow`.
 ## 5. Mapa de rutas
 
 Todas las rutas internas existen en español y en inglés. Ejemplo: `/mmi/` y `/en/mmi/`.
