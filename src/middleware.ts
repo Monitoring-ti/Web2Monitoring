@@ -14,6 +14,32 @@ const ALIAS_HOSTS = new Set([
   "www.monitoring.cl",
 ]);
 
+/**
+ * Apple Mail y Outlook hacen POST a esta ruta exacta en el dominio del buzón.
+ * En monitoring.lat y monitoring.cl no existe: Next leía el cuerpo y tenía
+ * un proceso ocupado varios segundos antes del 404. Se corta aquí, sin
+ * redirección y sin llegar al render. monitoring.pe queda fuera.
+ * No cubre el resto de /autodiscover/.
+ */
+const AUTODISCOVER_PATH = "/autodiscover/autodiscover.xml";
+
+const AUTODISCOVER_HOSTS = new Set([
+  "monitoring.lat",
+  "www.monitoring.lat",
+  "monitoring.cl",
+  "www.monitoring.cl",
+]);
+
+function autodiscoverGone(): NextResponse {
+  return new NextResponse(null, {
+    status: 410,
+    headers: {
+      "Cache-Control": "no-store",
+      "Content-Length": "0",
+    },
+  });
+}
+
 /** Rutas internas de Next: no se redirigen ni pasan por el optimizador. */
 const INTERNAL_PREFIX = "/_next/";
 
@@ -31,6 +57,13 @@ const HTML_CACHE_CONTROL = "public, max-age=0, s-maxage=600, stale-while-revalid
 
 export function middleware(request: NextRequest) {
   const host = (request.headers.get("host") ?? "").split(":")[0].toLowerCase();
+
+  if (
+    AUTODISCOVER_HOSTS.has(host) &&
+    request.nextUrl.pathname.toLowerCase() === AUTODISCOVER_PATH
+  ) {
+    return autodiscoverGone();
+  }
 
   if (ALIAS_HOSTS.has(host)) {
     const destination = new URL(request.nextUrl.pathname + request.nextUrl.search, CANONICAL_ORIGIN);
