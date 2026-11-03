@@ -57,6 +57,9 @@ export default function Footer() {
               © {new Date().getFullYear()} {siteConfig.legalName}. {t.footer.copyright}
             </p>
             <p className="text-white/30 text-[11px] sm:text-xs">
+              {t.footer.version} {siteConfig.version}
+            </p>
+            <p className="text-white/30 text-[11px] sm:text-xs">
               {t.footer.developedBy}{" "}
               <a
                 href={`mailto:${siteConfig.supportEmail}`}

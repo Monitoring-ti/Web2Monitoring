@@ -55,6 +55,7 @@ export const en: Dictionary = {
   footer: {
     navAria: "Footer navigation",
     copyright: "All rights reserved.",
+    version: "Version",
     developedBy: "Developed by",
     privacy: "Privacy Policy",
     terms: "Terms of Service",

@@ -2,6 +2,7 @@ export const siteConfig = {
   name: "Monitoring Consultora",
   shortName: "Monitoring",
   legalName: "Monitoring SpA",
+  version: "0.9",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://monitoring.lat",
   locale: "es_CL",
   language: "es",
