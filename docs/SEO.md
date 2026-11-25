@@ -7,15 +7,16 @@ Auditoría y guía de posicionamiento para el sitio en `monitoring.lat`.
 | Elemento | Estado | Ubicación |
 |----------|--------|-----------|
 | Título y descripción | ✅ | `src/lib/metadata.ts`, `src/lib/site-config.ts` |
-| `metadataBase` | ✅ | `src/app/layout.tsx` |
-| URL canónica home | ✅ | `src/lib/metadata.ts` |
-| Open Graph (imagen, locale) | ✅ | Home + layout |
+| `metadataBase` | ✅ | `src/components/layout/RootDocument.tsx` |
+| URL canónica home e internas (con barra final) | ✅ | `src/lib/metadata.ts` |
+| Open Graph (imagen, locale por idioma) | ✅ | Home + páginas + `(es)`/`(en)` layouts |
 | Twitter Card | ✅ | `summary_large_image` |
+| Verificación Google + Bing (`msvalidate.01`) | ✅ | `src/components/layout/RootDocument.tsx` |
 | `robots.txt` | ✅ | `src/app/robots.ts` |
 | `sitemap.xml` | ✅ | `src/app/sitemap.ts` |
-| JSON-LD `@graph` | ✅ | `src/components/seo/JsonLd.tsx` |
-| JSON-LD por página interna | ✅ | `src/app/[slug]/page.tsx` y `src/app/en/[slug]/page.tsx` |
-| `lang="es"` | ✅ | `layout.tsx` + selector en `/en` |
+| JSON-LD `@graph` + sedes + `FAQPage` | ✅ | `src/components/seo/JsonLd.tsx` |
+| JSON-LD por página interna | ✅ | `src/app/(es)/[slug]/page.tsx` y `src/app/(en)/en/[slug]/page.tsx` |
+| `<html lang>` SSR por idioma (`es` / `en`) | ✅ | `src/app/(es)/layout.tsx` y `src/app/(en)/layout.tsx` |
 | i18n ES (/) + EN (/en) | ✅ | `src/i18n/`, `LanguageSwitcher` |
 | `hreflang` es ↔ en | ✅ | `src/lib/metadata.ts` |
 | Alt en imágenes | ✅ | `src/data/images.ts` |
@@ -23,7 +24,8 @@ Auditoría y guía de posicionamiento para el sitio en `monitoring.lat`.
 | `/api/` bloqueada en robots | ✅ | `robots.ts`. No existe ruta de contacto |
 | Páginas internas en sitemap | ✅ | `src/lib/pages.ts` vía `sitemap.ts` |
 | Rastreadores de IA declarados | ✅ | `src/app/robots.ts` |
-| Índice de texto para asistentes | ✅ | `src/app/llms.txt/route.ts` |
+| Índice y contexto completo para asistentes | ✅ | `src/app/llms.txt/route.ts` y `src/app/llms-full.txt/route.ts` |
+| Redirect `301` de `/empresa/` → `/` | ✅ | `src/middleware.ts` |
 
 ## URLs indexables
 
@@ -35,7 +37,7 @@ Auditoría y guía de posicionamiento para el sitio en `monitoring.lat`.
 | `/credibilidad`, `/diferenciadores`, `/actualidad`, `/biblioteca` | Sí | Sí, y su par en `/en/...` |
 | `/acceso-cliente` | No | No (`noindex`, login) |
 
-`/llms.txt` y `/robots.txt` no son páginas indexables. El sitio no tiene una variante alternativa del inicio: el HTML que ve una persona es el mismo que ve un buscador.
+`/llms.txt`, `/llms-full.txt` y `/robots.txt` no son páginas indexables. El sitio no tiene una variante alternativa del inicio: el HTML que ve una persona es el mismo que ve un buscador.
 
 ## Copia espejo de GitHub Pages
 
@@ -86,15 +88,18 @@ Las páginas internas no fijan su propio título completo: `src/app/layout.tsx` 
 
 La home entrega un `@graph` con:
 
-1. **Organization / ProfessionalService** — nombre legal, contacto,logan, direcciones de las tres oficinas, `areaServed`, `knowsAbout`, `hasOfferCatalog` con los seis servicios y `employee` con las cuatro personas de dirección
-2. **WebSite** — sitio y `publisher` por `@id`
-3. **ItemList** — las secciones del menú
+1. **Organization / ProfessionalService** — nombre legal, contacto, eslogan, direcciones de las tres oficinas, `areaServed`, `knowsAbout`, `hasOfferCatalog` con los seis servicios y `employee` con las cuatro personas de dirección
+2. **ProfessionalService por sede** — nodos individuales para Santiago, Calama y Lima (`#office-santiago`, `#office-calama`, `#office-lima`) vinculados por `parentOrganization`
+3. **WebSite** — sitio y `publisher` por `@id`
+4. **ItemList** — las secciones del menú
+5. **FAQPage** — preguntas frecuentes visibles en la home
 
 Cada página interna añade:
 
-- **WebPage** o **ContactPage** — en `/contacto` el tipo es `ContactPage`
+- **WebPage** o **ContactPage** — en `/contacto` el tipo es `ContactPage` (y añade las tres sedes)
 - **BreadcrumbList** — Inicio y la sección actual
-- **OfferCatalog** en `/servicios` y **SoftwareApplication** en `/mmi`
+- **OfferCatalog** / **ItemList** + **FAQPage** en `/servicios`
+- **SoftwareApplication** + **FAQPage** en `/mmi`
 
 Para enriquecer en producción, agregar en `organizationNode()`:
 
@@ -157,9 +162,11 @@ sameAs: [
 6. ~~**Peso de imágenes** — WebP, logo y favicon optimizados~~ Implementado  
 7. **Blog / actualidad** — URLs propias indexables (`/actualidad/[slug]`)  
 8. **Casos** — páginas `/casos/[slug]` compartibles e indexables  
-9. **FAQ schema** — bloque preguntas frecuentes en home  
-10. **LocalBusiness** — si se publica dirección física de oficina  
+9. ~~**FAQ schema** — bloque preguntas frecuentes en home, `/servicios` y `/mmi`~~ ✅ Implementado  
+10. ~~**LocalBusiness / ProfessionalService por sede**~~ ✅ Implementado (Santiago, Calama y Lima)  
 11. **Páginas por industria y por sede** — `/industrias/mineria`, `/contacto/santiago`  
+12. ~~**`/llms-full.txt` y verificación Bing (`msvalidate.01`)**~~ ✅ Implementado  
+13. ~~**Redirect `301` de `/empresa/` → `/`, `<html lang="en">` SSR y barra final unificada**~~ ✅ Implementado  
 
 ## Plan de posicionamiento
 

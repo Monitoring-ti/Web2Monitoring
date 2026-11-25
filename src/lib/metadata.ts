@@ -4,8 +4,7 @@ import { localeOg } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { pagePath } from "@/lib/locale-path";
 import { getPageMeta, type PageSlug } from "@/lib/pages";
-import { absoluteUrl } from "@/lib/site-config";
-import { siteConfig } from "@/lib/site-config";
+import { absoluteUrlWithSlash, siteConfig } from "@/lib/site-config";
 
 const searchTitle = {
   es: "Monitoring | Gestión de activos",
@@ -29,17 +28,17 @@ export function buildHomeMetadata(locale: Locale): Metadata {
     description,
     keywords: [...dict.meta.keywords],
     alternates: {
-      canonical: absoluteUrl(path),
+      canonical: absoluteUrlWithSlash(path),
       languages: {
-        es: absoluteUrl("/"),
-        en: absoluteUrl("/en"),
-        "x-default": absoluteUrl("/"),
+        es: absoluteUrlWithSlash("/"),
+        en: absoluteUrlWithSlash("/en"),
+        "x-default": absoluteUrlWithSlash("/"),
       },
     },
     openGraph: {
       type: "website",
       locale: localeOg[locale],
-      url: absoluteUrl(path),
+      url: absoluteUrlWithSlash(path),
       siteName: siteConfig.shortName,
       title,
       description,
@@ -71,17 +70,17 @@ export function buildPageMetadata(locale: Locale, slug: PageSlug): Metadata {
     description,
     keywords: [...dict.meta.keywords],
     alternates: {
-      canonical: absoluteUrl(path),
+      canonical: absoluteUrlWithSlash(path),
       languages: {
-        es: absoluteUrl(pagePath("es", slug)),
-        en: absoluteUrl(pagePath("en", slug)),
-        "x-default": absoluteUrl(pagePath("es", slug)),
+        es: absoluteUrlWithSlash(pagePath("es", slug)),
+        en: absoluteUrlWithSlash(pagePath("en", slug)),
+        "x-default": absoluteUrlWithSlash(pagePath("es", slug)),
       },
     },
     openGraph: {
       type: "website",
       locale: localeOg[locale],
-      url: absoluteUrl(path),
+      url: absoluteUrlWithSlash(path),
       siteName: siteConfig.shortName,
       title,
       description,

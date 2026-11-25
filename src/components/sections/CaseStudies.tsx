@@ -27,7 +27,7 @@ export default function CaseStudies() {
               className="scroll-mt-32 rounded-3xl border-t-4 border-accent bg-white p-7 shadow-sm"
             >
               <p className="text-xs font-bold uppercase tracking-widest text-accent">{item.tag}</p>
-              <h3 className="mb-3 mt-2 font-display text-xl font-bold text-primary">{item.title}</h3>
+              <h2 className="mb-3 mt-2 font-display text-xl font-bold text-primary">{item.title}</h2>
               <p className="text-sm leading-relaxed text-muted">{item.body}</p>
             </article>
           ))}

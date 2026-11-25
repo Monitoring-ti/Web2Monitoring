@@ -8,6 +8,7 @@ import { RevealList } from "@/components/lib/motion";
 import { images } from "@/data/images";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
 import { pagePath, resolveNavPath } from "@/lib/locale-path";
+import FaqSection from "@/components/sections/FaqSection";
 
 const serviceIcons: Record<string, React.ElementType> = {
   "gestion-activos": Settings,
@@ -35,6 +36,7 @@ export default function Services() {
   const contactPath = pagePath(locale, "contacto");
 
   return (
+    <>
     <section
       id="servicios"
       aria-label={t.services.aria}
@@ -90,9 +92,9 @@ export default function Services() {
                   </div>
 
                   <div className="p-6 sm:p-8">
-                    <h3 className="font-display text-lg font-bold text-primary mb-3">
+                    <h2 className="font-display text-lg font-bold text-primary mb-3">
                       {service.title}
-                    </h3>
+                    </h2>
                     <p className="text-muted text-sm leading-relaxed">{service.description}</p>
                     {service.callout && (
                       <div className="mt-4 rounded-xl border border-accent/20 bg-accent/5 p-4">
@@ -125,5 +127,7 @@ export default function Services() {
         </RevealList>
       </div>
     </section>
+    <FaqSection page="services" bgClass="bg-white" />
+    </>
   );
 }

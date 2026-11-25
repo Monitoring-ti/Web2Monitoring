@@ -6,6 +6,7 @@ import { RevealList } from "@/components/lib/motion";
 import { MmiExample, MmiFlow, MmiProcess } from "@/components/sections/MmiVisuals";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
 import { pagePath } from "@/lib/locale-path";
+import FaqSection from "@/components/sections/FaqSection";
 
 const capabilityIcons = [Layers, GitBranch, ScanSearch, ShieldCheck];
 
@@ -183,6 +184,8 @@ export default function Mmi() {
           </ul>
         </div>
       </section>
+
+      <FaqSection page="mmi" bgClass="bg-white" />
 
       <section className="py-24 bg-hero relative overflow-hidden">
         <div

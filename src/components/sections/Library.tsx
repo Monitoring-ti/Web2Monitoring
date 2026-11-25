@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { BookOpen, FileText, Download, PlayCircle, ClipboardList, CheckCircle, Newspaper } from "lucide-react";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
@@ -21,24 +21,8 @@ export default function Library() {
   const locale = useLocale();
   const router = useRouter();
   const contactPath = pagePath(locale, "contacto");
-  const [visible, setVisible] = useState(false);
   const [activeType, setActiveType] = useState<string>("all");
   const [downloadedId, setDownloadedId] = useState<string | null>(null);
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   const handleDownload = (id: string) => {
     setDownloadedId(id);
@@ -59,7 +43,6 @@ export default function Library() {
 
   return (
     <section
-      ref={ref}
       id="biblioteca"
       aria-label={t.library.aria}
       className="section-padding bg-surface"
@@ -102,7 +85,7 @@ export default function Library() {
           role="list"
           aria-label={t.library.listAria}
         >
-          {filtered.map((res, i) => {
+          {filtered.map((res) => {
             const Icon = iconMap[res.type] ?? FileText;
             const isDownloading = downloadedId === res.id;
 
@@ -110,10 +93,7 @@ export default function Library() {
               <article
                 key={res.id}
                 role="listitem"
-                className={`bg-white rounded-2xl border border-border p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between group ${
-                  visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-                style={{ transitionDelay: `${i * 60}ms` }}
+                className="bg-white rounded-2xl border border-border p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex justify-between items-center mb-6">
@@ -126,9 +106,9 @@ export default function Library() {
                     </span>
                   </div>
 
-                  <h3 className="font-display text-base font-bold text-primary mb-3 leading-snug group-hover:text-accent transition-colors duration-200">
+                  <h2 className="font-display text-base font-bold text-primary mb-3 leading-snug group-hover:text-accent transition-colors duration-200">
                     {res.title}
-                  </h3>
+                  </h2>
 
                   <p className="text-muted text-xs sm:text-sm leading-relaxed mb-6">
                     {res.description}

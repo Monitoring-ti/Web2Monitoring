@@ -3,6 +3,17 @@ import type { NextRequest } from "next/server";
 
 const CANONICAL_ORIGIN = "https://monitoring.lat";
 
+/** Rutas heredadas del sitio anterior que deben responder 301 hacia su equivalente actual. */
+const LEGACY_REDIRECTS: Record<string, string> = {
+  "/empresa": "/",
+  "/en/empresa": "/en/",
+};
+
+function resolveLegacyDestination(pathname: string): string | null {
+  const normalized = pathname.length > 1 ? pathname.replace(/\/+$/, "").toLowerCase() : "/";
+  return LEGACY_REDIRECTS[normalized] ?? null;
+}
+
 /** Dominios que deben verse como monitoring.lat. .cl queda listo para cuando el DNS apunte a este sitio. */
 const ALIAS_HOSTS = new Set([
   "www.monitoring.lat",
@@ -65,8 +76,16 @@ export function middleware(request: NextRequest) {
     return autodiscoverGone();
   }
 
+  const legacyTarget = resolveLegacyDestination(request.nextUrl.pathname);
+
   if (ALIAS_HOSTS.has(host)) {
-    const destination = new URL(request.nextUrl.pathname + request.nextUrl.search, CANONICAL_ORIGIN);
+    const targetPath = legacyTarget ?? request.nextUrl.pathname;
+    const destination = new URL(targetPath + request.nextUrl.search, CANONICAL_ORIGIN);
+    return NextResponse.redirect(destination, 301);
+  }
+
+  if (legacyTarget) {
+    const destination = new URL(legacyTarget + request.nextUrl.search, request.url);
     return NextResponse.redirect(destination, 301);
   }
 

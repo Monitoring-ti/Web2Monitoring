@@ -668,6 +668,78 @@ export const en: Dictionary = {
     current: "EN",
     aria: "Switch language to Spanish",
   },
+  faq: {
+    aria: "Frequently asked questions about Monitoring, services, and MMi",
+    eyebrow: "Frequently asked questions",
+    title: "Direct answers about our service",
+    subtitle:
+      "Technical scope, regional presence, SAP PM integration, and the role of MMi by Monitoring.",
+    items: [
+      {
+        id: "que-hace-monitoring",
+        pages: ["home"],
+        question: "What does Monitoring Consulting do and where does it operate?",
+        answer:
+          "Monitoring SpA is an engineering consulting firm with 14 years of experience and more than 120 consultants specializing in physical asset management, operational reliability, and maintenance engineering. It operates offices in Santiago and Calama (Chile) and Lima (Peru), serving clients across Chile, Peru, and Mexico through monitoring.lat.",
+      },
+      {
+        id: "industrias-atendidas",
+        pages: ["home"],
+        question: "Which industries does Monitoring serve?",
+        answer:
+          "Mining is its core sector (open-pit and underground: drilling, loading, hauling, crushing, concentrators, hydrometallurgy, smelting, tailings, and fire protection systems). It also supports ports, pulp and forestry, power and utilities, and capital-intensive industrial plants.",
+      },
+      {
+        id: "operational-readiness",
+        pages: ["home", "services"],
+        question: "How does Monitoring support Operational Readiness for capital projects?",
+        answer:
+          "It supports clients from EPCM and EPC phases through stable operation: building reliability and equipment criticality models, RCM and FMECA studies, maintenance plan structuring, critical spare parts readiness in supply chain, and alignment in ERPs such as SAP PM.",
+      },
+      {
+        id: "metodologias-sap-pm",
+        pages: ["home", "services"],
+        question: "How do you integrate reliability methodologies (RCM, FMECA, RCA) with SAP PM?",
+        answer:
+          "Reliability analyses, failure modes, and criticality (RCM, FMECA, RCA, and RAM) are translated directly into equipment hierarchies, task lists, frequencies, bills of materials, and work orders in SAP PM/MM, delivering executable plans and reliable reporting without manual spreadsheet exports.",
+      },
+      {
+        id: "repuestos-excelencia",
+        pages: ["services"],
+        question: "How do you improve critical spare parts availability and plant planning?",
+        answer:
+          "Maintenance engineering is combined with logistics support and supply chain analysis to define material criticality, secure key spare parts ahead of shutdowns, and raise schedule compliance and major turnaround readiness with field teams on site.",
+      },
+      {
+        id: "certificaciones-equipo",
+        pages: ["services"],
+        question: "What certifications do Monitoring consultants hold?",
+        answer:
+          "Consultants hold credentials and training including IAM Asset Management Professional, SMRP CMRP, SAP HANA, Lean Institute Chile, and PMM Enterprise Certification ISO 55001. These are individual consultant credentials and do not represent a corporate ISO 55001 certification or an SAP partnership.",
+      },
+      {
+        id: "que-es-mmi",
+        pages: ["home", "mmi"],
+        question: "What is MMi by Monitoring and how does it differ from SAP PM or a CMMS?",
+        answer:
+          "MMi by Monitoring is proprietary technology that organizes, relates, and analyzes real technical documentation per contract (work orders, service orders, manuals, FMECA, maintenance plans, and history) to deliver evidence-backed findings with source traceability. It complements — rather than replaces — SAP PM, EAM, CMMS, and human specialists.",
+      },
+      {
+        id: "mmi-evidencia-contrato",
+        pages: ["mmi"],
+        question: "How does MMi ensure contract isolation and evidence traceability?",
+        answer:
+          "Each analysis operates strictly within the authorized document corpus of a single contract and service order, cites supporting work orders or documents, separates confirmed findings from hypotheses and field verifications, and does not fabricate missing evidence.",
+      },
+      {
+        id: "como-contactar",
+        pages: ["home"],
+        question: "How can we request a diagnosis or an MMi demonstration?",
+        answer:
+          "You can schedule a meeting or request an MMi demo via monitoring.lat/en/contacto/, by emailing soporte@monitoring.cl, or by calling +56 2 2235 3090, with a specialist response in under 24 business hours.",
+      },
+    ],
+  },
   mmi: {
     aria: "MMi by Monitoring, technological ally for maintenance knowledge",
     brand: "MMi by Monitoring",

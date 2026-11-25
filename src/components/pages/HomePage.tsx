@@ -15,6 +15,7 @@ import {
   TechCapability,
   WorkMethod,
 } from "@/components/sections/HomeNarrative";
+import FaqSection from "@/components/sections/FaqSection";
 
 export default function HomePage({ locale }: { locale: Locale }) {
   const dictionary = getDictionary(locale);
@@ -38,6 +39,7 @@ function HomeBody() {
         <WorkMethod />
         <FieldExperience />
         <TechCapability />
+        <FaqSection page="home" bgClass="bg-surface" />
         <HomeInvite />
       </main>
     </SiteLayout>

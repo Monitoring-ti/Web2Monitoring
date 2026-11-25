@@ -40,7 +40,7 @@ export const siteConfig = {
    * usa la hora del build, cada despliegue le dice a Google que todo cambió y
    * se gasta el presupuesto de rastreo en páginas que no se movieron.
    */
-  contentLastUpdated: "2026-11-01",
+  contentLastUpdated: "2026-11-25",
 } as const;
 
 export function absoluteUrl(path: string): string {

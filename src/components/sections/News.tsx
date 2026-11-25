@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Download, GraduationCap, Newspaper, Trophy } from "lucide-react";
@@ -25,26 +24,9 @@ export default function News() {
   const t = useDictionary();
   const locale = useLocale();
   const libraryPath = pagePath(locale, "biblioteca");
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section
-      ref={ref}
       id="actualidad"
       aria-label={t.news.aria}
       className="section-padding bg-white border-y border-border"
@@ -67,10 +49,7 @@ export default function News() {
               <article
                 key={item.id}
                 role="listitem"
-                className={`rounded-2xl border border-border overflow-hidden flex flex-col justify-between hover:shadow-md transition-all duration-300 ${
-                  visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                }`}
-                style={{ transitionDelay: `${i * 80}ms` }}
+                className="rounded-2xl border border-border overflow-hidden flex flex-col justify-between hover:shadow-md transition-all duration-300"
               >
                 <div className="relative h-44 w-full">
                   <Image
@@ -90,9 +69,9 @@ export default function News() {
                       </span>
                       <time className="text-xs text-muted">{item.date}</time>
                     </div>
-                    <h3 className="font-display text-base font-bold text-primary mb-3 leading-snug">
+                    <h2 className="font-display text-base font-bold text-primary mb-3 leading-snug">
                       {item.title}
-                    </h3>
+                    </h2>
                     <p className="text-muted text-sm leading-relaxed">{item.summary}</p>
                   </div>
                   <Link

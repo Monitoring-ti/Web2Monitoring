@@ -674,6 +674,78 @@ export const es: Dictionary = {
     current: "ES",
     aria: "Cambiar idioma a inglés",
   },
+  faq: {
+    aria: "Preguntas frecuentes sobre Monitoring, servicios y MMi",
+    eyebrow: "Preguntas frecuentes",
+    title: "Respuestas directas sobre nuestro servicio",
+    subtitle:
+      "Alcance técnico, presencia regional, integración con SAP PM y rol de MMi by Monitoring.",
+    items: [
+      {
+        id: "que-hace-monitoring",
+        pages: ["home"],
+        question: "¿Qué hace Monitoring Consultora y en qué países opera?",
+        answer:
+          "Monitoring SpA es una consultora de ingeniería con 14 años de trayectoria y más de 120 consultores especializada en gestión de activos físicos, confiabilidad operacional e ingeniería de mantenimiento. Opera con oficinas en Santiago y Calama (Chile) y Lima (Perú), atendiendo clientes en Chile, Perú y México a través de su sitio oficial monitoring.lat.",
+      },
+      {
+        id: "industrias-atendidas",
+        pages: ["home"],
+        question: "¿En qué industrias trabaja Monitoring?",
+        answer:
+          "Su sector principal es la gran minería (rajo abierto y subterránea: perforación, carguío, transporte, chancado, concentradoras, hidrometalurgia, fundición, relaves y sistemas contra incendio). También acompaña operaciones de puertos, celulosa y forestal, energía y electricidad, e industria intensiva en activos.",
+      },
+      {
+        id: "operational-readiness",
+        pages: ["home", "services"],
+        question: "¿Cómo apoya Monitoring la preparación operacional (Operational Readiness) de proyectos?",
+        answer:
+          "Acompaña desde etapas EPCM y EPC hasta la operación estable: desarrolla modelos de confiabilidad y criticidad de equipos, estudios RCM y FMECA, estructuración de planes de mantenimiento, aseguramiento de repuestos críticos en supply chain y carga/alineación en ERP como SAP PM.",
+      },
+      {
+        id: "metodologias-sap-pm",
+        pages: ["home", "services"],
+        question: "¿Cómo integran metodologías de confiabilidad (RCM, FMECA, RCA) con SAP PM?",
+        answer:
+          "Vinculan el análisis técnico de fallas, modos de falla y criticidad (RCM, FMECA, RCA y RAM) directamente con la taxonomía de equipos, hojas de ruta, frecuencias, listas de materiales y órdenes en SAP PM/MM, logrando planes ejecutables y reportabilidad sin depender de planillas aisladas.",
+      },
+      {
+        id: "repuestos-excelencia",
+        pages: ["services"],
+        question: "¿Cómo abordan la disponibilidad de repuestos críticos y la planificación de planta?",
+        answer:
+          "Integran ingeniería de mantenimiento con soporte logístico y supply chain para definir criticidad de materiales, asegurar repuestos clave antes de paradas de planta y mejorar la adherencia a programas semanales y paradas mayores con equipos desplegados en terreno.",
+      },
+      {
+        id: "certificaciones-equipo",
+        pages: ["services"],
+        question: "¿Con qué certificaciones cuenta el equipo consultor?",
+        answer:
+          "Los consultores cuentan con certificaciones y formación como IAM Asset Management Professional, SMRP CMRP, SAP HANA, Lean Institute Chile y PMM Enterprise Certification ISO 55001. Corresponden a credenciales profesionales del equipo y no implican una certificación corporativa ISO 55001 ni una alianza comercial con SAP.",
+      },
+      {
+        id: "que-es-mmi",
+        pages: ["home", "mmi"],
+        question: "¿Qué es MMi by Monitoring y en qué se diferencia de SAP PM o un CMMS?",
+        answer:
+          "MMi by Monitoring es una capacidad tecnológica propia que organiza, relaciona y analiza documentación técnica real por contrato (órdenes de trabajo, órdenes de servicio, manuales, FMECA, planes e históricos) para entregar hallazgos con trazabilidad a la fuente. No reemplaza a SAP PM, EAM o CMMS ni al ingeniero especialista: los complementa con evidencia.",
+      },
+      {
+        id: "mmi-evidencia-contrato",
+        pages: ["mmi"],
+        question: "¿Cómo garantiza MMi la separación por contrato y la trazabilidad de la evidencia?",
+        answer:
+          "Cada análisis trabaja exclusivamente sobre el corpus documental autorizado de un contrato y orden de servicio (ODS), cita los documentos u órdenes de respaldo, distingue entre hallazgo confirmado, hipótesis y verificación pendiente en terreno, y no inventa evidencia faltante.",
+      },
+      {
+        id: "como-contactar",
+        pages: ["home"],
+        question: "¿Cómo solicitar un diagnóstico o una demostración con Monitoring?",
+        answer:
+          "Se puede agendar una reunión o solicitar una demostración de MMi desde la sección de contacto en monitoring.lat/contacto/ o escribiendo directamente a soporte@monitoring.cl o llamando al +56 2 2235 3090, con respuesta de un especialista en menos de 24 horas hábiles.",
+      },
+    ],
+  },
   mmi: {
     aria: "MMi by Monitoring, aliado tecnológico para el conocimiento de mantenimiento",
     brand: "MMi by Monitoring",

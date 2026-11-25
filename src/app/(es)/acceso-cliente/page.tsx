@@ -4,14 +4,14 @@ import Link from "next/link";
 import { ArrowLeft, Lock, Shield, Users } from "lucide-react";
 import { CLIENT_PORTAL_URL } from "@/lib/config";
 import { images } from "@/data/images";
-import { siteConfig } from "@/lib/site-config";
+import { absoluteUrlWithSlash } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Acceso Cliente",
   description:
     "Portal seguro para clientes Monitoring. Plataforma robusta con datos confiables y navegación intuitiva.",
   alternates: {
-    canonical: `${siteConfig.url}/acceso-cliente`,
+    canonical: absoluteUrlWithSlash("/acceso-cliente"),
   },
   robots: {
     index: false,

@@ -20,8 +20,8 @@ El sitio tiene una sola presentación. La home resume la propuesta y las página
 
 | Pieza | Qué es | Dónde vive |
 |---|---|---|
-| Home | Resumen del relato: hero, clientes, desafíos, servicios, resultados, método, terreno, MMi y contacto | `src/components/pages/HomePage.tsx` y `src/components/sections/HomeNarrative.tsx` |
-| Páginas | Servicios, MMi, industrias, casos, equipo, contacto y el menú Más | `src/lib/pages.ts` con `src/components/pages/ContentPage.tsx` |
+| Home | Resumen del relato: hero, clientes, desafíos, servicios, resultados, método, terreno, MMi, preguntas frecuentes y contacto | `src/components/pages/HomePage.tsx`, `HomeNarrative.tsx` y `FaqSection.tsx` |
+| Páginas | Servicios, MMi, industrias, casos, equipo, contacto y el menú Más (con FAQ en `/servicios` y `/mmi`) | `src/lib/pages.ts` con `src/components/pages/ContentPage.tsx` |
 
 El HTML inicial del servidor ya es el definitivo: no hay variante que se arme en el cliente, así que los buscadores ven exactamente lo que ve una persona.
 
@@ -39,7 +39,7 @@ Portada: `/images/portada-2.jpg` — planta industrial y piezas de ajedrez. El a
 | Formularios | react-hook-form. El envío abre el correo del visitante |
 | Imágenes | `next/image` con el optimizador activo en el hosting (`unoptimized` solo en la copia estática de GitHub Pages) |
 | Barra final en URLs | Activada (`trailingSlash: true`). La redirección se resuelve en `src/middleware.ts`, no con la regla interna de Next |
-| Idiomas | Español en `/`. Inglés con prefijo `/en` |
+| Idiomas | Español en `/` (`(es)/layout.tsx`, `lang="es"`). Inglés con prefijo `/en` (`(en)/layout.tsx`, `lang="en"`) |
 | Lint | ESLint 9 con configuración plana (`eslint.config.mjs`). `next lint` quedó deprecado en Next 15.5 |
 | Puertas del build | `next build` valida tipos y pasa ESLint. Las dos excepciones (`ignoreBuildErrors`, `ignoreDuringBuilds`) están quitadas |
 | Arranque | `npm run dev` (puerto 3000), `npm run build`, `npm start` |
@@ -67,7 +67,7 @@ El mismo `middleware` acorta la caché del HTML. Next sirve el contenido prerend
 
 La canónica del build es `NEXT_PUBLIC_SITE_URL`, con respaldo `https://monitoring.lat`.
 
-`src/middleware.ts` responde 301 hacia el canónico cuando la petición llega por `www.monitoring.lat`, `monitoring.cl`, `www.monitoring.cl`, `monitoring.pe`, `www.monitoring.pe`, `monitoring.com.pe` o `www.monitoring.com.pe`. Un despliegue nuevo reemplaza el sitio que esté en el dominio elegido. No se publica hasta confirmar dominio, canónica y sobrescritura.
+`src/middleware.ts` responde 301 hacia el canónico cuando la petición llega por `www.monitoring.lat`, `monitoring.cl`, `www.monitoring.cl`, `monitoring.pe`, `www.monitoring.pe`, `monitoring.com.pe` o `www.monitoring.com.pe`, y también redirige con 301 las rutas heredadas `/empresa/` → `/` y `/en/empresa/` → `/en/`. Un despliegue nuevo reemplaza el sitio que esté en el dominio elegido. No se publica hasta confirmar dominio, canónica y sobrescritura.
 
 ## 4.1 Despliegue
 
@@ -107,6 +107,7 @@ Todas las rutas internas existen en español y en inglés. Ejemplo: `/mmi/` y `/
 | `/sitemap.xml` | Sitemap | Home, `/en` y las diez páginas internas en ambos idiomas |
 | `/robots.txt` | Robots | Permite `/`. Niega `/acceso-cliente` y `/api/`. Reglas explícitas para rastreadores de IA |
 | `/llms.txt` | Índice de texto | Servicios, industrias, certificaciones, oficinas, dirección y el mapa de URLs en ambos idiomas |
+| `/llms-full.txt` | Contexto extendido | Detalle completo en ES/EN con diferenciadores, casos, proceso de MMi y preguntas frecuentes |
 
 “Empresa” en el menú Más apunta al inicio.
 

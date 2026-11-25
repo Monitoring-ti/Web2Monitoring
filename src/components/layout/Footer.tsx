@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
-import { localePath, resolveNavPath } from "@/lib/locale-path";
+import { localePath, pathsMatch, resolveNavPath } from "@/lib/locale-path";
 import { siteConfig } from "@/lib/site-config";
 
 export default function Footer() {
@@ -39,7 +39,7 @@ export default function Footer() {
                   key={link.href}
                   href={href}
                   className={`text-xs font-semibold transition-colors duration-200 ${
-                    pathname === href ? "text-white" : "text-white/60 hover:text-white"
+                    pathsMatch(pathname, href) ? "text-white" : "text-white/60 hover:text-white"
                   }`}
                 >
                   {link.label}

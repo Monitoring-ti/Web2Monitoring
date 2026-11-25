@@ -276,6 +276,18 @@ export interface Dictionary {
     current: string;
     aria: string;
   };
+  faq: {
+    aria: string;
+    eyebrow: string;
+    title: string;
+    subtitle: string;
+    items: {
+      id: string;
+      pages: ("home" | "services" | "mmi")[];
+      question: string;
+      answer: string;
+    }[];
+  };
   mmi: {
     aria: string;
     brand: string;

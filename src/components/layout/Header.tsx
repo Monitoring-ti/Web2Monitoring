@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import { useDictionary, useLocale } from "@/context/LocaleProvider";
 import LanguageSwitcher from "@/components/layout/LanguageSwitcher";
-import { localePath, pagePath, resolveNavPath } from "@/lib/locale-path";
+import { localePath, pagePath, pathsMatch, resolveNavPath } from "@/lib/locale-path";
 
 export default function Header() {
   const t = useDictionary();
@@ -15,7 +15,7 @@ export default function Header() {
   const pathname = usePathname();
   const homePath = localePath(locale);
   const contactPath = pagePath(locale, "contacto");
-  const isHome = pathname === homePath;
+  const isHome = pathsMatch(pathname, homePath);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -45,7 +45,7 @@ export default function Header() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const isActive = (href: string) => pathname === resolveNavPath(locale, href);
+  const isActive = (href: string) => pathsMatch(pathname, resolveNavPath(locale, href));
 
   const navLinkClass = (href: string, compact = false) => {
     const active = isActive(href);
