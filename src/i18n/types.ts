@@ -281,6 +281,8 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     subtitle: string;
+    viewAll: string;
+    viewAllAria: string;
     items: {
       id: string;
       pages: ("home" | "services" | "mmi")[];

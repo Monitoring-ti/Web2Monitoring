@@ -39,6 +39,7 @@ export const en: Dictionary = {
       { label: "Differentiators", href: "/diferenciadores" },
       { label: "News", href: "/actualidad" },
       { label: "Library", href: "/biblioteca" },
+      { label: "FAQ", href: "/preguntas-frecuentes" },
     ],
   },
   header: {
@@ -674,6 +675,8 @@ export const en: Dictionary = {
     title: "Direct answers about our service",
     subtitle:
       "Technical scope, regional presence, SAP PM integration, and the role of MMi by Monitoring.",
+    viewAll: "View all FAQs",
+    viewAllAria: "View the full frequently asked questions page",
     items: [
       {
         id: "que-hace-monitoring",
@@ -737,6 +740,48 @@ export const en: Dictionary = {
         question: "How can we request a diagnosis or an MMi demonstration?",
         answer:
           "You can schedule a meeting or request an MMi demo via monitoring.lat/en/contacto/, by emailing soporte@monitoring.cl, or by calling +56 2 2235 3090, with a specialist response in under 24 business hours.",
+      },
+      {
+        id: "forma-de-trabajo",
+        pages: ["services"],
+        question: "How does Monitoring structure a consulting engagement?",
+        answer:
+          "It follows four stages: operational diagnosis and technical scope, approach and deliverables proposal, on-site implementation alongside the client team, and field follow-up until performance is sustained.",
+      },
+      {
+        id: "terreno-o-remoto",
+        pages: [],
+        question: "Does Monitoring work on site or remotely?",
+        answer:
+          "It combines field teams deployed directly at mine sites, plants, and shutdowns with engineering and analytics support from offices in Santiago, Calama, and Lima across Chile, Peru, and Mexico.",
+      },
+      {
+        id: "requisitos-iniciales",
+        pages: [],
+        question: "What is needed to start a technical conversation?",
+        answer:
+          "The initial 30-minute conversation requires no prior documentation — just reviewing your operational challenge. Once moving into a diagnosis or MMi analysis, work draws on existing records such as maintenance plans, work orders, manuals, or SAP PM data.",
+      },
+      {
+        id: "reemplazo-equipo-erp",
+        pages: ["mmi"],
+        question: "Do Monitoring or MMi replace internal maintenance teams or SAP PM?",
+        answer:
+          "No. Monitoring supports and strengthens the client's maintenance, engineering, and reliability teams on top of existing SAP PM, EAM, or CMMS workflows, while human specialists retain full technical decision-making.",
+      },
+      {
+        id: "donde-estan-oficinas",
+        pages: [],
+        question: "Where are Monitoring offices located?",
+        answer:
+          "In Santiago (Antonio Varas 303, office 410, Providencia; +56 2 2235 3090), Calama (Bartolomé Vivar 1580, office 501, Tower B; +56 2 2725 0546), and Lima (Av. José Pardo 601, office 1002, Miraflores; +51 904 854 456).",
+      },
+      {
+        id: "alcance-contacto-correo",
+        pages: [],
+        question: "What types of inquiries can be submitted through the contact form?",
+        answer:
+          "The form at monitoring.lat/en/contacto/ handles commercial meeting requests, diagnostics, technical proposals, reference material, and MMi demonstrations, routed confidentially to soporte@monitoring.cl.",
       },
     ],
   },

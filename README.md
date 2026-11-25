@@ -11,7 +11,7 @@ El sitio tiene una sola presentación, en español (`/`) e inglés (`/en`), con 
 | `/` | Inicio en español |
 | `/en` | El mismo inicio en inglés |
 | `/servicios`, `/mmi`, `/industrias`, `/casos`, `/equipo`, `/contacto` | Páginas de contenido |
-| `/credibilidad`, `/diferenciadores`, `/actualidad`, `/biblioteca` | Páginas del menú Más |
+| `/credibilidad`, `/diferenciadores`, `/actualidad`, `/biblioteca`, `/preguntas-frecuentes` | Páginas del menú Más |
 | `/en/...` | Las mismas páginas en inglés |
 | `/llms.txt` | Índice en texto plano del sitio para buscadores y asistentes |
 | `/llms-full.txt` | Contexto completo en texto plano para buscadores y asistentes de IA (servicios, casos, MMi y FAQs) |

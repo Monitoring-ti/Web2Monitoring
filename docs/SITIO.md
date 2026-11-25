@@ -102,9 +102,10 @@ Todas las rutas internas existen en español y en inglés. Ejemplo: `/mmi/` y `/
 | `/diferenciadores` | Diferenciadores | Cuatro rasgos. Menú “Más” |
 | `/actualidad` | Actualidad | Tres notas. Menú “Más” |
 | `/biblioteca` | Biblioteca | Listado de descargas. Menú “Más” |
+| `/preguntas-frecuentes` | Preguntas frecuentes | 15 preguntas y respuestas sobre servicio, oficinas y MMi. Menú “Más” |
 | `/en` y `/en/...` | Las mismas páginas en inglés | |
 | `/acceso-cliente` | Portal | `noindex`. Sin enlace en el menú público |
-| `/sitemap.xml` | Sitemap | Home, `/en` y las diez páginas internas en ambos idiomas |
+| `/sitemap.xml` | Sitemap | Home, `/en` y las once páginas internas en ambos idiomas (24 URLs) |
 | `/robots.txt` | Robots | Permite `/`. Niega `/acceso-cliente` y `/api/`. Reglas explícitas para rastreadores de IA |
 | `/llms.txt` | Índice de texto | Servicios, industrias, certificaciones, oficinas, dirección y el mapa de URLs en ambos idiomas |
 | `/llms-full.txt` | Contexto extendido | Detalle completo en ES/EN con diferenciadores, casos, proceso de MMi y preguntas frecuentes |
@@ -119,7 +120,7 @@ Cabecera fija.
 
 - Logo `/logo.png` hacia el inicio. En el hero oscuro de escritorio el logo va en caja blanca.
 - Menú principal: Servicios, MMi, Industrias, Casos, Equipo, Contacto.
-- Menú Más: Empresa, Credibilidad, Diferenciadores, Actualidad, Biblioteca.
+- Menú Más: Empresa, Credibilidad, Diferenciadores, Actualidad, Biblioteca, Preguntas frecuentes.
 - Idioma: ES / English, conservando la misma página.
 - Acción de escritorio: “Solicitar Reunión” hacia `/contacto`.
 - En móvil, las mismas entradas principales quedan en pastillas siempre visibles. Contacto va en naranja. El ícono de menú abre Más y “Solicitar Reunión”.

@@ -34,7 +34,7 @@ Auditoría y guía de posicionamiento para el sitio en `monitoring.lat`.
 | `/` | Sí (prioridad 1.0) | Sí (`es`, predeterminado) |
 | `/en` | Sí (prioridad 0.9) | Sí (`en`) |
 | `/servicios`, `/mmi`, `/industrias`, `/casos`, `/equipo`, `/contacto` | Sí | Sí, y su par en `/en/...` |
-| `/credibilidad`, `/diferenciadores`, `/actualidad`, `/biblioteca` | Sí | Sí, y su par en `/en/...` |
+| `/credibilidad`, `/diferenciadores`, `/actualidad`, `/biblioteca`, `/preguntas-frecuentes` | Sí | Sí, y su par en `/en/...` |
 | `/acceso-cliente` | No | No (`noindex`, login) |
 
 `/llms.txt`, `/llms-full.txt` y `/robots.txt` no son páginas indexables. El sitio no tiene una variante alternativa del inicio: el HTML que ve una persona es el mismo que ve un buscador.
@@ -100,6 +100,7 @@ Cada página interna añade:
 - **BreadcrumbList** — Inicio y la sección actual
 - **OfferCatalog** / **ItemList** + **FAQPage** en `/servicios`
 - **SoftwareApplication** + **FAQPage** en `/mmi`
+- **FAQPage** completo en `/preguntas-frecuentes` (15 preguntas en español e inglés)
 
 Para enriquecer en producción, agregar en `organizationNode()`:
 
@@ -178,7 +179,7 @@ No hace falta volver a tocar nada de esto:
 
 - `canonical`, `hreflang` es↔en, Open Graph y Twitter Card
 - `robots.txt` con reglas explícitas para 10 rastreadores de IA, y `/llms.txt`
-- `sitemap.xml` con las 22 URLs públicas, con barra final y fecha de contenido estable
+- `sitemap.xml` con las 24 URLs públicas, con barra final y fecha de contenido estable
 - JSON-LD `@graph` en la home y en cada página interna
 - Dominio canónico con 301 desde `monitoring.cl`, `.pe` y `.com.pe`
 - La copia espejo de GitHub Pages sale con `noindex`

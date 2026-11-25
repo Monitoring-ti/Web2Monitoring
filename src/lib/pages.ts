@@ -11,6 +11,7 @@ import News from "@/components/sections/News";
 import Library from "@/components/sections/Library";
 import Contact from "@/components/sections/Contact";
 import Mmi from "@/components/sections/MmiSection";
+import { FaqPageSection } from "@/components/sections/FaqSection";
 
 export const PAGE_SLUGS = [
   "credibilidad",
@@ -22,6 +23,7 @@ export const PAGE_SLUGS = [
   "equipo",
   "actualidad",
   "biblioteca",
+  "preguntas-frecuentes",
   "contacto",
 ] as const;
 
@@ -37,6 +39,7 @@ export const PAGE_COMPONENTS: Record<PageSlug, ComponentType> = {
   equipo: TeamField,
   actualidad: News,
   biblioteca: Library,
+  "preguntas-frecuentes": FaqPageSection,
   contacto: Contact,
 };
 
@@ -87,6 +90,10 @@ export function getPageMeta(locale: Locale, slug: PageSlug) {
     biblioteca: {
       title: dict.library.title,
       description: dict.library.subtitle,
+    },
+    "preguntas-frecuentes": {
+      title: dict.faq.eyebrow,
+      description: dict.faq.subtitle,
     },
     contacto: {
       title: locale === "es" ? "Contacto" : "Contact",

@@ -40,6 +40,7 @@ export const es: Dictionary = {
       { label: "Diferenciadores", href: "/diferenciadores" },
       { label: "Actualidad", href: "/actualidad" },
       { label: "Biblioteca", href: "/biblioteca" },
+      { label: "Preguntas frecuentes", href: "/preguntas-frecuentes" },
     ],
   },
   header: {
@@ -680,6 +681,8 @@ export const es: Dictionary = {
     title: "Respuestas directas sobre nuestro servicio",
     subtitle:
       "Alcance técnico, presencia regional, integración con SAP PM y rol de MMi by Monitoring.",
+    viewAll: "Ver todas las preguntas frecuentes",
+    viewAllAria: "Ver la página completa de preguntas frecuentes",
     items: [
       {
         id: "que-hace-monitoring",
@@ -743,6 +746,48 @@ export const es: Dictionary = {
         question: "¿Cómo solicitar un diagnóstico o una demostración con Monitoring?",
         answer:
           "Se puede agendar una reunión o solicitar una demostración de MMi desde la sección de contacto en monitoring.lat/contacto/ o escribiendo directamente a soporte@monitoring.cl o llamando al +56 2 2235 3090, con respuesta de un especialista en menos de 24 horas hábiles.",
+      },
+      {
+        id: "forma-de-trabajo",
+        pages: ["services"],
+        question: "¿Cómo trabaja Monitoring en un proyecto o contrato?",
+        answer:
+          "Sigue cuatro etapas: diagnóstico de la operación y alcance técnico, propuesta de abordaje y entregables, implementación con equipo en la operación y seguimiento en terreno hasta sostener el desempeño.",
+      },
+      {
+        id: "terreno-o-remoto",
+        pages: [],
+        question: "¿Monitoring trabaja solo en faena o también desde oficinas?",
+        answer:
+          "Combina equipos desplegados directamente en terreno (mina, planta y paradas) con soporte técnico y analítica desde sus oficinas en Santiago, Calama y Lima para operaciones en Chile, Perú y México.",
+      },
+      {
+        id: "requisitos-iniciales",
+        pages: [],
+        question: "¿Qué información se necesita para iniciar una conversación técnica?",
+        answer:
+          "Para la reunión inicial de 30 minutos no se requiere documentación previa: basta revisar el contexto operacional. Cuando se avanza a un diagnóstico o análisis con MMi, se trabaja con antecedentes existentes como planes, órdenes de trabajo, manuales o registros en SAP PM.",
+      },
+      {
+        id: "reemplazo-equipo-erp",
+        pages: ["mmi"],
+        question: "¿Monitoring o MMi reemplazan al equipo interno o a SAP PM?",
+        answer:
+          "No. Monitoring refuerza y acompaña al equipo de mantenimiento, ingeniería y confiabilidad del cliente, trabajando sobre sus procesos y datos en SAP PM, EAM o CMMS sin sustituir la toma de decisiones del especialista.",
+      },
+      {
+        id: "donde-estan-oficinas",
+        pages: [],
+        question: "¿Dónde están ubicadas las oficinas de Monitoring?",
+        answer:
+          "En Santiago (Antonio Varas 303, of. 410, Providencia; +56 2 2235 3090), Calama (Bartolomé Vivar 1580, of. 501, Torre B; +56 2 2725 0546) y Lima (Av. José Pardo 601, of. 1002, Miraflores; +51 904 854 456).",
+      },
+      {
+        id: "alcance-contacto-correo",
+        pages: [],
+        question: "¿Qué consultas se pueden enviar a través del formulario de contacto?",
+        answer:
+          "El formulario de monitoring.lat/contacto/ permite solicitar reunión comercial, diagnóstico, propuesta técnica, material o demostración de MMi. Los mensajes se canalizan a soporte@monitoring.cl bajo confidencialidad.",
       },
     ],
   },

@@ -168,8 +168,15 @@ function navigationNode(dict: Dictionary, locale: Locale) {
   };
 }
 
-function faqPageNode(dict: Dictionary, page: "home" | "services" | "mmi", pageUrl: string) {
-  const items = dict.faq.items.filter((item) => item.pages.includes(page));
+function faqPageNode(
+  dict: Dictionary,
+  page: "all" | "home" | "services" | "mmi",
+  pageUrl: string,
+) {
+  const items =
+    page === "all"
+      ? dict.faq.items
+      : dict.faq.items.filter((item) => item.pages.includes(page));
   if (items.length === 0) return null;
 
   return {
@@ -275,6 +282,11 @@ export function pageJsonLd(locale: Locale, slug: PageSlug) {
       provider: { "@id": ORG_ID },
     });
     const faqNode = faqPageNode(dict, "mmi", url);
+    if (faqNode) graph.push(faqNode);
+  }
+
+  if (slug === "preguntas-frecuentes") {
+    const faqNode = faqPageNode(dict, "all", url);
     if (faqNode) graph.push(faqNode);
   }
 
